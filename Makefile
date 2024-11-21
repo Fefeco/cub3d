@@ -22,12 +22,13 @@ NAME = cub3d
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g -MMD -Iinc
-MLX_FLAGS=-Lmlx-linux -lmlx -L/usr/lib/X11 -lXext -lX11
-LIBFT_FLAGS=-Llibft -l ftprintf
+MLX_FLAGS=-Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
+LIBFT_FLAGS=-Llibft -lftprintf
 
-INC=-Imlx-linux
+INC=-Imlx
 
 LIBFT_PATH=libft/
+MLX_PATH = mlx/
 SRC_PATH = src/
 OBJS_PATH = objects/
 DEPS_PATH = deps/
@@ -39,7 +40,7 @@ DEPS = $(addprefix $(DEPS_PATH), $(SRCS:.c=.d))
 
 all: $(NAME)
 
-$(NAME):  $(OBJS) inc/cub3d.h
+$(NAME):  $(OBJS) libfta libmlx inc/cub3d.h
 	@echo "$(YELLOW)\n"
 	@echo "Compiling cub3d...\n"
 	@echo "$(DEF_COLOR)"
@@ -67,9 +68,9 @@ libfta: libft/Makefile
 	@echo "	==============	"
 	@echo "\n"
 
-$(MLX_NAME): mlx/Makefile
+libmlx: mlx/Makefile
 	@echo "$(YELLOW)Compiling mlx...\n"
-	@make -C mlx/ &> /dev/null
+	@make -C ./mlx &> /dev/null
 	@echo "$(GREEN)\n"
 	@echo "	==============	"
 	@echo "	 mlx created	"
