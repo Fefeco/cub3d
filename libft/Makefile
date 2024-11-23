@@ -6,96 +6,100 @@
 #    By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/09 13:06:50 by davifer2          #+#    #+#              #
-#    Updated: 2024/06/26 16:33:43 by fcarranz         ###   ########.fr        #
+#    Updated: 2024/11/23 21:05:14 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-DEL_LINE =		\033[2K
-ITALIC =		\033[3m
-BOLD =			\033[1m
 DEF_COLOR =		\033[0;39m
-GRAY =			\033[0;90m
-RED =			\033[0;91m
 GREEN =			\033[0;92m
 YELLOW =		\033[0;93m
 BLUE =			\033[0;94m
-MAGENTA =		\033[0;95m
-CYAN =			\033[0;96m
-WHITE =			\033[0;97m
-BLACK =			\033[0;99m
-ORANGE =		\033[38;5;209m
-BROWN =			\033[38;2;184;143;29m
-DARK_GRAY =		\033[38;5;234m
-MID_GRAY =		\033[38;5;245m
-DARK_GREEN =	\033[38;2;75;179;82m
-DARK_YELLOW =	\033[38;5;143m
 
 NAME = libft.a
 
-CC = gcc -Iinc
+CC = gcc 
+INC = -Iinc
 CFLAGS = -Wall -Werror -Wextra -MMD -g
 
-GNL_DIR = src/gnl
-PRINTF_DIR = src/printf
-
-SRC_PATH = src/
-OBJS_PATH = objects/
+SRCS_PATH = src/
+OBJS_PATH = objs/
 DEPS_PATH = deps/
 
-SOURCES_LIBFT = src/ft_atoi.c \
-				src/ft_bzero.c \
-				src/ft_calloc.c \
-				src/ft_itoa.c \
-				src/ft_isalnum.c \
-				src/ft_isalpha.c \
-				src/ft_isascii.c \
-				src/ft_isdigit.c \
-				src/ft_isprint.c \
-				src/ft_memchr.c \
-				src/ft_memcmp.c \
-				src/ft_memcpy.c \
-				src/ft_memmove.c \
-				src/ft_memset.c \
-				src/ft_putchar_fd.c \
-				src/ft_putendl_fd.c \
-				src/ft_putnbr_fd.c \
-				src/ft_putstr_fd.c \
-				src/ft_split.c \
-				src/ft_strchr.c \
-				src/ft_strdup.c \
-				src/ft_striteri.c \
-				src/ft_strlcat.c \
-				src/ft_strlcpy.c \
-				src/ft_strlen.c \
-				src/ft_strmapi.c \
-				src/ft_strncmp.c \
-				src/ft_strnstr.c \
-				src/ft_strrchr.c \
-				src/ft_strtrim.c \
-				src/ft_substr.c \
-				src/ft_tolower.c \
-				src/ft_toupper.c \
-				src/ft_lstnew_bonus.c \
-				src/ft_lstsize_bonus.c \
-				src/ft_lstadd_back_bonus.c \
-				src/ft_lstadd_front_bonus.c	\
-				src/ft_lstlast_bonus.c \
-				src/ft_lstdelone_bonus.c \
-				src/ft_lstclear_bonus.c \
-				src/ft_lstiter_bonus.c \
-				src/ft_lstmap_bonus.c
+LFT_SRC_PATH = $(SRCS_PATH)lft/
+LFT_OBJ_PATH = $(subst $(SRCS_PATH), $(OBJS_PATH), $(LFT_SRC_PATH))
+LFT_DEP_PATH = $(subst $(SRCS_PATH), $(DEPS_PATH), $(LFT_SRC_PATH))
 
-SOURCES_GNL = $(GNL_DIR)/get_next_line.c $(GNL_DIR)/get_next_line_utils.c
+GNL_SRC_PATH = $(SRCS_PATH)gnl/
+GNL_OBJ_PATH = $(subst $(SRCS_PATH), $(OBJS_PATH), $(GNL_SRC_PATH))
+GNL_DEP_PATH = $(subst $(SRCS_PATH), $(DEPS_PATH), $(GNL_SRC_PATH))
 
-SOURCES_PRINTF = $(PRINTF_DIR)/ft_printf.c $(PRINTF_DIR)/ft_hexlen.c \
-	$(PRINTF_DIR)/ft_nbrlen.c $(PRINTF_DIR)/ft_nbrunsiglen.c \
-	$(PRINTF_DIR)/ft_printchar_fd.c $(PRINTF_DIR)/ft_printhex_fd.c \
-	$(PRINTF_DIR)/ft_printnbr_fd.c $(PRINTF_DIR)/ft_printnbrunsig_fd.c \
-	$(PRINTF_DIR)/ft_printstr_fd.c
+PRF_SRC_PATH = $(SRCS_PATH)printf/
+PRF_OBJ_PATH = $(subst $(SRCS_PATH), $(OBJS_PATH), $(PRF_SRC_PATH))
+PRF_DEP_PATH = $(subst $(SRCS_PATH), $(DEPS_PATH), $(PRF_SRC_PATH))
 
-SOURCES = $(SOURCES_LIBFT) $(SOURCES_GNL) $(SOURCES_PRINTF)
-OBJS = $(addprefix $(OBJS_PATH), $(SOURCES:.c=.o))
-DEPS = ${addprefix $(DEPS_PATH), $(SOURCES:.c=.d)}
+LFT_FILES = ft_atoi.c \
+			ft_bzero.c \
+			ft_calloc.c \
+			ft_itoa.c \
+			ft_isalnum.c \
+			ft_isalpha.c \
+			ft_isascii.c \
+			ft_isdigit.c \
+			ft_isprint.c \
+			ft_memchr.c \
+			ft_memcmp.c \
+			ft_memcpy.c \
+			ft_memmove.c \
+			ft_memset.c \
+			ft_putchar_fd.c \
+			ft_putendl_fd.c \
+			ft_putnbr_fd.c \
+			ft_putstr_fd.c \
+			ft_split.c \
+			ft_strchr.c \
+			ft_strdup.c \
+			ft_striteri.c \
+			ft_strlcat.c \
+			ft_strlcpy.c \
+			ft_strlen.c \
+			ft_strmapi.c \
+			ft_strncmp.c \
+			ft_strnstr.c \
+			ft_strrchr.c \
+			ft_strtrim.c \
+			ft_substr.c \
+			ft_tolower.c \
+			ft_toupper.c \
+			ft_lstnew_bonus.c \
+			ft_lstsize_bonus.c \
+			ft_lstadd_back_bonus.c \
+			ft_lstadd_front_bonus.c	\
+			ft_lstlast_bonus.c \
+			ft_lstdelone_bonus.c \
+			ft_lstclear_bonus.c \
+			ft_lstiter_bonus.c \
+			ft_lstmap_bonus.c
+
+GNL_FILES = get_next_line.c \
+			get_next_line_utils.c
+
+PRF_FILES = ft_printf.c \
+			ft_hexlen.c \
+			ft_nbrlen.c \
+			ft_nbrunsiglen.c \
+			ft_printchar_fd.c \
+			ft_printhex_fd.c \
+			ft_printnbr_fd.c \
+			ft_printnbrunsig_fd.c \
+			ft_printstr_fd.c
+
+LFT_SRC = $(addprefix $(LFT_SRC_PATH), $(LFT_FILES))
+GNL_SRC = $(addprefix $(GNL_SRC_PATH), $(GNL_FILES))
+PRF_SRC = $(addprefix $(PRF_SRC_PATH), $(PRF_FILES))
+
+SRCS = $(LFT_SRC) $(GNL_SRC) $(PRF_SRC)
+OBJS = $(subst $(SRCS_PATH), $(OBJS_PATH), $(SRCS:.c=.o))
+DEPS = $(subst $(SRCS_PATH), $(DEPS_PATH), $(SRCS:.c=.d))
 
 all: $(NAME)
 
@@ -111,12 +115,23 @@ $(NAME): $(OBJS) inc/libft.h Makefile
 	@echo "\n"
 	@echo "$(DEF_COLOR)"
 
-$(OBJS_PATH)%.o: %.c inc/libft.h
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "$(DEF_COLOR)$(GREEN)Creating object $(DEF_COLOR)- $(BLUE)$@"
-	@mkdir -p $(subst $(OBJS_PATH),$(DEPS_PATH),$(@D))
-	@mv $(patsubst %.o,%.d,$@) $(subst $(OBJS_PATH),$(DEPS_PATH),$(@D))/
+$(LFT_OBJ_PATH)%.o: $(LFT_SRC_PATH)%.c
+	@mkdir -p $(LFT_OBJ_PATH) $(LFT_DEP_PATH)
+	@$(CC) $(CFLAGS) -c $< $(INC) -o $@
+	@echo "$(GREEN)Creating object $(DEF_COLOR)- $(BLUE)$@"
+	@mv $(subst .o,.d, $@) $(LFT_DEP_PATH)
+
+$(GNL_OBJ_PATH)%.o: $(GNL_SRC_PATH)%.c
+	@mkdir -p $(GNL_OBJ_PATH) $(GNL_DEP_PATH)
+	@$(CC) $(CFLAGS) -c $< $(INC) -o $@
+	@echo "$(GREEN)Creating object $(DEF_COLOR)- $(BLUE)$@"
+	@mv $(subst .o,.d, $@) $(GNL_DEP_PATH)
+
+$(PRF_OBJ_PATH)%.o: $(PRF_SRC_PATH)%.c
+	@mkdir -p $(PRF_OBJ_PATH) $(PRF_DEP_PATH)
+	@$(CC) $(CFLAGS) -c $< $(INC) -o $@
+	@echo "$(GREEN)Creating object $(DEF_COLOR)- $(BLUE)$@"
+	@mv $(subst .o,.d, $@) $(PRF_DEP_PATH)
 
 clean:
 	@rm -rf $(OBJS_PATH) $(DEPS_PATH)
@@ -126,6 +141,6 @@ fclean: clean
 
 re: fclean all
 	
--include $(DEPS)
-
 .PHONY: all clean fclean re
+
+-include $(DEPS)
