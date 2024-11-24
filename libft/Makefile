@@ -6,7 +6,7 @@
 #    By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/09 13:06:50 by davifer2          #+#    #+#              #
-#    Updated: 2024/11/23 21:05:14 by fcarranz         ###   ########.fr        #
+#    Updated: 2024/11/24 16:57:32 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ GREEN =			\033[0;92m
 YELLOW =		\033[0;93m
 BLUE =			\033[0;94m
 
-NAME = libft.a
+NAME = libftprintf.a
 
 CC = gcc 
 INC = -Iinc

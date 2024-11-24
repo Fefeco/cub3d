@@ -1,121 +1,121 @@
-DEL_LINE =		\033[2K
-ITALIC =		\033[3m
-BOLD =			\033[1m
-DEF_COLOR =		\033[0;39m
-GRAY =			\033[0;90m
-RED =			\033[0;91m
-GREEN =			\033[0;92m
-YELLOW =		\033[0;93m
-BLUE =			\033[0;94m
-MAGENTA =		\033[0;95m
-CYAN =			\033[0;96m
-WHITE =			\033[0;97m
-BLACK =			\033[0;99m
-ORANGE =		\033[38;5;209m
-BROWN =			\033[38;2;184;143;29m
-DARK_GRAY =		\033[38;5;234m
-MID_GRAY =		\033[38;5;245m
-DARK_GREEN =	\033[38;2;75;179;82m
-DARK_YELLOW =	\033[38;5;143m
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
+#    Updated: 2024/11/24 21:28:13 by fcarranz         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-NAME = cub3d
+RESET 	= \033[0;39m
+RED 	= \033[0;91m
+GREEN	= \033[0;92m
+YELLOW	= \033[0;93m
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -MMD -Iinc
-MLX_FLAGS=-Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
-LIBFT_FLAGS=-Llibft -lftprintf
+NAME	= cub3d
+LIBFT	= libft/libftprintf.a
+LIBMLX	= mlx/libmlx.a
 
-INC=-Imlx
+CC			= gcc
+INC			= -Imlx -Iinc
+CFLAGS		= -Wall -Wextra -Werror -g -MMD
+MLX_FLAGS	= -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
+LIBFT_FLAGS	= -Llibft -lftprintf
 
-LIBFT_PATH=libft/
-MLX_PATH = mlx/
-SRC_PATH = src/
-OBJS_PATH = objects/
-DEPS_PATH = deps/
+LFT_PATH	= libft/
+MLX_PATH	= mlx/
+SRCS_PATH	= src/
+OBJS_PATH	= obj/
+DEPS_PATH	= dep/
 
-SRCS =	main/main.c \
+SRCS = main.c
 
 OBJS = $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
 DEPS = $(addprefix $(DEPS_PATH), $(SRCS:.c=.d))
 
 all: $(NAME)
 
-$(NAME):  $(OBJS) libfta libmlx inc/cub3d.h
-	@echo "$(YELLOW)\n"
-	@echo "Compiling cub3d...\n"
-	@echo "$(DEF_COLOR)"
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_FLAGS) $(MLX_FLAGS) $(INC) -o $(NAME)
-	@echo "$(GREEN)\n"
+$(NAME): $(LIBMLX) $(LIBFT) $(OBJS) inc/cub3d.h
+	@echo "$(YELLOW)	Compiling cub3d...\n$(RESET)"
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_FLAGS) $(MLX_FLAGS) $(INC) -o $@
+	@echo "\n$(GREEN)"
 	@echo "	===============	"
 	@echo "	 cub3d created	"
 	@echo "	===============	"
-	@echo "\n"
-	@echo "$(DEF_COLOR)"
+	@echo "\n$(RESET)"
 
 
-$(OBJS_PATH)%.o: $(SRC_PATH)%.c inc/cub3d.h
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -c $< -o $@
-	@mkdir -p $(subst $(OBJS_PATH),$(DEPS_PATH),$(@D))
-	@mv $(patsubst %.o,%.d,$@) $(subst $(OBJS_PATH),$(DEPS_PATH),$(@D))/
+$(OBJS_PATH)%.o: $(SRCS_PATH)%.c
+	@mkdir -p $(OBJS_PATH) $(DEPS_PATH)
+	@$(CC) $(CFLAGS) -c $< $(INC) -o $@
+	@mv $(subst .o,.d,$@) $(DEPS_PATH)
 
-libfta: libft/Makefile	
-	@echo "$(YELLOW)Compiling libft...\n"
-	@make -C $(LIBFT_PATH) --no-print-directory
-	@echo "$(GREEN)\n"
-	@echo "	==============	"
-	@echo "	 libft created	"
-	@echo "	==============	"
-	@echo "\n"
+$(LIBFT): libft/Makefile	
+	@echo "$(YELLOW)	Compiling libft...\n"
+	@make -C $(LFT_PATH) --no-print-directory
 
-libmlx: mlx/Makefile
-	@echo "$(YELLOW)Compiling mlx...\n"
-	@make -C ./mlx &> /dev/null
-	@echo "$(GREEN)\n"
+$(LIBMLX): mlx/Makefile
+	@echo "$(YELLOW)	Compiling mlx...\n"
+	@make -C mlx --no-print-directory 2> /dev/null
+	@echo "\n$(GREEN)"
 	@echo "	==============	"
 	@echo "	 mlx created	"
 	@echo "	==============	"
-	@echo "\n"
+	@echo "\n$(RESET)"
 
 clean:
-	@if [ -d "$(OBJS_PATH)" ] && [ -n "$$(find $(OBJS_PATH) -name '*.o' -print -quit)" ]; then \
-		echo "\n"; \
-		echo "$(YELLOW)Removing object files...$(RED)"; \
-		@make clean -C $(LIBFT_PATH) > /dev/null \
-		@make clean -C $(MLX_PATH) > /dev/null \
-		rm -rf $(OBJS_PATH) $(DEPS_PATH); \
-		echo "\n"; \
-		echo "	======================	"; \
-		echo "	 All .o files removed	"; \
-		echo "	======================	"; \
-		echo "\n"; \
+	@if [ -d $(OBJS_PATH) ]; then \
+		make clean-objects --no-print-directory; \
 	else \
-		echo "$(RED)\n"; \
-		echo "	========================	"; \
-		echo "	 No .o files to remove.	"; \
-		echo "	========================	"; \
-		echo "\n"; \
+		make no-objects --no-print-directory; \
 	fi
 
 fclean: clean
-	@if [ -f "$(NAME)" ] || [ -d "$(LIBFT_PATH)" ] && [ -n "$$(find $(LIBFT_PATH) -name '*.a' -print -quit)" ]; then \
-		echo "\n"; \
-		rm -rf $(NAME); \
-		echo "\n"; \
-		echo "	===================	"; \
-		echo "	 All files removed	"; \
-		echo "	===================	"; \
-		echo "\n"; \
+	@if [ -f $(NAME) ] || [ -f $(LIBFT) ] ; then \
+		make clean-files --no-print-directory; \
 	else \
-		echo "$(RED)\n"; \
-		echo "	=====================	"; \
-		echo "	 No files to remove.	"; \
-		echo "	=====================	"; \
-		echo "\n"; \
+		make no-files --no-print-directory; \
 	fi
 
--include $(DEPS)
+clean-objects:
+	@echo "\n$(YELLOW)	Removing object files...$(RESET)"
+	@make clean -C $(LFT_PATH) > /dev/null 2>&1
+	@make clean -C $(MLX_PATH) > /dev/null 2>&1
+	@rm -rf $(OBJS_PATH) $(DEPS_PATH)
+	@echo "\n$(GREEN)"
+	@echo "	======================  "
+	@echo "	 All .o files removed   "
+	@echo "	======================  "
+	@echo "\n$(RESET)"
+
+no-objects:
+	@echo "\n$(RED)"
+	@echo "	========================    "
+	@echo "	 No .o files to remove. "
+	@echo "	========================    "
+	@echo "\n$(RESET)"
+
+clean-files:
+	@echo "\n$(YELLOW)	Removing files $(NAME) and $(LIBFT)...$(RESET)"
+	@rm -f $(NAME) $(LIBFT)
+	@echo "\n$(GREEN)"
+	@echo "	===================	"
+	@echo "	 All files removed	"
+	@echo "	===================	"
+	@echo "\n$(RESET)"
+
+no-files:
+	@echo "\n$(RED)"
+	@echo "	=====================	"
+	@echo "	 No files to remove.	"
+	@echo "	=====================	"
+	@echo "\n$(RESET)"
 
 re: fclean all
 
 .PHONY: all clean fclean re
+
+-include $(DEPS)
