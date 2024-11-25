@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:57:47 by davifer2          #+#    #+#             */
-/*   Updated: 2024/11/25 11:51:12 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:44:32 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int main(int argc, char **argv)
 {
-    (void)argv;
-    if (argc != 2)
-        return (print_err("Error\nInvalid number of arguments", 1));
-    return (0);
+	if (argc != 2)
+		return (print_err("Invalid number of arguments", 1));
+	if (ft_check_extension(argv[1], ".cub"))
+		return (print_err("Invalid extension", 2));
+	return (0);
 }

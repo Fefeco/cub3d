@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/11/25 11:30:28 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:43:02 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@
 
 
 int	print_err(char *str, int ret);
+int ft_check_extension(const char *filename, const char *ext);
 
 #endif
