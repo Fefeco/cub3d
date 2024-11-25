@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
+/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/07 15:16:10 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/29 20:23:05 by davifer2         ###   ########.fr       */
+/*   Created: 2024/01/29 13:55:01 by fcarranz          #+#    #+#             */
+/*   Updated: 2024/02/01 21:14:19 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../inc/libft.h"
+
+#include "libft.h"
 
 t_list	*ft_lstnew(void *content)
 {
-	t_list	*node;
+	t_list	*ptr;
 
-	node = (t_list *)malloc(sizeof(t_list));
-	if (!node)
+	ptr = (t_list *)malloc(sizeof(t_list));
+	if (!ptr)
 		return (NULL);
-	node->content = content;
-	node->next = NULL;
-	return (node);
+	ptr->content = content;
+	ptr->next = NULL;
+	return (ptr);
 }
-/*
-int	main(void)
-{
-	t_list *new_node = ft_lstnew("hello");
-	printf("%s\n", (char *)new_node->content);
-	printf("%s\n", (char *)new_node->next);
-
-	free(new_node);
-	return (0);
-}*/

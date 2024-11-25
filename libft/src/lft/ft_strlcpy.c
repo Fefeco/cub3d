@@ -3,42 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
+/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 14:08:24 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/29 20:32:22 by davifer2         ###   ########.fr       */
+/*   Created: 2024/01/11 18:44:12 by fcarranz          #+#    #+#             */
+/*   Updated: 2024/10/10 20:21:43 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../inc/libft.h"
 
-size_t	ft_strlcpy(char *dest, char *src, size_t size)
+#include "libft.h"
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t dst_size)
 {
-	size_t	i;
-	size_t	len;
+	size_t	src_len;
 
-	i = 0;
-	len = 0;
-	while (src[len] != '\0')
-		len++;
-	if (size != 0)
+	src_len = 0;
+	if (dst_size)
 	{
-		while (src[i] != '\0' && i < size - 1)
+		while (*src && dst_size > 1)
 		{
-			dest[i] = src[i];
-			i++;
+			*dst++ = *src++;
+			++src_len;
+			--dst_size;
 		}
-		dest[i] = '\0';
+		*dst = '\0';
 	}
-	return (len);
+	while (*src++)
+		++src_len;
+	return (src_len);
 }
-/*
-int main()
-{
-	char *src = "hola";
-	char dest[10];
-	int size = 10;
-	printf("%zu\n", ft_strlcpy(dest, src, size));
-	printf("%s\n", dest);
-	return (0);
-}
-*/

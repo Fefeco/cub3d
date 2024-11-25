@@ -3,34 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
+/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 13:53:00 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/21 14:57:56 by davifer2         ###   ########.fr       */
+/*   Created: 2024/01/13 12:06:09 by fcarranz          #+#    #+#             */
+/*   Updated: 2024/10/10 20:00:56 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/libft.h"
+#include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *str, int c)
 {
-	while (*s != '\0')
+	while (*str != (char)c)
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
+		if (!*str)
+			return (NULL);
+		++str;
 	}
-	if (*s == (char)c)
-		return ((char *)s);
-	else
-		return (NULL);
+	return ((char *)str);
 }
-/*
-int main()
-{
-	char *str = "hola";
-	char *str2 = ft_strchr(str, 'a');
-	printf("%s\n", str2);
-	return (0);
-}
-*/

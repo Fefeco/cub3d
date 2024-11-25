@@ -1,71 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
+/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 13:16:10 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/29 20:22:49 by davifer2         ###   ########.fr       */
+/*   Created: 2024/01/31 20:23:58 by fcarranz          #+#    #+#             */
+/*   Updated: 2024/02/01 22:05:02 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../inc/libft.h"
-/*
-void *uppercase_content(void *content)
-{
-	size_t	i;
-	char	*str;
-	char *result;
 
-	i = 0;
-	if (content == NULL) {
-		return NULL;
-	}
-	str = (char *)content;
-	result = ft_strdup(str);
-	while (result[i]) {
-		result[i] = ft_toupper(result[i]);
-		i++;
-	}
-	return result;
-}
-
-void free_content(void *content)
-{
-	free(content);
-}*/
+#include "libft.h"
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*new_lst;
-	t_list	*new_node;
-	void	*aux;
+	t_list	*new;
+	t_list	*head;
+	void	*content;
 
 	if (!lst || !f || !del)
 		return (NULL);
-	new_lst = NULL;
+	head = NULL;
 	while (lst)
 	{
-		aux = f(lst->content);
-		new_node = ft_lstnew(aux);
-		if (!new_node)
+		content = f(lst->content);
+		if (!content)
+			return (NULL);
+		new = ft_lstnew(f(lst->content));
+		if (!new)
 		{
-			del(aux);
-			ft_lstclear(&new_lst, (*del));
-			return (new_lst);
+			ft_lstclear(&head, del);
+			free(head);
+			return (NULL);
 		}
-		ft_lstadd_back(&new_lst, new_node);
+		ft_lstadd_back(&head, new);
 		lst = lst->next;
 	}
-	return (new_lst);
+	return (head);
 }
-/*
-int main(void)
-{
-	t_list	*lst;
-	t_list *new_lst;
-
-	lst = ft_lstnew("hello");
-	ft_lstadd_back(&lst, ft_lstnew("world"));
-	new_lst = ft_lstmap(lst, uppercase_content, free_content);
-}*/

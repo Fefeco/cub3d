@@ -3,35 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
+/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/19 19:13:18 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/29 20:29:31 by davifer2         ###   ########.fr       */
+/*   Created: 2024/01/24 10:01:15 by fcarranz          #+#    #+#             */
+/*   Updated: 2024/01/24 10:12:25 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../inc/libft.h"
+
+#include "libft.h"
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
 	unsigned int	i;
 
 	i = 0;
-	while (s[i])
+	while (*(s + i))
 	{
-		f(i, s + i);
-		i++;
+		(*f)(i, s + i);
+		++i;
 	}
 }
-/*
-	void uppercase(unsigned int index, char *ch)
-	{
-		printf("index: %d\n", index);
-		printf("char: %c\n", *ch);
-	}
-	int main()
-	{
-		char *str = "hola";
-		ft_striteri(str, uppercase);
-		return (0);
-	}
-*/

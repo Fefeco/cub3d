@@ -3,48 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
+/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 17:50:22 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/29 20:25:53 by davifer2         ###   ########.fr       */
+/*   Created: 2024/01/10 17:28:13 by fcarranz          #+#    #+#             */
+/*   Updated: 2024/10/10 17:43:54 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../inc/libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+#include "libft.h"
+
+void	*ft_memcpy(void *dst, const void *src, size_t len)
 {
-	size_t		i;
-	char		*dest_p;
-	const char	*src_p;
+	const unsigned char	*u_src;
+	unsigned char		*u_dst;
 
-	i = 0;
-	dest_p = (char *)dst;
-	src_p = (char *)src;
-	while (dst == src || (!dst && !src))
-	{
+	if (!dst && !src)
 		return (dst);
-	}
-	while (i < n)
-	{
-		dest_p[i] = src_p[i];
-		i++;
-	}
+	u_src = (const unsigned char *)src;
+	u_dst = (unsigned char *)dst;
+	while (len--)
+		*u_dst++ = *u_src++;
 	return (dst);
 }
-/*
-int main() {
-	const char origen[] = "Hola, mundo!";
-	char destino[20];
-
-	printf("Contenido original: %s\n", origen);
-
-	ft_memcpy(destino, origen, sizeof(origen));
-
-	printf("ft_memcpy: %s\n", destino);
-
-	ft_memcpy(destino, origen, sizeof(origen));
-	printf("memcpy: %s\n", destino);
-
-	return 0;
-}
-*/

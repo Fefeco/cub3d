@@ -3,33 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
+/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/19 17:02:46 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/29 20:27:36 by davifer2         ###   ########.fr       */
+/*   Created: 2024/01/24 12:04:07 by fcarranz          #+#    #+#             */
+/*   Updated: 2024/10/10 19:09:59 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../inc/libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+#include "libft.h"
+
+void	ft_putnbr_fd(int nb, int fd)
 {
-	unsigned int	nbr;
+	int		module;
+	int		sign;
+	char	c;
 
-	if (n < 0)
+	c = '0';
+	sign = 1;
+	if (nb < 0)
 	{
-		ft_putchar_fd('-', fd);
-		nbr = n * -1;
+		write(fd, "-", 1);
+		sign = -1;
+	}
+	if (nb < -9 || nb > 9)
+	{
+		ft_putnbr_fd((nb / 10) * sign, fd);
+		module = (nb % 10) * sign;
 	}
 	else
-		nbr = n;
-	if (nbr > 9)
-		ft_putnbr_fd(nbr / 10, fd);
-	ft_putchar_fd(nbr % 10 + '0', fd);
+		module = nb * sign;
+	c += module;
+	write(fd, &c, 1);
 }
-/*
-int main()
-{
-	ft_putnbr_fd(-2147483648, 1);
-	return (0);
-}
-*/

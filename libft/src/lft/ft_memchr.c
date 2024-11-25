@@ -3,46 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
+/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 11:48:29 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/29 20:24:43 by davifer2         ###   ########.fr       */
+/*   Created: 2024/01/13 14:23:20 by fcarranz          #+#    #+#             */
+/*   Updated: 2024/10/10 17:18:55 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../inc/libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+#include "libft.h"
+
+void	*ft_memchr(const void *str, int c, size_t size)
 {
-	unsigned char	*str;
-	size_t			i;
+	unsigned char	ch;
+	unsigned char	*ptr;
 
-	i = 0;
-	str = (unsigned char *)s;
-	while (i < n)
+	ch = (unsigned char)c;
+	ptr = (unsigned char *)str;
+	while (size--)
 	{
-		if (str[i] == (unsigned char)c)
-		{
-			return ((void *)&str[i]);
-		}
-		i++;
+		if (*ptr == ch)
+			return (ptr);
+		++ptr;
 	}
-	return (0);
+	return (NULL);
 }
-/*
-int main() {
-	const char *str = "Hello, World!";
-	char searchChar = 'o';
-
-	// Buscar la primera aparición de 'W' en la cadena
-	const char *result = (const char *)ft_memchr(str,
-		searchChar, ft_strlen(str));
-
-	if (result != NULL) {
-		printf("Encontrado '%c' en la posición %ld.\n",
-		searchChar, result - str);
-	} else {
-		printf("'%c' no encontrado en la cadena.\n", searchChar);
-	}
-
-	return 0;
-}*/

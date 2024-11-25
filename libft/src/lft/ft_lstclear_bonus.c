@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
+/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/19 18:56:24 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/29 20:21:40 by davifer2         ###   ########.fr       */
+/*   Created: 2024/01/30 13:41:45 by fcarranz          #+#    #+#             */
+/*   Updated: 2024/10/15 13:22:15 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../inc/libft.h"
-/*
-void	delete_node(void *content)
-{
-	free(content);
-}*/
+
+#include "libft.h"
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	if (!lst || !del || !(*lst))
+	t_list	*tmp;
+
+	if (!lst || !del)
 		return ;
-	ft_lstclear(&(*lst)->next, del);
-	(del)((*lst)->content);
-	free(*lst);
-	*lst = NULL;
+	while (*lst)
+	{
+		tmp = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = tmp;
+	}
+	lst = NULL;
 }
-/*
-int	main(void)
-{
-	t_list	*node;
-
-	node = ft_lstnew("hello");
-	printf("Content %s\n", (char *)node->content);
-
-	ft_lstdelone(node, delete_node);
-	printf("Content %s\n", (char *)node->content);
-
-	return (0);
-}*/

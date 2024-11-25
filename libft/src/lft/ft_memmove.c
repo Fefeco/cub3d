@@ -3,43 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
+/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 18:07:08 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/29 20:26:13 by davifer2         ###   ########.fr       */
+/*   Created: 2024/01/10 18:30:47 by fcarranz          #+#    #+#             */
+/*   Updated: 2024/10/10 18:12:55 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../inc/libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t len)
+#include "libft.h"
+
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char	*dest_p;
+	const unsigned char	*u_src;
+	unsigned char		*u_dst;
 
-	dest_p = dest;
-	if ((!dest && !src) || dest == src)
-		return (dest);
-	if (dest > src)
+	u_dst = (unsigned char *) dst;
+	u_src = (const unsigned char *) src;
+	if (src < dst)
+	{
+		u_dst += len - 1;
+		u_src += len - 1;
 		while (len--)
-			((char *)dest)[len] = ((char *)src)[len];
-	else
+			*u_dst-- = *u_src--;
+	}
+	else if (src > dst)
+	{
 		while (len--)
-			*(char *)dest++ = *(char *)src++;
-	return (dest_p);
+			*u_dst++ = *u_src++;
+	}
+	return (dst);
 }
-/*
-int main() {
-
-	char source[] = "Hello, ";
-	char destination[] = "Mundo";
-	char source2[] = "Hello, ";
-	char destination2[] = "Mundo";
-
-	ft_memmove(destination, source, 3);
-	memmove(destination2, source2, 3);
-	printf("Source: %s\n", source);
-	printf("Destination: %s\n", destination);
-	printf("Destination2: %s\n", destination2);
-
-	return 0;
-}
-*/

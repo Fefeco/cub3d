@@ -3,43 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
+/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 15:30:58 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/29 20:29:10 by davifer2         ###   ########.fr       */
+/*   Created: 2024/01/14 13:35:51 by fcarranz          #+#    #+#             */
+/*   Updated: 2024/10/10 20:03:48 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../inc/libft.h"
 
-char	*ft_strdup(const char *src)
+#include "libft.h"
+
+char	*ft_strdup(const char *str)
 {
-	char	*str;
-	int		i;
-	int		size;
+	size_t	len;
+	char	*dst;
 
-	i = 0;
-	size = 0;
-	while (src[size])
-		size++;
-	str = (char *)malloc(sizeof(*str) * (size + 1));
-	if (!str)
-		return (0);
-	while (i < size)
-	{
-		str[i] = src[i];
-		i++;
-	}
-	str[size] = '\0';
-	return (str);
+	len = ft_strlen((char *)str) + 1;
+	dst = (char *)malloc(sizeof(char) * len);
+	if (dst)
+		ft_strlcpy(dst, str, len);
+	return (dst);
 }
-/*
-int main(void)
-{
-	char *src;
-
-	src = NULL;
-	//char *result = ft_strdup(src);
-	char *result = strdup(src);
-	printf("%s", result);
-}
-*/

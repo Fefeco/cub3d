@@ -3,36 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
+/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 14:02:19 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/21 13:59:46 by davifer2         ###   ########.fr       */
+/*   Created: 2024/01/13 13:04:10 by fcarranz          #+#    #+#             */
+/*   Updated: 2024/10/10 21:25:59 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 char	*ft_strrchr(const char *s, int c)
 {
-	const char	*last;
+	char	*str;
+	int		len;
 
-	last = 0;
-	while (*s != '\0')
+	str = (char *)s;
+	len = (int)ft_strlen(s);
+	str += len;
+	while (len-- >= 0)
 	{
-		if (*s == (char)c)
-			last = s;
-		s++;
+		if (*str == (char)c)
+			return (str);
+		--str;
 	}
-	if (*s == (char)c)
-		return ((char *)s);
-	else
-		return ((char *)last);
+	return (NULL);
 }
-/*
-int main()
-{
-	char *str = "hola";
-	char c = 'a';
-	printf("%s\n", ft_strrchr(str, c));
-	printf("%s\n", strrchr(str, c));
-	return (0);
-}
-*/

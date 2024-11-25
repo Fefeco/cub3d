@@ -3,28 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
+/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 13:16:10 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/29 20:17:42 by davifer2         ###   ########.fr       */
+/*   Created: 2024/01/10 17:17:19 by fcarranz          #+#    #+#             */
+/*   Updated: 2024/10/10 14:42:47 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../inc/libft.h"
 
-void	ft_bzero(void *str, size_t n)
+#include "libft.h"
+
+void	ft_bzero(void *s, size_t len)
 {
-	ft_memset(str, 0, n);
+	size_t	i;
+	char	*ptr;
+
+	i = 0;
+	ptr = (char *)s;
+	while (i < len)
+		ptr[i++] = '\0';
 }
-/*
-int	main(void)
-{
-	char	buffer[10];
-
-	ft_bzero(buffer, sizeof(buffer));
-	printf("Buffer after ft_bzero: ");
-	for (size_t i = 0; i < sizeof(buffer); i++) {
-		printf("%d ", buffer[i]);
-	}
-	printf("\n");
-	return (0);
-}*/

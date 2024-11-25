@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
+/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 21:37:32 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/29 20:22:27 by davifer2         ###   ########.fr       */
+/*   Created: 2024/01/31 19:12:07 by fcarranz          #+#    #+#             */
+/*   Updated: 2024/02/01 21:19:55 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../inc/libft.h"
+
+#include "libft.h"
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	while (lst != NULL)
+	t_list	*tmp;
+
+	if (!lst || !f)
+		return ;
+	while (lst)
 	{
+		tmp = lst;
 		f(lst->content);
-		lst = lst->next;
+		lst = tmp->next;
 	}
 }

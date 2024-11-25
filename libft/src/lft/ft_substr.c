@@ -3,38 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
+/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 18:09:27 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/29 20:34:59 by davifer2         ###   ########.fr       */
+/*   Created: 2024/01/17 19:21:25 by fcarranz          #+#    #+#             */
+/*   Updated: 2024/10/15 12:02:59 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../inc/libft.h"
 
-char	*ft_substr(const char *s, unsigned int start, int len)
+#include "libft.h"
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*substring;
+	char	*new_str;
+	size_t	src_len;
 
-	if (!s)
-		return (0);
-	if (ft_strlen(s) < (int)start)
-		return (ft_calloc(1, sizeof(char)));
-	if (ft_strlen(s + start) < len)
-		len = ft_strlen(s + start);
-	substring = ft_calloc((len + 1), sizeof(char));
-	if (!substring)
-		return (0);
-	ft_strlcpy(substring, (char *)s + start, len + 1);
-	return (substring);
+	src_len = ft_strlen(s);
+	if (src_len < start)
+	{
+		len = 0;
+		start = 0;
+	}
+	else if (len > src_len - start)
+		len = src_len - start;
+	new_str = (char *)malloc((len + 1) * sizeof(char));
+	if (!new_str)
+		return (new_str);
+	ft_strlcpy(new_str, s + start, len + 1);
+	return (new_str);
 }
-
-/* int	main(void)
-{
-	char	*str;
-	char	*result;
-
-	str = "Hola mundo";
-	result = ft_substr(str, 5, 10);
-	printf("El resultado es: %s", result);
-	return (0);
-} */
