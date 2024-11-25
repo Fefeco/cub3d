@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
-#    Updated: 2024/11/24 21:28:13 by fcarranz         ###   ########.fr        #
+#    Updated: 2024/11/25 11:49:53 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFT	= libft/libftprintf.a
 LIBMLX	= mlx/libmlx.a
 
 CC			= gcc
-INC			= -Imlx -Iinc
+INC			= -Imlx -Iinc -Ilibft/inc
 CFLAGS		= -Wall -Wextra -Werror -g -MMD
 MLX_FLAGS	= -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 LIBFT_FLAGS	= -Llibft -lftprintf
@@ -31,7 +31,8 @@ SRCS_PATH	= src/
 OBJS_PATH	= obj/
 DEPS_PATH	= dep/
 
-SRCS = main.c
+SRCS = main.c \
+	   print_err.c
 
 OBJS = $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
 DEPS = $(addprefix $(DEPS_PATH), $(SRCS:.c=.d))

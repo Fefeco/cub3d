@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_err.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fcarranz <fcarranz@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 19:57:47 by davifer2          #+#    #+#             */
-/*   Updated: 2024/11/25 11:51:12 by fcarranz         ###   ########.fr       */
+/*   Created: 2024/11/25 11:25:22 by fcarranz          #+#    #+#             */
+/*   Updated: 2024/11/25 11:57:13 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "colors.h"
+#include "libft.h"
 
-int main(int argc, char **argv)
+int print_err(char *str, int ret)
 {
-    (void)argv;
-    if (argc != 2)
-        return (print_err("Error\nInvalid number of arguments", 1));
-    return (0);
+	ft_putstr_fd(RED, 2);
+	ft_putstr_fd(str, 2);
+	ft_putendl_fd(RESET, 2);
+    return (ret);
 }

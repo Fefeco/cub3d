@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/10/24 21:10:07 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/11/25 11:30:28 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,8 @@
 # include <limits.h>
 # include <sys/time.h>
 # include "mlx.h"
+
+
+int	print_err(char *str, int ret);
 
 #endif
