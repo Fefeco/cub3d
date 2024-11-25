@@ -14,7 +14,7 @@
 
 int main(int argc, char **argv)
 {
-	if (argc != 2)
+	if (argc != 2 || !argv[1][0])
 		return (print_err("Invalid number of arguments", 1));
 	if (ft_check_extension(argv[1], ".cub"))
 		return (print_err("Invalid extension", 2));
