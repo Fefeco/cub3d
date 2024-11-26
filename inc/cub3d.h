@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/11/25 12:43:02 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:16:31 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@
 # include "mlx.h"
 
 
-int	print_err(char *str, int ret);
-int ft_check_extension(const char *filename, const char *ext);
+int		print_err(const char *str, int ret);
+int		ft_check_extension(const char *filename, const char *ext);
+int		exit_err(const char *error, int ret);
+void	set_game_params(char *filename);
 
 #endif
