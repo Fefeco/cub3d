@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/11/27 17:55:25 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/11/27 18:16:43 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <limits.h>
 # include <sys/time.h>
 # include "mlx.h"
+# include <stdbool.h>
 
 typedef struct	s_coords
 {
@@ -60,5 +61,8 @@ void	free_t_game_ptrs(t_game *cub3d);
 
 // set_params.c
 void	set_game_params(char *filename, t_game *cub3d);
+
+// utils.c
+bool	is_space(const char c);
 
 #endif

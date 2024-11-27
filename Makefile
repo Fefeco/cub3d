@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
-#    Updated: 2024/11/27 09:49:36 by fcarranz         ###   ########.fr        #
+#    Updated: 2024/11/27 18:17:31 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,9 @@ SRCS = main.c \
 	   print_err.c \
 	   map_validations.c \
 	   set_params.c \
-	   exit.c
+	   exit.c \
+	   utils.c \
+	   extract.c
 
 OBJS = $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
 DEPS = $(addprefix $(DEPS_PATH), $(SRCS:.c=.d))
