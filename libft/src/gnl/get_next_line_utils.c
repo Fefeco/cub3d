@@ -6,13 +6,13 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 11:36:56 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/05/31 12:05:48 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/11/27 10:14:54 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoinf(char *s1, char *s2)
 {
 	char	*joined;
 	size_t	total_len;

@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 10:25:57 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/29 20:13:56 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/11/27 10:14:28 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@
 
 char	*get_next_line(int fd);
 char	*ft_strchr(const char *s, int c);
-char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strjoinf(char *s1, char *s2);
 
 #endif

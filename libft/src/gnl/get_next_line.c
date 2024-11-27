@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 14:04:50 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/06/17 11:46:32 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/11/27 10:15:41 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static char	*ft_read_file(char *buffer, int fd)
 			free (buffer);
 			return (NULL);
 		}
-		buffer = ft_strjoin(buffer, read_buf);
+		buffer = ft_strjoinf(buffer, read_buf);
 		if (ft_strchr(buffer, '\n') || buffer == NULL)
 			break ;
 	}
