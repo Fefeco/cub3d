@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/11/27 16:33:19 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/11/27 17:55:25 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		ft_check_extension(const char *filename, const char *ext);
 
 // exit.c
 int		exit_err(const char *error, int ret);
-void	free_t_game_params(t_game *cub3d);
+void	free_t_game_ptrs(t_game *cub3d);
 
 // set_params.c
 void	set_game_params(char *filename, t_game *cub3d);
