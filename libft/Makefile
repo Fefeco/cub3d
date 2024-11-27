@@ -6,7 +6,7 @@
 #    By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/09 13:06:50 by davifer2          #+#    #+#              #
-#    Updated: 2024/11/24 16:57:32 by fcarranz         ###   ########.fr        #
+#    Updated: 2024/11/27 09:57:04 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ BLUE =			\033[0;94m
 
 NAME = libftprintf.a
 
-CC = gcc 
+CC = cc 
 INC = -Iinc
 CFLAGS = -Wall -Werror -Wextra -MMD -g
 

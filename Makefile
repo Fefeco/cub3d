@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
-#    Updated: 2024/11/26 13:13:52 by fcarranz         ###   ########.fr        #
+#    Updated: 2024/11/27 09:49:36 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME	= cub3d
 LIBFT	= libft/libftprintf.a
 LIBMLX	= mlx/libmlx.a
 
-CC			= gcc
+CC			= cc
 INC			= -Imlx -Iinc -Ilibft/inc
 CFLAGS		= -Wall -Wextra -Werror -g -MMD
 MLX_FLAGS	= -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
