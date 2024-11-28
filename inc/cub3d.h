@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/11/27 19:21:01 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/11/28 13:28:57 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,9 @@ void	set_game_params(char *filename, t_game *cub3d);
 // utils.c
 bool	is_space(const char c);
 
+// extract.c
+int	extract_params(char **line_ref, t_game *cub3d);
+
+// extract_coord.c
+int	extract_coord(char *line, t_game *cub3d);
 #endif
