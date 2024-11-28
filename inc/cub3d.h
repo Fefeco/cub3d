@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/11/27 18:16:43 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/11/27 19:21:01 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include <errno.h>
 # include <limits.h>
 # include <sys/time.h>
-# include "mlx.h"
 # include <stdbool.h>
+# include "mlx.h"
 
 typedef struct	s_coords
 {
