@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:56:05 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/11/27 16:36:39 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:17:09 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	check_game_file(char *filename, int *fd)
 		exit_err("Invalid extension", 1);
 	if (access(filename, F_OK | R_OK))
 		exit_err(strerror(errno), 1);
-	*fd  = open(filename, O_RDONLY);
+	*fd = open(filename, O_RDONLY);
 	if (*fd == -1)
 		exit_err(strerror(errno), 2);
 }

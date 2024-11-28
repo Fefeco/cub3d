@@ -55,6 +55,10 @@ int		print_err(const char *str, int ret);
 // map_validations.c
 int		ft_check_extension(const char *filename, const char *ext);
 
+
+// main.c
+void	init_t_game_ptrs(t_game *cub3d);
+
 // exit.c
 int		exit_err(const char *error, int ret);
 void	free_t_game_ptrs(t_game *cub3d);
