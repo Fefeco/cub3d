@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 13:24:18 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/11/28 16:23:46 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/11/28 20:41:22 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,25 @@ static bool	set(char **param, char **value)
 	return (true);
 }
 
+static char	*rm_spaces_endl(const char *str)
+{
+	char	*tmp;
+	char	*ret;
+
+	tmp = ft_rmspaces(str);
+	if (!tmp)
+		return (NULL);
+	ret = ft_strtrim(tmp, "\n");
+	free (tmp);
+	return (ret);
+
+}
+
 static bool	set_coord(const char *tmp, const char *line, t_coords *textures)
 {
 	char	*value;
 
-	value = ft_rmspaces(line);
+	value = rm_spaces_endl(line);
 	if (!value)
 		return (false);
 	if (!ft_strncmp(tmp, "NO", 3))
@@ -46,7 +60,7 @@ static bool	set_coord(const char *tmp, const char *line, t_coords *textures)
 	return (false);
 }
 
-int	extract_coord(char *line, t_game *cub3d)
+int	extract_coord(const char *line, t_game *cub3d)
 {
 	char		*tmp;
 	bool		success;
@@ -57,11 +71,14 @@ int	extract_coord(char *line, t_game *cub3d)
 		return (print_err("Malloc failed!", -1));
 	success = false;
 	tmp[0] = *line++;
-	while (ft_isspace(*line))
+	while (*line && (ft_isspace(*line) || *line == '\n'))
 		++line;
-	tmp[1] = *line++;
-	if (ft_isspace(*line) && ft_strnarrcmp(tmp, coords, 3))
-		success = set_coord(tmp, line, &cub3d->textures);
+	if (*line)
+	{
+		tmp[1] = *line++;
+		if (*line && ft_isspace(*line) && ft_strnarrcmp(tmp, coords, 3))
+			success = set_coord(tmp, line, &cub3d->textures);
+	}
 	free (tmp);
 	if (success)
 		return (0);

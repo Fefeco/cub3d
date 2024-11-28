@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/11/28 14:56:59 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/11/28 20:42:29 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,5 @@ void	set_game_params(char *filename, t_game *cub3d);
 int	extract_params(char **line_ref, t_game *cub3d);
 
 // extract_coord.c
-int	extract_coord(char *line, t_game *cub3d);
+int	extract_coord(const char *line, t_game *cub3d);
 #endif
