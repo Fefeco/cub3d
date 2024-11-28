@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
-#    Updated: 2024/11/28 14:02:07 by fcarranz         ###   ########.fr        #
+#    Updated: 2024/11/28 14:52:32 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,14 +31,13 @@ SRCS_PATH	= src/
 OBJS_PATH	= obj/
 DEPS_PATH	= dep/
 
-SRCS = main.c \
-	   print_err.c \
-	   map_validations.c \
-	   set_params.c \
-	   exit.c \
-	   utils.c \
+SRCS = exit.c \
 	   extract.c \
-	   extract_coord.c
+	   extract_coord.c \
+	   main.c \
+	   map_validations.c \
+	   print_err.c \
+	   set_params.c
 
 OBJS = $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
 DEPS = $(addprefix $(DEPS_PATH), $(SRCS:.c=.d))

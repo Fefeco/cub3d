@@ -6,11 +6,12 @@
 /*   By: fcarranz <fcarranz@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 17:58:38 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/11/28 13:28:44 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:02:06 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "libft.h"
 
 int	extract_params(char **line_ref, t_game *cub3d)
 {
@@ -19,7 +20,7 @@ int	extract_params(char **line_ref, t_game *cub3d)
 
 	ret = 0;
 	line = *line_ref;
-	while (*line && is_space(*line))
+	while (*line && ft_isspace(*line))
 		++line;
 	if (*line == 'N' || *line == 'S' || *line == 'W' || *line == 'E')
 		ret = extract_coord(line, cub3d);		// Not implemented
@@ -28,10 +29,7 @@ int	extract_params(char **line_ref, t_game *cub3d)
 	else if (*line == '1' || *line == '0')
 		ret = extract_map(*line_ref, cub3d);	// Not implemented
 	else
-	{
-		print_err("Instruction not allowed in map file");
-		ret = -1;
-	}
+		ret = print_err("Instruction not allowed in map file", -1);
 	free (*line_ref);
 	*line_ref = NULL;
 	return (ret);

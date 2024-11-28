@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 10:13:46 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/11/28 12:46:14 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/11/28 14:46:24 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stddef.h>
 # include <unistd.h>
+# include <stdbool.h>
 
 typedef struct s_list
 {
@@ -26,7 +27,7 @@ typedef struct s_list
 
 int			ft_atoi(const char *str);
 void		ft_bzero(void *s, size_t len);
-void		*ft_calloc(int coun, size_t size);
+void		*ft_calloc(int count, size_t size);
 int			ft_isalnum(int c);
 int			ft_isalpha(int c);
 int			ft_isascii(int c);
@@ -72,4 +73,7 @@ t_list		*ft_lstmap(t_list *lst, void *(f)(void *), void (*del)(void *));
 
 // Extra
 char		*ft_strnarrcmp(const char *s, const char **arr, size_t size);
+bool		ft_isspace(const char c);
+char		*ft_rmspaces(const char	*src);
+
 #endif

@@ -6,7 +6,7 @@
 #    By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/09 13:06:50 by davifer2          #+#    #+#              #
-#    Updated: 2024/11/27 09:57:04 by fcarranz         ###   ########.fr        #
+#    Updated: 2024/11/28 14:42:52 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,10 @@ LFT_FILES = ft_atoi.c \
 			ft_lstdelone_bonus.c \
 			ft_lstclear_bonus.c \
 			ft_lstiter_bonus.c \
-			ft_lstmap_bonus.c
+			ft_lstmap_bonus.c \
+			ft_strnarrcmp.c \
+			ft_isspace.c \
+			ft_rmspaces.c
 
 GNL_FILES = get_next_line.c \
 			get_next_line_utils.c

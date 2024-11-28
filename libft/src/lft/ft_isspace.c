@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcarranz <fcarranz@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/27 18:09:45 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/11/27 18:16:12 by fcarranz         ###   ########.fr       */
+/*   Created: 2024/11/28 14:35:50 by fcarranz          #+#    #+#             */
+/*   Updated: 2024/11/28 14:43:20 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 
-bool	is_space(const char c)
+bool	ft_isspace(const char c)
 {
-	if (c == 32 || c >= 9 && c <= 13)
+	if (c == 32 || (c >= 9 && c <= 13))
 		return (true);
 	return (false);
 }
