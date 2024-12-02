@@ -6,123 +6,112 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 14:04:50 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/11/27 10:15:41 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:03:10 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include "get_next_line.h"
 
-static void	ft_free_ptr(void **ptr)
+static size_t	ft_strlen(const char *str)
 {
-	free (*ptr);
-	*ptr = NULL;
+	size_t	len;
+
+	if (!str)
+		return (0);
+	len = 0;
+	while (*str++)
+		++len;
+	return (len);
 }
 
-static char	*ft_get_remind(char *buffer, char *line)
+static char	*ft_strjoin(const char *s1, const char *s2)
 {
-	int		len;
+	char	*joined;
+	size_t	total_len;
 	int		i;
 	int		j;
-	char	*remind;
 
-	if (!line)
-	{
-		free (buffer);
+	if (!s1 || !s2)
 		return (NULL);
-	}
-	i = 0;
-	while (line[i])
-		++i;
-	len = ft_strlen(&buffer[i]) + 1;
-	remind = (char *)malloc(sizeof(char) * len);
-	if (!remind)
+	total_len = ft_strlen(s1) + ft_strlen(s2);
+	joined = (char *)malloc(sizeof(char) * (total_len + 1));
+	if (!joined)
 		return (NULL);
+	i = -1;
+	while (s1[++i])
+		joined[i] = s1[i];
 	j = 0;
-	while (buffer[i])
-		remind[j++] = buffer[i++];
-	remind[j] = '\0';
-	free (buffer);
-	if (ft_strlen(remind) == 0)
-		ft_free_ptr ((void **)&remind);
-	return (remind);
+	while (s2[j])
+		joined[i++] = s2[j++];
+	joined[i] = '\0';
+	return (joined);
 }
 
-static char	*ft_get_line(char *buffer)
+static void	ft_move_buf_content(char *src_buf, char *dst_buf)
 {
-	char	*line;
-	char	*end;
-	int		len;
-	int		i;
+	int	pos;
 
-	end = ft_strchr(buffer, '\n');
-	if (!end)
-		return (ft_strdup(buffer));
-	len = (end - buffer) + 2;
-	line = (char *)malloc(sizeof(char) * len);
-	if (!line)
-		return (NULL);
-	i = 0;
-	while (&buffer[i] != end + 1)
+	pos = -1;
+	while (src_buf[++pos])
 	{
-		line[i] = buffer[i];
-		++i;
+		dst_buf[pos] = src_buf[pos];
+		src_buf[pos] = '\0';
 	}
-	line[i] = '\0';
-	if (ft_strlen(line) == 0)
-		return (NULL);
-	return (line);
+	while (pos <= BUFFER_SIZE)
+		dst_buf[pos++] = '\0';
 }
 
-static char	*ft_read_file(char *buffer, int fd)
+static int	ft_read_file(char **line, int fd)
 {
 	char	*read_buf;
+	char	*joined_buf;
 	int		bytes_read;
+	int		pos;
 
-	bytes_read = 1;
-	while (bytes_read > 0)
+	read_buf = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (!read_buf)
 	{
-		read_buf = (char *)malloc((sizeof(char) * BUFFER_SIZE) + 1);
-		if (!read_buf)
-			return (NULL);
-		ft_bzero(read_buf, BUFFER_SIZE + 1);
-		bytes_read = read(fd, read_buf, BUFFER_SIZE);
-		if (bytes_read == -1)
-		{
-			free (read_buf);
-			free (buffer);
-			return (NULL);
-		}
-		buffer = ft_strjoinf(buffer, read_buf);
-		if (ft_strchr(buffer, '\n') || buffer == NULL)
-			break ;
+		free (*line);
+		return (-1);
 	}
-	return (buffer);
+	pos = 0;
+	while (pos <= BUFFER_SIZE)
+		read_buf[pos++] = '\0';
+	bytes_read = read(fd, read_buf, BUFFER_SIZE);
+	if (bytes_read > 0)
+	{
+		joined_buf = ft_strjoin(*line, read_buf);
+		free (*line);
+		*line = joined_buf;
+	}
+	free (read_buf);
+	return (bytes_read);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer[FOPEN_MAX];
+	static char	static_buf[MAX_FD][BUFFER_SIZE];
 	char		*line;
+	char		*newl_ptr;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (!buffer[fd])
-	{
-		buffer[fd] = (char *)malloc(sizeof(char) * 1);
-		if (!buffer[fd])
-			return (NULL);
-		buffer[fd][0] = '\0';
-	}
-	buffer[fd] = ft_read_file(buffer[fd], fd);
-	if (!buffer[fd])
+	line = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!line)
 		return (NULL);
-	if (ft_strlen(buffer[fd]) == 0)
+	ft_move_buf_content(static_buf[fd], line);
+	newl_ptr = ft_get_newl_ptr(line);
+	while (!newl_ptr && ft_read_file(&line, fd) > 0)
+		newl_ptr = ft_get_newl_ptr(line);
+	if (newl_ptr)
+		ft_move_buf_content(newl_ptr + 1, static_buf[fd]);
+	if (line && !*line)
 	{
-		free (buffer[fd]);
-		buffer[fd] = NULL;
-		return (NULL);
+		free (line);
+		line = NULL;
 	}
-	line = ft_get_line(buffer[fd]);
-	buffer[fd] = ft_get_remind(buffer[fd], line);
 	return (line);
 }

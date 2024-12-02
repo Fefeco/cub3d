@@ -6,34 +6,20 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 11:36:56 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/11/27 10:14:54 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/02 13:30:33 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "get_next_line.h"
 
-char	*ft_strjoinf(char *s1, char *s2)
+char	*ft_get_newl_ptr(const char *str)
 {
-	char	*joined;
-	size_t	total_len;
-	int		i;
-	int		j;
-
-	if (!s1 || !s2)
+	if (!str)
 		return (NULL);
-	total_len = ft_strlen(s1) + ft_strlen(s2);
-	joined = (char *)malloc((total_len + 1) * sizeof(char));
-	if (!joined)
-		return (NULL);
-	i = 0;
-	while (s1[i])
-	{
-		joined[i] = s1[i];
-		++i;
-	}
-	j = 0;
-	while (s2[j])
-		joined[i++] = s2[j++];
-	joined[i] = '\0';
-	return (free(s1), free(s2), joined);
+	while (*str && *str != '\n')
+		++str;
+	if (*str)
+		return ((char *)str);
+	return (NULL);
 }

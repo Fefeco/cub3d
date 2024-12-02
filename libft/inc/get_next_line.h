@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 10:25:57 by davifer2          #+#    #+#             */
-/*   Updated: 2024/11/27 10:14:28 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/11/29 18:58:30 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,11 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 3
+#  define BUFFER_SIZE 	42
+#  define MAX_FD 		2
 # endif
 
-# include <fcntl.h>
-# include <limits.h>
-# include "libft.h"
-
 char	*get_next_line(int fd);
-char	*ft_strchr(const char *s, int c);
-char	*ft_strjoinf(char *s1, char *s2);
+char	*ft_get_newl_ptr(const char *str);
 
 #endif
