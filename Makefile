@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
-#    Updated: 2024/12/02 16:16:53 by fedeito          ###   ########.fr        #
+#    Updated: 2024/12/02 23:08:01 by fedeito          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,10 @@ RED 	= \033[0;91m
 GREEN	= \033[0;92m
 YELLOW	= \033[0;93m
 
-NAME	= cub3d
-LIBFT	= libft/libftprintf.a
-LIBMLX	= mlx/libmlx.a
+NAME		= cub3d
+LIBFT		= libft/libftprintf.a
+PHONY_LIBFT	= libftprintf.a
+LIBMLX		= mlx/libmlx.a
 
 CC			= cc
 INC			= -Imlx -Iinc -Ilibft/inc
@@ -42,9 +43,9 @@ SRCS = exit.c \
 OBJS = $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
 DEPS = $(addprefix $(DEPS_PATH), $(SRCS:.c=.d))
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re $(PHONY_LIBFT)
 
-all: $(NAME)
+all: $(PHONY_LIBFT) $(NAME)
 
 $(NAME): $(LIBMLX) $(LIBFT) $(OBJS) inc/cub3d.h
 	@echo "$(YELLOW)	Compiling cub3d...\n$(RESET)"
@@ -62,6 +63,9 @@ $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 	@mv $(subst .o,.d,$@) $(DEPS_PATH)
 
 $(LIBFT):
+	@make -C $(LFT_PATH) --no-print-directory
+
+$(PHONY_LIBFT):
 	@make -C $(LFT_PATH) --no-print-directory
 
 $(LIBMLX):
