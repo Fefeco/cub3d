@@ -6,20 +6,20 @@
 #    By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/09 13:06:50 by davifer2          #+#    #+#              #
-#    Updated: 2024/11/29 19:01:44 by fedeito          ###   ########.fr        #
+#    Updated: 2024/12/02 22:49:45 by fedeito          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-DEF_COLOR =		\033[0;39m
-GREEN =			\033[0;92m
-YELLOW =		\033[0;93m
-BLUE =			\033[0;94m
+DEF_COLOR	= \033[0;39m
+GREEN		= \033[0;92m
+YELLOW		= \033[0;93m
+BLUE		= \033[0;94m
 
 NAME = libftprintf.a
 
-CC = cc 
-INC = -Iinc
-CFLAGS = -Wall -Werror -Wextra -MMD -g
+CC		= cc 
+INC		= -Iinc
+CFLAGS	= -Wall -Werror -Wextra -MMD -g
 
 SRCS_PATH = src/
 OBJS_PATH = objs/
@@ -104,11 +104,13 @@ SRCS = $(LFT_SRC) $(GNL_SRC) $(PRF_SRC)
 OBJS = $(subst $(SRCS_PATH), $(OBJS_PATH), $(SRCS:.c=.o))
 DEPS = $(subst $(SRCS_PATH), $(DEPS_PATH), $(SRCS:.c=.d))
 
+.PHONY: all clean fclean re
+
 all: $(NAME)
 
 $(NAME): $(OBJS) inc/libft.h Makefile
 	@echo "\n"
-	@echo "$(YELLOW)Compiling libft...\n"
+	@echo "$(YELLOW)	Compiling libft...\n"
 	@echo "$(DEF_COLOR)"
 	ar rcs $(NAME) $(OBJS)
 	@echo "$(GREEN)\n"
@@ -144,6 +146,4 @@ fclean: clean
 
 re: fclean all
 	
-.PHONY: all clean fclean re
-
 -include $(DEPS)
