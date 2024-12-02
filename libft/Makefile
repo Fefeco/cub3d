@@ -6,7 +6,7 @@
 #    By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/09 13:06:50 by davifer2          #+#    #+#              #
-#    Updated: 2024/11/29 19:01:44 by fedeito          ###   ########.fr        #
+#    Updated: 2024/12/02 15:26:39 by fedeito          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,11 +104,13 @@ SRCS = $(LFT_SRC) $(GNL_SRC) $(PRF_SRC)
 OBJS = $(subst $(SRCS_PATH), $(OBJS_PATH), $(SRCS:.c=.o))
 DEPS = $(subst $(SRCS_PATH), $(DEPS_PATH), $(SRCS:.c=.d))
 
+.PHONY: all clean fclean re
+
 all: $(NAME)
 
 $(NAME): $(OBJS) inc/libft.h Makefile
 	@echo "\n"
-	@echo "$(YELLOW)Compiling libft...\n"
+	@echo "$(YELLOW)	Compiling libft...\n"
 	@echo "$(DEF_COLOR)"
 	ar rcs $(NAME) $(OBJS)
 	@echo "$(GREEN)\n"
@@ -144,6 +146,4 @@ fclean: clean
 
 re: fclean all
 	
-.PHONY: all clean fclean re
-
 -include $(DEPS)

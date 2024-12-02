@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
-#    Updated: 2024/11/28 14:52:32 by fcarranz         ###   ########.fr        #
+#    Updated: 2024/12/02 16:16:53 by fedeito          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,8 @@ SRCS = exit.c \
 OBJS = $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
 DEPS = $(addprefix $(DEPS_PATH), $(SRCS:.c=.d))
 
+.PHONY: all clean fclean re
+
 all: $(NAME)
 
 $(NAME): $(LIBMLX) $(LIBFT) $(OBJS) inc/cub3d.h
@@ -59,11 +61,10 @@ $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 	@$(CC) $(CFLAGS) -c $< $(INC) -o $@
 	@mv $(subst .o,.d,$@) $(DEPS_PATH)
 
-$(LIBFT): libft/Makefile	
-	@echo "$(YELLOW)	Compiling libft...\n"
+$(LIBFT):
 	@make -C $(LFT_PATH) --no-print-directory
 
-$(LIBMLX): mlx/Makefile
+$(LIBMLX):
 	@echo "$(YELLOW)	Compiling mlx...\n"
 	@make -C mlx --no-print-directory 2> /dev/null
 	@echo "\n$(GREEN)"
@@ -88,8 +89,9 @@ fclean: clean
 
 clean-objects:
 	@echo "\n$(YELLOW)	Removing object files...$(RESET)"
-	@make clean -C $(LFT_PATH) > /dev/null 2>&1
-	@make clean -C $(MLX_PATH) > /dev/null 2>&1
+	@make clean -C $(LFT_PATH)
+	@make clean -C $(MLX_PATH) > /dev/null
+
 	@rm -rf $(OBJS_PATH) $(DEPS_PATH)
 	@echo "\n$(GREEN)"
 	@echo "	======================  "
@@ -121,7 +123,5 @@ no-files:
 	@echo "\n$(RESET)"
 
 re: fclean all
-
-.PHONY: all clean fclean re
 
 -include $(DEPS)
