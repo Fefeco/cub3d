@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:57:47 by davifer2          #+#    #+#             */
-/*   Updated: 2024/11/28 15:05:46 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/04 10:31:08 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	init_t_game_ptrs(t_game *cub3d)
 {
-	cub3d->ceiling.rgb = NULL;
-	cub3d->floor.rgb = NULL;
 	cub3d->textures.NO = NULL;
 	cub3d->textures.SO = NULL;
 	cub3d->textures.WE = NULL;

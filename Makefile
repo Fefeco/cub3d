@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
-#    Updated: 2024/12/02 23:08:01 by fedeito          ###   ########.fr        #
+#    Updated: 2024/12/04 10:26:32 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ DEPS_PATH	= dep/
 
 SRCS = exit.c \
 	   extract.c \
+	   extract_color.c \
 	   extract_coord.c \
 	   main.c \
 	   map_validations.c \

@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:56:05 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/11/28 20:52:15 by fedeito          ###   ########.fr       */
+/*   Updated: 2024/12/07 14:04:37 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,22 @@
 
 static void	test(const t_game *cub3d)
 {
-	const t_coords	*tx;
+//	const t_coords	*tx;
+	const t_color	*C;
+	const t_color	*F;
 
-	tx = &cub3d->textures;
+	C = &cub3d->ceiling;
+	F = &cub3d->floor;
+//	tx = &cub3d->textures;
 	ft_printf("======================\n         TEST         \n======================\n");
 
-	ft_printf("\nTEXTURES\n---------\n");
-	ft_printf("  NO: %s\n  SO: %s\n  WE: %s\n  EA: %s\n\n", tx->NO, tx->SO, tx->WE, tx->EA);
+//	ft_printf("\nTEXTURES\n---------\n");
+//	ft_printf("  NO: %s\n  SO: %s\n  WE: %s\n  EA: %s\n\n", tx->NO, tx->SO, tx->WE, tx->EA);
+	ft_printf("\nCOLORS\n-----------\n");
+	ft_printf("\n-----CEILING-----\n");
+	ft_printf("RGB: %i,%i,%i\nRED: %i\nGREEN: %i\nBLUE: %i\n", C->red, C->green, C->blue, C->red, C->green, C->blue);
+	ft_printf("\n-----FLOOR-----\n");
+	ft_printf("RGB: %i,%i,%i\nRED: %i\nGREEN: %i\nBLUE: %i\n", F->red, F->green, F->blue, F->red, F->green, F->blue);
 	ft_printf("======================\n       END  TEST       \n======================\n");
 }
 
@@ -43,7 +52,7 @@ static bool	uncomplete_params(t_game *cub3d)
 	t_coords	*textures;
 
 	textures = &cub3d->textures;
-	if (!cub3d->map || !cub3d->ceiling.rgb || !cub3d->floor.rgb)
+	if (!cub3d->map)
 		return (true);
 	if (!textures->NO || !textures->SO || !textures->WE || !textures->EA)
 		return (true);

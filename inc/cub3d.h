@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/11/28 20:42:29 by fedeito          ###   ########.fr       */
+/*   Updated: 2024/12/04 10:39:24 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ typedef struct	s_coords
 
 typedef struct	s_color
 {
-	char	*rgb;
 	int		red;
 	int		green;
 	int		blue;
@@ -71,4 +70,7 @@ int	extract_params(char **line_ref, t_game *cub3d);
 
 // extract_coord.c
 int	extract_coord(const char *line, t_game *cub3d);
+
+// extract_color.c
+int	extract_color(const char *line, t_game *cub3d);
 #endif

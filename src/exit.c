@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 13:00:35 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/11/28 14:54:29 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/04 10:25:19 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 void	free_t_game_ptrs(t_game *cub3d)
 {
-	if (cub3d->ceiling.rgb)
-		free(cub3d->ceiling.rgb);
-	if (cub3d->floor.rgb)
-		free(cub3d->floor.rgb);
 	if (cub3d->textures.NO)
 		free(cub3d->textures.NO);
 	if (cub3d->textures.SO)
