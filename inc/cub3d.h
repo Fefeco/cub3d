@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/12/04 10:39:24 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/09 13:18:30 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct	s_game
 	t_color		ceiling;
 	t_color		floor;
 	t_coords	textures;
+	bool		ready_for_map;
 	char		*map;
 }				t_game;
 
