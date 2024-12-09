@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:56:05 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/07 14:04:37 by fedeito          ###   ########.fr       */
+/*   Updated: 2024/12/09 14:54:01 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,10 @@ static void	check_game_file(char *filename, int *fd)
 
 static bool	uncomplete_params(t_game *cub3d)
 {
-	t_coords	*textures;
-
-	textures = &cub3d->textures;
-	if (!cub3d->map)
-		return (true);
-	if (!textures->NO || !textures->SO || !textures->WE || !textures->EA)
-		return (true);
-	return (false);
+	if (cub3d->ready_for_map && cub3d->map)
+		return (false);
+	print_err("Uncomplete game parameters", 3);
+	return (true);
 }
 
 void	set_game_params(char *filename, t_game *cub3d)
@@ -74,10 +70,9 @@ void	set_game_params(char *filename, t_game *cub3d)
 	}
 	close(fd);
 	test(cub3d);	// Prints game data;
-	if (uncomplete_params(cub3d))
+	if (uncomplete_params(cub3d) || check_map(cub3d->map) == -1)
 	{
 		free_t_game_ptrs(cub3d);
-		print_err("Uncomplete map", 3);
 		exit(EXIT_FAILURE);
 	}
 }
