@@ -6,10 +6,9 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 13:24:18 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/09 12:44:35 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/09 13:21:25 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "cub3d.h"
 #include "libft.h"

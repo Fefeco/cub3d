@@ -28,7 +28,7 @@ int	main(int argc, char **argv)
 	if (argc != 2 || !argv[1][0])
 		return (print_err("Invalid number of arguments", 1));
 	init_t_game_ptrs(&cub3d);
-	set_game_params(argv[1], &cub3d); 	// Load params from .cub file
+	set_game_params(argv[1], &cub3d);	// Load params from .cub file
 	// init_game();						// Game initialization
 	return (0);
 }

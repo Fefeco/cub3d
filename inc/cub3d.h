@@ -66,11 +66,13 @@ void	free_t_game_ptrs(t_game *cub3d);
 void	set_game_params(char *filename, t_game *cub3d);
 
 // extract.c
-int	extract_params(char **line_ref, t_game *cub3d);
+int		extract_params(char **line_ref, t_game *cub3d);
 
 // extract_coord.c
-int	extract_coord(const char *line, t_game *cub3d);
+int		extract_coord(const char *line, t_game *cub3d);
 
 // extract_color.c
-int	extract_color(const char *line, t_game *cub3d);
+int		extract_color(const char *line, t_game *cub3d);
+bool    color_ok(t_color *color);
+
 #endif
