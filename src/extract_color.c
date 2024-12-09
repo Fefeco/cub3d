@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:49:23 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/09 13:21:52 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/09 13:40:41 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	extract_color(const char *line, t_game *cub3d)
 		rgb = &cub3d->floor;
 	else
 		rgb = &cub3d->ceiling;
-	if (color_is_ok(rgb))
+	if (color_ok(rgb))
 		return (print_err("Too many declarations for color parameter", -1));
 	rgb->red = get_color(&line);
 	rgb->green = get_color(&line);
