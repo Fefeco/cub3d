@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 12:58:23 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/09 13:37:06 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/09 15:04:00 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,26 @@ int is_ready_for_map(t_game *game)
 	return (1);
 }
 
+static int	invalid_char(char *line)
+{
+	while (*line)
+	{
+		// We have to trim the new line character
+		if (ft_strchr(" 01NSEW", *line++) == NULL)
+			return (print_err("Invalid character in map", 1));
+	}
+	return (0);
+}
+
 int extract_map(char *line, t_game *cub3d)
 {
-	// Implement map extraction
+	char	**map;
+	
+	map = cub3d->map;
+	if (invalid_char(line))
+		return (-1);
+	cub3d->map = ft_add_line_to_arr(map, line);	// Not implemented
+	if (!cub3d->map)
+		return (-1);
 	return (0);
 }
