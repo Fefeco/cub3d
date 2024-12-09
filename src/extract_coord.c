@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_coord.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcarranz <fcarranz@student.42barcelon      +#+  +:+       +#+        */
+/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 13:24:18 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/11/28 20:41:22 by fedeito          ###   ########.fr       */
+/*   Updated: 2024/12/09 12:44:35 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static bool	set(char **param, char **value)
 {
 	if (*param)
 	{
-		print_err("To many declarations for the same coordinates", -1);
+		print_err("Too many declarations for the same coordinates", -1);
 		free (*value);
 		*value = NULL;
 		return (false);
@@ -38,7 +38,6 @@ static char	*rm_spaces_endl(const char *str)
 	ret = ft_strtrim(tmp, "\n");
 	free (tmp);
 	return (ret);
-
 }
 
 static bool	set_coord(const char *tmp, const char *line, t_coords *textures)

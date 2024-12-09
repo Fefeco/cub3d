@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:49:23 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/07 13:31:24 by fedeito          ###   ########.fr       */
+/*   Updated: 2024/12/09 12:48:30 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@ static int	check_color(t_color *rgb)
 		return (-1);
 	if (rgb->red == -1 || rgb->green == -1 || rgb->blue == -1)
 		return (print_err("Wrong color format", -1));
+	return (0);
+}
+
+static int	color_is_set(const t_color *rgb)
+{
+	if (rgb->red != -1 || rgb->green != -1 || rgb->blue != -1)
+		return (print_err("Too many declarations for color parameter", -1));
 	return (0);
 }
 
@@ -71,6 +78,8 @@ int	extract_color(const char *line, t_game *cub3d)
 		rgb = &cub3d->floor;
 	else
 		rgb = &cub3d->ceiling;
+	if (color_is_set(rgb))
+		return (-1);
 	rgb->red = get_color(&line);
 	rgb->green = get_color(&line);
 	rgb->blue = get_color(&line);
