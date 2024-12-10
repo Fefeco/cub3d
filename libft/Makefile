@@ -6,7 +6,7 @@
 #    By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/09 13:06:50 by davifer2          #+#    #+#              #
-#    Updated: 2024/12/02 22:49:45 by fedeito          ###   ########.fr        #
+#    Updated: 2024/12/10 12:08:40 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,8 @@ LFT_FILES = ft_atoi.c \
 			ft_lstmap_bonus.c \
 			ft_strnarrcmp.c \
 			ft_isspace.c \
-			ft_rmspaces.c
+			ft_rmspaces.c \
+			ft_array_size.c
 
 GNL_FILES = get_next_line.c \
 			get_next_line_utils.c
