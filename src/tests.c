@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:29:45 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/10 14:08:30 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:26:50 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,23 @@ static void	ft_print_map(char **map)
 	while (*map)
 	{
 		line = *map;
-		ft_printf(ORANGE"\t|");
+		ft_printf("\t");
 		while (*line)
-			ft_printf("%c|", *line++);
-		if (++*map)
-			ft_printf(",\n");
+		{
+			if (*line != 32)
+				ft_printf(TEST1"|");
+			else
+				ft_printf(" ");
+			if (*line == '1')
+				ft_printf(TEST3);
+			else if (*line == '0')
+				ft_printf(TEST2);
+			else
+				ft_printf(GREEN);
+			ft_printf("%c", *line++);
+		}
+		ft_printf(TEST1"|\n");
+		++map;
 	}
 	ft_printf(RESET);
 }

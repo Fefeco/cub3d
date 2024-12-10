@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:34:29 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/11/25 11:43:39 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:15:19 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,7 @@
 # define M_GRAY		"\033[38;5;245m"
 # define D_GREEN	"\033[38;2;75;179;82m"
 # define D_YELL		"\033[38;5;143m"
+# define TEST1		"\033[38;5;236m"	
+# define TEST2		"\033[38;5;216m"	
+# define TEST3		"\033[38;5;209m"	
 #endif
