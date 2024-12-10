@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/12/10 12:40:49 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/10 13:43:13 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,8 @@ int 	is_ready_for_map(t_game *game);
 
 // add_line_to_map.c
 int 	add_line_to_map(const char *line, t_game *cub3d);
+
+// test.c
+void	test(const t_game *cub3d);
 
 #endif

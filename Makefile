@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
-#    Updated: 2024/12/10 12:23:22 by fcarranz         ###   ########.fr        #
+#    Updated: 2024/12/10 13:54:44 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ RESET 	= \033[0;39m
 RED 	= \033[0;91m
 GREEN	= \033[0;92m
 YELLOW	= \033[0;93m
+BLUE	= \033[0;94m
 
 NAME		= cub3d
 LIBFT		= libft/libftprintf.a
@@ -41,7 +42,8 @@ SRCS = add_line_to_map.c \
 	   map_tools.c \
 	   map_validations.c \
 	   print_err.c \
-	   set_params.c
+	   set_params.c \
+	   tests.c
 
 OBJS = $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
 DEPS = $(addprefix $(DEPS_PATH), $(SRCS:.c=.d))
@@ -63,6 +65,7 @@ $(NAME): $(LIBMLX) $(LIBFT) $(OBJS) inc/cub3d.h
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 	@mkdir -p $(OBJS_PATH) $(DEPS_PATH)
 	@$(CC) $(CFLAGS) -c $< $(INC) -o $@
+	@echo "$(GREEN)Creating object $(RESET)- $(BLUE)$@"
 	@mv $(subst .o,.d,$@) $(DEPS_PATH)
 
 $(LIBFT):
