@@ -6,13 +6,29 @@
 /*   By: fcarranz <fcarranz@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:29:45 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/10 13:55:55 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:08:30 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "ft_printf.h"
 #include "colors.h"
+
+static void	ft_print_map(char **map)
+{
+	char	*line;
+
+	while (*map)
+	{
+		line = *map;
+		ft_printf(ORANGE"\t|");
+		while (*line)
+			ft_printf("%c|", *line++);
+		if (++*map)
+			ft_printf(",\n");
+	}
+	ft_printf(RESET);
+}
 
 void	test(const t_game *cub3d)
 {
@@ -37,7 +53,7 @@ void	test(const t_game *cub3d)
 	if (cub3d->map)
 	{
 		ft_printf(BLUE"\nMAP\n--------------\n"RESET);
-//		ft_print_map(cub3d->map);
+		ft_print_map(cub3d->map);
 	}
 	else 
 		ft_printf(RED"\nNO MAP\n-----------\n"RESET);
