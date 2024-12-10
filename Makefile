@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
-#    Updated: 2024/12/04 10:26:32 by fcarranz         ###   ########.fr        #
+#    Updated: 2024/12/10 12:23:22 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,11 +32,13 @@ SRCS_PATH	= src/
 OBJS_PATH	= obj/
 DEPS_PATH	= dep/
 
-SRCS = exit.c \
+SRCS = add_line_to_map.c \
+	   exit.c \
 	   extract.c \
 	   extract_color.c \
 	   extract_coord.c \
 	   main.c \
+	   map_tools.c \
 	   map_validations.c \
 	   print_err.c \
 	   set_params.c

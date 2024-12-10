@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extract_map.c                                      :+:      :+:    :+:   */
+/*   map_tools.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
+/*   By: fcarranz <fcarranz@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 12:58:23 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/09 15:04:00 by fcarranz         ###   ########.fr       */
+/*   Created: 2024/12/10 12:17:41 by fcarranz          #+#    #+#             */
+/*   Updated: 2024/12/10 12:39:24 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,12 @@ int is_ready_for_map(t_game *game)
 	return (1);
 }
 
-static int	invalid_char(char *line)
+/*int	check_map(char **map)
 {
-	while (*line)
-	{
-		// We have to trim the new line character
-		if (ft_strchr(" 01NSEW", *line++) == NULL)
-			return (print_err("Invalid character in map", 1));
-	}
-	return (0);
-}
+	char	*tmp_line;
 
-int extract_map(char *line, t_game *cub3d)
-{
-	char	**map;
-	
-	map = cub3d->map;
-	if (invalid_char(line))
+	if (!map)
 		return (-1);
-	cub3d->map = ft_add_line_to_arr(map, line);	// Not implemented
-	if (!cub3d->map)
-		return (-1);
-	return (0);
-}
+
+
+}*/

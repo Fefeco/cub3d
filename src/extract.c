@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 17:58:38 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/09 13:32:57 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/10 12:53:09 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	extract_params(char **line_ref, t_game *cub3d)
 			ret = extract_coord(line, cub3d);
 		else if (*line == 'F' || *line == 'C')
 			ret = extract_color(line, cub3d);
-		else if ((*line == '1' || *line == '0') && ready_for_map(cub3d))
-			ret = extract_map(*line_ref, cub3d);	// Not implemented
+		else if ((*line == '1' || *line == '0') && is_ready_for_map(cub3d))
+			ret = add_line_to_map(*line_ref, cub3d);
 		else
 			ret = print_err("Instruction not allowed in map file", -1);
 	}
