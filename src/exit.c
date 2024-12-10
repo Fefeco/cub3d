@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 13:00:35 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/09 14:35:32 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/10 13:25:17 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	free_t_game_ptrs(t_game *cub3d)
 	if (cub3d->map)
 	{
 		map = cub3d->map;
-		while (map)
-			free(map++);
+		while (map && *map)
+			free(*map++);
 		free(cub3d->map);
 	}
 	init_t_game_ptrs(cub3d);
