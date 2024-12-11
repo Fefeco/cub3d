@@ -86,49 +86,48 @@ static bool	is_space_arround(int x, int y, char **map)
 	while (row < 1)
 	{
 		++row;
-		if (x + row < 0)
+		if (y + row < 0)
 			continue ;
-		if (!map[x + row])
+		if (!map[y + row])
 			continue ;
 		col = -2;
 		while (col < 1)
 		{
 			++col;
-			if (y + col < 0 || (row == 0 && col == 0))
+			if (x + col < 0 || (row == 0 && col == 0))
 				continue ;
-			if (!map[y + col])
+			if (!map[y + row][x + col])
 				continue ;
-			if (map[x + row][y + col] == ' ')
-				return (false);
+			if (map[y + row][x + col] == ' ')
+				return (true);
 		}
 	}
-	return (true);
+	return (false);
 }
 
 void	validate_map(t_game *cub3d)
 {
-	char	*tmp_line;
+	char	*line;
+	char	orient;
 	int		x;
 	int		y;
 
-	total_lines = ft_array_size(map);
-	x = 0;
-	while (map[x])
+	orient = cub3d->player_orient;
+	y = -1;
+	while (cub3d->map[++y])
 	{
-		tmp_line = map[x++];
-		y = 0;
-		while (tmp_line[y])
+		line = cub3d->map[y];
+		x = -1;
+		while (line[++x])
 		{
-			if (*tmp_line != ' ' && *tmp_line != '1')
+			if (line[x] != '0' && line[x] != orient)
+				continue ;
+			if (is_space_arround(x, y, cub3d->map))
 			{
-				if (*tmp_line != '0' && cub3d->player_orient != -1)
-					cub3d->player_orient = *tmp_line;
-				else
-					print_err("Too may declaratios for player position");
+				print_err("Map is not surrounded by walls", 1);
+				free_t_game_ptrs(cub3d);
+				exit(EXIT_FAILURE);
 			}
-				return (-1);
-			++y;
 		}
 	}
-
 }
