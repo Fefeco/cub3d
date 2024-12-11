@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/12/04 10:39:24 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/11 18:48:15 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ typedef struct	s_game
 	t_color		ceiling;
 	t_color		floor;
 	t_coords	textures;
-	char		*map;
+	bool		ready_for_map;
+	char		player_orient;
+	char		**map;
 }				t_game;
 
 // print_err.c
@@ -61,16 +63,30 @@ void	init_t_game_ptrs(t_game *cub3d);
 // exit.c
 int		exit_err(const char *error, int ret);
 void	free_t_game_ptrs(t_game *cub3d);
+void	*free_map(char **map);
 
 // set_params.c
 void	set_game_params(char *filename, t_game *cub3d);
 
 // extract.c
-int	extract_params(char **line_ref, t_game *cub3d);
+int		extract_params(char **line_ref, t_game *cub3d);
 
 // extract_coord.c
-int	extract_coord(const char *line, t_game *cub3d);
+int		extract_coord(const char *line, t_game *cub3d);
 
 // extract_color.c
-int	extract_color(const char *line, t_game *cub3d);
+int		extract_color(const char *line, t_game *cub3d);
+bool    color_ok(t_color *color);
+
+// map_tools.c
+int 	is_ready_for_map(t_game *game);
+void	set_player_orient(t_game *cub3d);
+void	validate_map(t_game *cub3d);
+
+// add_line_to_map.c
+int 	add_line_to_map(const char *line, t_game *cub3d);
+
+// test.c
+void	test(const t_game *cub3d);
+
 #endif

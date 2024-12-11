@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 10:13:46 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/11/28 14:46:24 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/10 12:08:17 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,6 @@ t_list		*ft_lstmap(t_list *lst, void *(f)(void *), void (*del)(void *));
 char		*ft_strnarrcmp(const char *s, const char **arr, size_t size);
 bool		ft_isspace(const char c);
 char		*ft_rmspaces(const char	*src);
+size_t		ft_array_size(const char **array);
 
 #endif

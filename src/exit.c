@@ -6,11 +6,25 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 13:00:35 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/04 10:25:19 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:51:52 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	*free_map(char **map)
+{
+	char	**tmp;
+
+	if (map)
+	{
+		tmp = map;
+		while (*tmp)
+			free(*tmp++);
+		free(map);
+	}
+	return (NULL);
+}
 
 void	free_t_game_ptrs(t_game *cub3d)
 {
@@ -23,7 +37,7 @@ void	free_t_game_ptrs(t_game *cub3d)
 	if (cub3d->textures.EA)
 		free(cub3d->textures.EA);
 	if (cub3d->map)
-		free(cub3d->map);
+		cub3d->map = free_map(cub3d->map);
 	init_t_game_ptrs(cub3d);
 }
 
