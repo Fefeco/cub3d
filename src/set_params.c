@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:56:05 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/11 13:07:30 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/11 13:48:43 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	read_source_file(char *filename, t_game *cub3d)
 	}
 	close(fd);
 	test(cub3d);	// Prints game data;
-	if (uncomplete_params(cub3d))
+	if (line || uncomplete_params(cub3d))
 	{
 		free_t_game_ptrs(cub3d);
 		exit(EXIT_FAILURE);

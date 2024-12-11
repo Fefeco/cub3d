@@ -62,6 +62,7 @@ void	init_t_game_ptrs(t_game *cub3d);
 // exit.c
 int		exit_err(const char *error, int ret);
 void	free_t_game_ptrs(t_game *cub3d);
+void	*free_map(char **map);
 
 // set_params.c
 void	set_game_params(char *filename, t_game *cub3d);
