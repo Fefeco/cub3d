@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/12/10 13:43:13 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/11 18:48:15 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct	s_game
 	t_color		floor;
 	t_coords	textures;
 	bool		ready_for_map;
+	char		player_orient;
 	char		**map;
 }				t_game;
 
@@ -79,6 +80,8 @@ bool    color_ok(t_color *color);
 
 // map_tools.c
 int 	is_ready_for_map(t_game *game);
+void	set_player_orient(t_game *cub3d);
+void	validate_map(t_game *cub3d);
 
 // add_line_to_map.c
 int 	add_line_to_map(const char *line, t_game *cub3d);

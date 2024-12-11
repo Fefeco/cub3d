@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:57:47 by davifer2          #+#    #+#             */
-/*   Updated: 2024/12/10 13:21:11 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/11 18:49:43 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	init_t_game_ptrs(t_game *cub3d)
 	cub3d->floor.green = -1;
 	cub3d->floor.blue = -1;
 	cub3d->ready_for_map = false;
+	cub3d->player_orient = 0;
 	cub3d->map = NULL;
 }
 

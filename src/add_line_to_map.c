@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 12:58:23 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/11 14:13:39 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/11 14:45:44 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static char	**append_line(char **map, const char *map_line)
 
 static int	invalid_char(const char *line)
 {
-
 	while (*line)
 	{
 		if (ft_strchr(" 01NSEW", *line++) == NULL)
