@@ -6,28 +6,13 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:57:47 by davifer2          #+#    #+#             */
-/*   Updated: 2024/12/11 22:01:26 by fedeito          ###   ########.fr       */
+/*   Updated: 2024/12/12 12:12:06 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_t_game_ptrs(t_game *cub3d)
-{
-	cub3d->textures.NO = NULL;
-	cub3d->textures.SO = NULL;
-	cub3d->textures.WE = NULL;
-	cub3d->textures.EA = NULL;
-	cub3d->ceiling.red = -1;
-	cub3d->ceiling.green = -1;
-	cub3d->ceiling.blue = -1;
-	cub3d->floor.red = -1;
-	cub3d->floor.green = -1;
-	cub3d->floor.blue = -1;
-	cub3d->ready_for_map = false;
-	cub3d->player_orient = 0;
-	cub3d->map = NULL;
-}
+
 
 int	main(int argc, char **argv)
 {

@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/12/11 22:19:09 by fedeito          ###   ########.fr       */
+/*   Updated: 2024/12/12 12:28:29 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,8 @@ void	test(const t_game *cub3d);
 
 // init.c
 void	init_game(t_game *cub3d);
+
+// init_structs.c
+void	init_t_game_ptrs(t_game *cub3d);
 
 #endif
