@@ -3,49 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
+/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 21:50:22 by fedeito           #+#    #+#             */
-/*   Updated: 2024/12/12 14:31:32 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/12 21:41:21 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <X11/keysym.h>
+#include <X11/Xlib.h>
 #include "cub3d.h"
 #include "ft_printf.h"
 #include "colors.h"
-#include <X11/keysym.h>
+#include "keys.h"
 
-static void	mlx_clean_exit(t_mlx *mlx)
+static int	mlx_clean_exit(t_game *cub3d)
 {
+	t_mlx	*mlx;
+
+	mlx = &cub3d->mlx;
 	if (mlx->win)
-	{
 		mlx_destroy_window(mlx->disp, mlx->win);
-		free (mlx->win);
-		mlx->win = NULL;
-	}
 	if (mlx->disp)
 	{
 		mlx_destroy_display(mlx->disp);
 		free (mlx->disp);
-		mlx->disp = NULL;
-		mlx->disp_on = 0;
 	}
+	free_t_game_ptrs(cub3d);
+	exit(EXIT_SUCCESS);
+	return (0);
 }
 
-int	handle_input(int keysym, t_mlx *mlx)
+static int	handle_key(int key, t_game *cub3d)
 {
-    if (keysym == XK_Escape)
-        mlx_destroy_window(mlx->disp, mlx->win);
-    return (0);
-}
-
-int	close_win(void *ptr)
-{
-	t_mlx	mlx;
-	
-	mlx = *((t_mlx *)ptr);
-	mlx_clean_exit(&mlx);
-	ft_printf(TEST2"Llego?"RESET);
+	if (key == ESC)
+		mlx_clean_exit(cub3d);
+	else if (key == LEFT)
+		ft_printf(YELL"keyPress: LEFT\n"RESET);
+	else if (key == RIGHT)
+		ft_printf(YELL"keyPress: RIGHT\n"RESET);
+	else if (key == KEY_A)
+		ft_printf(TEST3"keyPress: A\n"RESET);
+	else if (key == KEY_W)
+		ft_printf(TEST2"keyPress: W\n"RESET);
+	else if (key == KEY_S)
+		ft_printf(TEST2"keyPress: S\n"RESET);
+	else if (key == KEY_D)
+		ft_printf(TEST3"keyPress: D\n"RESET);
 	return (0);
 }
 
@@ -57,13 +61,11 @@ void	init_game(t_game *cub3d)
 	mlx->disp = mlx_init();
 	if (!mlx->disp)
 		return ;
-	else
-		mlx->disp_on = 1;
+	create_image(cub3d);
 	ft_printf(YELL"Connection stablished!\n"RESET);
-	mlx->win = mlx_new_window(mlx->disp, WIDTH, HEIGTH, "CUB3D");
-	mlx_hook(mlx->win, ON_DESTROY, 0, close_win, mlx);
-	mlx_key_hook(mlx->win, handle_input, mlx);
-	mlx_loop(&mlx->disp_on);
-	ft_printf(GREEN"Llego?"RESET);
-	mlx_clean_exit(mlx);
+	mlx->win = mlx_new_window(mlx->disp, WIDTH, HEIGHT, "CUB3D");
+	mlx_loop_hook(mlx->disp, render, cub3d);
+	mlx_hook(mlx->win, ON_DESTROY, 0, mlx_clean_exit, cub3d);
+	mlx_hook(mlx->win, ON_KEYDOWN, KeyPressMask, handle_key, cub3d);
+	mlx_loop(mlx->disp);
 }
