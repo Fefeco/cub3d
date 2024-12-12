@@ -25,7 +25,13 @@
 # include <limits.h>
 # include <sys/time.h>
 # include <stdbool.h>
-# include "mlx.h"
+# include <mlx.h>
+
+typedef struct	s_mlx
+{
+	void	*disp;
+	void	*win;
+}				t_mlx;
 
 typedef struct	s_coords
 {
@@ -44,6 +50,7 @@ typedef struct	s_color
 
 typedef struct	s_game
 {
+	t_mlx		mlx;
 	t_color		ceiling;
 	t_color		floor;
 	t_coords	textures;
