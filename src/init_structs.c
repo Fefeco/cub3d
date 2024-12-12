@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:57:52 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/12 12:28:18 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:19:36 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void	init_mlx(t_mlx	*mlx)
 {
 	mlx->disp = NULL;
 	mlx->win = NULL;
+	mlx->disp_on = 0;
 }
 
 void	init_t_game_ptrs(t_game *cub3d)

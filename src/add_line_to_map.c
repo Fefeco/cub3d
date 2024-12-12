@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 12:58:23 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/11 14:45:44 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:56:21 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int add_line_to_map(const char *line, t_game *cub3d)
 		map = append_line(cub3d->map, map_line);
 		if (map)
 		{
-
 			free (cub3d->map);
 			cub3d->map = map;
 			return (0);

@@ -6,13 +6,11 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:57:47 by davifer2          #+#    #+#             */
-/*   Updated: 2024/12/12 12:12:06 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:38:26 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-
 
 int	main(int argc, char **argv)
 {
@@ -25,4 +23,4 @@ int	main(int argc, char **argv)
 	init_game(&cub3d);						// Game initialization
 	free_t_game_ptrs(&cub3d);
 	return (0);
-}
+g

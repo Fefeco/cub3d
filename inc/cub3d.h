@@ -6,14 +6,14 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/12/12 12:28:29 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:19:15 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# define HEIGTH 480
-# define WIDTH 640
+# define HEIGTH 1080
+# define WIDTH 1920
 
 # include <fcntl.h>
 # include <stdio.h>
@@ -27,10 +27,21 @@
 # include <stdbool.h>
 # include <mlx.h>
 
+enum {
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
+	ON_MOUSEDOWN = 4,
+	ON_MOUSEUP = 5,
+	ON_MOUSEMOVE = 6,
+	ON_EXPOSE = 12,
+	ON_DESTROY = 17
+};
+
 typedef struct	s_mlx
 {
 	void	*disp;
 	void	*win;
+	int		disp_on;
 }				t_mlx;
 
 typedef struct	s_coords
