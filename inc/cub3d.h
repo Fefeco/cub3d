@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/12/12 21:42:07 by fedeito          ###   ########.fr       */
+/*   Updated: 2024/12/14 21:55:54 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <stdbool.h>
 # include <mlx.h>
 # include "keys.h"
+# include "error.h"
 
 # define HEIGHT 600
 # define WIDTH 800

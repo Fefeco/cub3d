@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 13:00:35 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/12 21:30:32 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/14 21:26:40 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	free_t_game_ptrs(t_game *cub3d)
 	free_coords(&cub3d->textures);
 	cub3d->map = free_map(cub3d->map);
 	free_images(cub3d);
-
 }
 
 int	exit_err(const char *error, int ret)
