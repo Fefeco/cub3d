@@ -6,14 +6,12 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/12/12 12:28:29 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/16 14:23:48 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# define HEIGTH 480
-# define WIDTH 640
 
 # include <fcntl.h>
 # include <stdio.h>
@@ -26,6 +24,25 @@
 # include <sys/time.h>
 # include <stdbool.h>
 # include <mlx.h>
+# include "keys.h"
+# include "error.h"
+
+# define HEIGHT 600
+# define WIDTH 800
+
+# define ON_KEYDOWN 2
+# define ON_DESTROY 17
+
+typedef struct	s_img
+{
+	void	*img_to_draw;
+	char	*addr_to_draw;
+	void	*img_to_render;
+	char	*addr_to_render;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_img;
 
 typedef struct	s_mlx
 {
@@ -54,6 +71,7 @@ typedef struct	s_game
 	t_color		ceiling;
 	t_color		floor;
 	t_coords	textures;
+	t_img		images;
 	bool		ready_for_map;
 	char		player_orient;
 	char		**map;
@@ -70,8 +88,8 @@ int		ft_check_extension(const char *filename, const char *ext);
 void	init_t_game_ptrs(t_game *cub3d);
 
 // exit.c
-int		exit_err(const char *error, int ret);
-void	free_t_game_ptrs(t_game *cub3d);
+int		clean_exit(t_game *cub3d, const char *error, int error_nb);
+void	clean_game_ptrs(t_game *cub3d);
 void	*free_map(char **map);
 
 // set_params.c
@@ -86,6 +104,13 @@ int		extract_coord(const char *line, t_game *cub3d);
 // extract_color.c
 int		extract_color(const char *line, t_game *cub3d);
 bool    color_ok(t_color *color);
+
+// free.c
+void	*free_map(char **map);
+void	free_images(t_img *images, void *disp);
+void	free_coords(t_coords *textures);
+void	free_mlx(t_mlx *mlx);
+
 
 // map_tools.c
 int 	is_ready_for_map(t_game *game);
@@ -103,5 +128,17 @@ void	init_game(t_game *cub3d);
 
 // init_structs.c
 void	init_t_game_ptrs(t_game *cub3d);
+
+// switch_img.c
+void	switch_img(t_img *images);
+
+// create_image.c
+void	create_image(t_game *cub3d);
+
+// render.c
+int	render(t_game * cub3d);
+
+// switch_img.c
+void	switch_img(t_img *images);
 
 #endif

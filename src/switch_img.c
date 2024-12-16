@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   switch_img.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 13:00:35 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/16 14:20:06 by fcarranz         ###   ########.fr       */
+/*   Created: 2024/12/12 19:56:03 by fcarranz          #+#    #+#             */
+/*   Updated: 2024/12/16 14:21:18 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	clean_game_ptrs(t_game *cub3d)
+void	switch_img(t_img *images)
 {
-	free_coords(&cub3d->textures);
-	free_images(&cub3d->images, cub3d->mlx.disp);
-	free_mlx(&cub3d->mlx);
-	free_map(cub3d->map);
-}
+	void	*tmp_img;
+	char	*tmp_addr;
 
-int	clean_exit(t_game *cub3d, const char *error, int nb_error)
-{
-	print_error(error);
-	clean_game_ptrs(cub3d);
-	exit(nb_error);
+	tmp_img = images->img_to_render;
+	tmp_addr = images->addr_to_render;
+	images->img_to_render = images->img_to_draw;
+	images->addr_to_render = images->addr_to_draw;
+	images->img_to_draw = tmp_img;
+	images->addr_to_draw = tmp_addr;
 }

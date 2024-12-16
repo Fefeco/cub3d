@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   keys.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 13:00:35 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/16 14:20:06 by fcarranz         ###   ########.fr       */
+/*   Created: 2024/12/12 18:39:15 by fcarranz          #+#    #+#             */
+/*   Updated: 2024/12/16 14:24:05 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef KEYS_H
+# define KEYS_H
 
-void	clean_game_ptrs(t_game *cub3d)
-{
-	free_coords(&cub3d->textures);
-	free_images(&cub3d->images, cub3d->mlx.disp);
-	free_mlx(&cub3d->mlx);
-	free_map(cub3d->map);
-}
+# define ESC	65307
+# define LEFT	65361
+# define RIGHT	65363
+# define KEY_W	119
+# define KEY_A	97
+# define KEY_S	115
+# define KEY_D	100
 
-int	clean_exit(t_game *cub3d, const char *error, int nb_error)
-{
-	print_error(error);
-	clean_game_ptrs(cub3d);
-	exit(nb_error);
-}
+#endif

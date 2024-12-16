@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_err.c                                        :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcarranz <fcarranz@student.42barcelon      +#+  +:+       +#+        */
+/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 11:25:22 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/11/28 15:20:52 by fcarranz         ###   ########.fr       */
+/*   Created: 2024/12/14 21:53:35 by fcarranz          #+#    #+#             */
+/*   Updated: 2024/12/16 14:21:00 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "colors.h"
 #include "libft.h"
 
-int	print_err(const char *str, int ret)
+void	print_error(const char *error)
 {
+	if (!error)
+		return ;
 	ft_putstr_fd(RED, 2);
 	ft_putendl_fd("Error", 2);
-	ft_putstr_fd(str, 2);
+	ft_putstr_fd(error, 2);
 	ft_putendl_fd(RESET, 2);
-	return (ret);
 }

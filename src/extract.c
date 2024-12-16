@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 17:58:38 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/11 13:48:49 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/16 14:20:18 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ int	extract_params(char **line_ref, t_game *cub3d)
 		else if (ft_strchr("01NSEW", *line) && is_ready_for_map(cub3d))
 			ret = add_line_to_map(*line_ref, cub3d);
 		else
-			ret = print_err("Instruction not allowed in map file", -1);
+		{
+			print_error(E_WINST);
+			ret = -1;
+		}
 	}
 	free (*line_ref);
 	return (ret);

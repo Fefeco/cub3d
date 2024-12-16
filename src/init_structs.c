@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcarranz <fcarranz@student.42barcelon      +#+  +:+       +#+        */
+/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:57:52 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/12 12:28:18 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/16 14:20:32 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@ static void	init_textures(t_coords	*textures)
 	textures->SO = NULL;
 	textures->WE = NULL;
 	textures->EA = NULL;
+}
+
+static void	init_images(t_img *images)
+{
+	images->img_to_render = NULL;
+	images->addr_to_render = NULL;
+	images->img_to_draw = NULL;
+	images->addr_to_draw = NULL;
 }
 
 static void	init_colors(t_color *color)
@@ -39,6 +47,7 @@ void	init_t_game_ptrs(t_game *cub3d)
 {
 	init_mlx(&cub3d->mlx);
 	init_textures(&cub3d->textures);
+	init_images(&cub3d->images);
 	init_colors(&cub3d->ceiling);
 	init_colors(&cub3d->floor);
 	cub3d->ready_for_map = false;
