@@ -6,11 +6,12 @@
 /*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 19:10:28 by fedeito           #+#    #+#             */
-/*   Updated: 2024/12/12 21:38:09 by fedeito          ###   ########.fr       */
+/*   Updated: 2024/12/16 13:38:22 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "error.h"
 
 void	create_image(t_game *cub3d)
 {
@@ -21,8 +22,8 @@ void	create_image(t_game *cub3d)
 	mlx = &cub3d->mlx;
 	images->img_to_draw = mlx_new_image(mlx->disp, WIDTH, HEIGHT); 
 	images->img_to_render = mlx_new_image(mlx->disp, WIDTH, HEIGHT); 
-//	if (!images->img_to_draw || !images->img_to_render)
-//		exit_clean(cub3d, errcode, errmsj);	// Implementar
+	if (!images->img_to_draw || !images->img_to_render)
+		clean_exit(cub3d, E_NEWIMG, 6);
 	images->addr_to_draw = mlx_get_data_addr(images->img_to_draw,
 												&images->bits_per_pixel,
 												&images->line_length,
@@ -31,6 +32,6 @@ void	create_image(t_game *cub3d)
 												&images->bits_per_pixel,
 												&images->line_length,
 												&images->endian);
-//	if (!images->img_to_draw || !images->img_to_render)
-//		exit_clean(cub3d, errcode, errmsj);	// Implementar
+	if (!images->img_to_draw || !images->img_to_render)
+		clean_exit(cub3d, E_DATIMG, 6);
 }

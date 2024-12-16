@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 21:27:14 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/14 21:53:06 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/16 13:37:24 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define E_NOWALL	"Map is not surrounded by walls"
 # define E_WEXT		"Invalid extension"
 # define E_UPARAM	"Uncomplete game parameters"
+# define E_NEWIMG	"Mlx failed creating image"
+# define E_DATIMG	"Mlx failed returning data from image"
 
 void	print_error(const char *error);
 

@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/12/16 11:27:09 by fedeito          ###   ########.fr       */
+/*   Updated: 2024/12/16 13:25:28 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,13 @@ int		extract_coord(const char *line, t_game *cub3d);
 // extract_color.c
 int		extract_color(const char *line, t_game *cub3d);
 bool    color_ok(t_color *color);
+
+// free.c
+void	*free_map(char **map);
+void	free_images(t_img *images, void *disp);
+void	free_coords(t_coords *textures);
+void	free_mlx(t_mlx *mlx);
+
 
 // map_tools.c
 int 	is_ready_for_map(t_game *game);

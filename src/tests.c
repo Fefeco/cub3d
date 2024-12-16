@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:29:45 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/14 21:58:04 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/16 13:27:30 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,4 @@ void	test(const t_game *cub3d)
 	else 
 		ft_printf(RED"\nNO MAP\n-----------\n"RESET);
 	ft_printf(GREEN"\n======================\n       END  TEST       \n======================\n"RESET);
-	print_error(E_MALLOC);
 }

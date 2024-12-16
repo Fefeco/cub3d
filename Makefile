@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
-#    Updated: 2024/12/16 10:54:56 by fedeito          ###   ########.fr        #
+#    Updated: 2024/12/16 13:24:09 by fedeito          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRCS = add_line_to_map.c \
 	   extract.c \
 	   extract_color.c \
 	   extract_coord.c \
+	   free.c \
 	   main.c \
 	   map_tools.c \
 	   map_validations.c \
