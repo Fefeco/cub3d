@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:17:41 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/16 12:46:12 by fedeito          ###   ########.fr       */
+/*   Updated: 2024/12/16 14:20:55 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 #include "libft.h"
 #include "error.h"
 
-int is_ready_for_map(t_game *game)
+int	is_ready_for_map(t_game *game)
 {
-	t_coords *text;
+	t_coords	*text;
 
 	if (game->ready_for_map)
 		return (1);
 	text = &game->textures;
 	if (!text->NO || !text->SO || !text->WE || !text->EA)
 	{
-		print_error(E_MTXPAR);	
+		print_error(E_MTXPAR);
 		return (0);
 	}
 	if (!color_ok(&game->ceiling) || !color_ok(&game->floor))
 	{
-		print_error(E_MCPAR);	
+		print_error(E_MCPAR);
 		return (0);
 	}
 	game->ready_for_map = true;
@@ -36,7 +36,7 @@ int is_ready_for_map(t_game *game)
 }
 
 static int	find_orientation(char *line)
-{	
+{
 	int	found;
 
 	if (!line)
@@ -128,7 +128,7 @@ void	validate_map(t_game *cub3d)
 			if (line[x] != '0' && line[x] != orient)
 				continue ;
 			if (is_space_arround(x, y, cub3d->map))
-				clean_exit(cub3d, E_NOWALL, 5);	
+				clean_exit(cub3d, E_NOWALL, 5);
 		}
 	}
 }
