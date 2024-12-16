@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 21:50:22 by fedeito           #+#    #+#             */
-/*   Updated: 2024/12/16 12:29:16 by fedeito          ###   ########.fr       */
+/*   Updated: 2024/12/16 13:41:46 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ static int	handle_key(int key, t_game *cub3d)
 	return (0);
 }
 
+static int	end_loop(t_game *cub3d)
+{
+	clean_exit(cub3d, NULL, 0);
+	return (0);
+}
+
 void	init_game(t_game *cub3d)
 {
 	t_mlx	*mlx;
@@ -48,7 +54,7 @@ void	init_game(t_game *cub3d)
 	ft_printf(YELL"Connection stablished!\n"RESET);
 	mlx->win = mlx_new_window(mlx->disp, WIDTH, HEIGHT, "CUB3D");
 	mlx_loop_hook(mlx->disp, render, cub3d);
-	mlx_hook(mlx->win, ON_DESTROY, 0, clean_exit, cub3d);
+	mlx_hook(mlx->win, ON_DESTROY, 0, end_loop, cub3d);
 	mlx_hook(mlx->win, ON_KEYDOWN, KeyPressMask, handle_key, cub3d);
 	mlx_loop(mlx->disp);
 }
