@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 21:50:22 by fedeito           #+#    #+#             */
-/*   Updated: 2024/12/12 21:41:21 by fedeito          ###   ########.fr       */
+/*   Updated: 2024/12/16 12:29:16 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,10 @@
 #include "colors.h"
 #include "keys.h"
 
-static int	mlx_clean_exit(t_game *cub3d)
-{
-	t_mlx	*mlx;
-
-	mlx = &cub3d->mlx;
-	if (mlx->win)
-		mlx_destroy_window(mlx->disp, mlx->win);
-	if (mlx->disp)
-	{
-		mlx_destroy_display(mlx->disp);
-		free (mlx->disp);
-	}
-	free_t_game_ptrs(cub3d);
-	exit(EXIT_SUCCESS);
-	return (0);
-}
-
 static int	handle_key(int key, t_game *cub3d)
 {
 	if (key == ESC)
-		mlx_clean_exit(cub3d);
+		clean_exit(cub3d, NULL, 0);
 	else if (key == LEFT)
 		ft_printf(YELL"keyPress: LEFT\n"RESET);
 	else if (key == RIGHT)
@@ -65,7 +48,7 @@ void	init_game(t_game *cub3d)
 	ft_printf(YELL"Connection stablished!\n"RESET);
 	mlx->win = mlx_new_window(mlx->disp, WIDTH, HEIGHT, "CUB3D");
 	mlx_loop_hook(mlx->disp, render, cub3d);
-	mlx_hook(mlx->win, ON_DESTROY, 0, mlx_clean_exit, cub3d);
+	mlx_hook(mlx->win, ON_DESTROY, 0, clean_exit, cub3d);
 	mlx_hook(mlx->win, ON_KEYDOWN, KeyPressMask, handle_key, cub3d);
 	mlx_loop(mlx->disp);
 }

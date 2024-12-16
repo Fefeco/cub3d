@@ -6,12 +6,13 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:17:41 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/11 19:29:11 by fedeito          ###   ########.fr       */
+/*   Updated: 2024/12/16 12:46:12 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "libft.h"
+#include "error.h"
 
 int is_ready_for_map(t_game *game)
 {
@@ -21,9 +22,15 @@ int is_ready_for_map(t_game *game)
 		return (1);
 	text = &game->textures;
 	if (!text->NO || !text->SO || !text->WE || !text->EA)
-		return (print_err("Missing texture parameters before map", 0));
+	{
+		print_error(E_MTXPAR);	
+		return (0);
+	}
 	if (!color_ok(&game->ceiling) || !color_ok(&game->floor))
-		return (print_err("Missing color parameters before map", 0));
+	{
+		print_error(E_MCPAR);	
+		return (0);
+	}
 	game->ready_for_map = true;
 	return (1);
 }
@@ -70,11 +77,9 @@ void	set_player_orient(t_game *cub3d)
 	if (cub3d->player_orient && !found)
 		return ;
 	if (!cub3d->player_orient)
-		print_err("Payer orientation not set", 1);
+		clean_exit(cub3d, E_PNOSET, 4);
 	else
-		print_err("Payer orientation set more than once", 1);
-	free_t_game_ptrs(cub3d);
-	exit(EXIT_FAILURE);
+		clean_exit(cub3d, E_PTMSET, 4);
 }
 
 static bool	is_space_arround(int x, int y, char **map)
@@ -123,11 +128,7 @@ void	validate_map(t_game *cub3d)
 			if (line[x] != '0' && line[x] != orient)
 				continue ;
 			if (is_space_arround(x, y, cub3d->map))
-			{
-				print_err("Map is not surrounded by walls", 1);
-				free_t_game_ptrs(cub3d);
-				exit(EXIT_FAILURE);
-			}
+				clean_exit(cub3d, E_NOWALL, 5);	
 		}
 	}
 }

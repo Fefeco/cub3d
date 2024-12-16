@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 13:00:35 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/14 21:26:40 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:31:53 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,24 @@ void	*free_map(char **map)
 	return (NULL);
 }
 
-void	free_images(t_game *cub3d)
+void	free_images(t_img *images, void *disp)
 {
-	t_img	*images;
-
-	images = &cub3d->images;
 	if (images->img_to_render)
 	{
-		mlx_destroy_image(cub3d->mlx.disp, images->img_to_render);
+		mlx_destroy_image(disp, images->img_to_render);
 		images->img_to_render = NULL;
 		free(images->addr_to_render);
 		images->addr_to_render = NULL;
 	}
 	if (images->img_to_draw)
 	{
-		mlx_destroy_image(cub3d->mlx.disp, images->img_to_draw);
+		mlx_destroy_image(disp, images->img_to_draw);
 		images->img_to_draw = NULL;
 		free(images->addr_to_draw);
 		images->addr_to_draw = NULL;
 	}
 }
+
 void	free_coords(t_coords	*textures)
 {
 	if (textures->NO)
@@ -58,15 +56,16 @@ void	free_coords(t_coords	*textures)
 		free(textures->EA);
 }
 
-void	free_t_game_ptrs(t_game *cub3d)
+void	clean_game_ptrs(t_game *cub3d)
 {
 	free_coords(&cub3d->textures);
-	cub3d->map = free_map(cub3d->map);
-	free_images(cub3d);
+	free_images(&cub3d->images, cub3d->mlx.disp);
+	free_map(cub3d->map);
 }
 
-int	exit_err(const char *error, int ret)
+int	clean_exit(t_game *cub3d, const char *error, int nb_error)
 {
-	print_err(error, ret);
-	exit (ret);
+	print_error(error);
+	clean_game_ptrs(cub3d);
+	exit(nb_error);
 }

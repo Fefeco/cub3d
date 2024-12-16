@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 12:58:23 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/12 12:56:21 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:48:49 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ static int	invalid_char(const char *line)
 	while (*line)
 	{
 		if (ft_strchr(" 01NSEW", *line++) == NULL)
-			return (print_err("Invalid character in map", 1));
+		{
+			print_error(E_WCHAR);
+			return (1);
+		}
 	}
 	return (0);
 }

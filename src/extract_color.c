@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:49:23 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/09 13:40:41 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:41:52 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ int	get_color(const char **line)
 		return (-1);
 	octet = (char *)calloc(4, sizeof(char));
 	if (!octet)
-		return (print_err("Malloc failed!", -1));
+	{
+		print_error(E_MALLOC);
+		return (-1);
+	}
 	pos = 0;
 	while (**line && **line != ',' && **line != '\n')
 	{
@@ -68,17 +71,26 @@ int	extract_color(const char *line, t_game *cub3d)
 	t_color	*rgb;
 
 	if (!ft_isspace(*(line + 1)))
-		return (print_err("Instruction not allowed in map file", -1));
+	{
+		print_error(E_WINST);
+		return (-1);
+	}
 	if (*line++ == 'F')
 		rgb = &cub3d->floor;
 	else
 		rgb = &cub3d->ceiling;
 	if (color_ok(rgb))
-		return (print_err("Too many declarations for color parameter", -1));
+	{
+		print_error(E_TMCOL);
+		return (-1);
+	}
 	rgb->red = get_color(&line);
 	rgb->green = get_color(&line);
 	rgb->blue = get_color(&line);
 	if (color_ok(rgb) == false)
-		return (print_err("Wrong color format", -1));
+	{
+		print_error(E_WCOLOR);
+		return (-1);
+	}
 	return (0);
 }

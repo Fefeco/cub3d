@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 13:24:18 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/09 13:21:25 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:53:39 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static bool	set(char **param, char **value)
 {
 	if (*param)
 	{
-		print_err("Too many declarations for the same coordinates", -1);
+		print_error(E_TMCOOR);
 		free (*value);
 		*value = NULL;
 		return (false);
@@ -66,7 +66,10 @@ int	extract_coord(const char *line, t_game *cub3d)
 
 	tmp = (char *)ft_calloc(3, sizeof(char));
 	if (!tmp)
-		return (print_err("Malloc failed!", -1));
+	{
+		print_error(E_MALLOC);
+		return (-1);
+	}
 	success = false;
 	tmp[0] = *line++;
 	while (*line && (ft_isspace(*line) || *line == '\n'))
@@ -80,5 +83,6 @@ int	extract_coord(const char *line, t_game *cub3d)
 	free (tmp);
 	if (success)
 		return (0);
-	return (print_err("Instruction not allowed in map file", -1));
+	print_error(E_WINST);
+	return (-1);
 }

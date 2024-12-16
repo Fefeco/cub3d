@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
-#    Updated: 2024/12/14 21:56:45 by fcarranz         ###   ########.fr        #
+#    Updated: 2024/12/16 10:54:56 by fedeito          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,6 @@ SRCS = add_line_to_map.c \
 	   map_tools.c \
 	   map_validations.c \
 	   print_error.c \
-	   print_err.c \
 	   set_params.c \
 	   tests.c \
 	   init.c \
