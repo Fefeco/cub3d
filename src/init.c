@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 21:50:22 by fedeito           #+#    #+#             */
-/*   Updated: 2024/12/16 13:41:46 by fedeito          ###   ########.fr       */
+/*   Updated: 2024/12/16 13:43:20 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	init_game(t_game *cub3d)
 	if (!mlx->disp)
 		return ;
 	create_image(cub3d);
-	ft_printf(YELL"Connection stablished!\n"RESET);
 	mlx->win = mlx_new_window(mlx->disp, WIDTH, HEIGHT, "CUB3D");
 	mlx_loop_hook(mlx->disp, render, cub3d);
 	mlx_hook(mlx->win, ON_DESTROY, 0, end_loop, cub3d);
