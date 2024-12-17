@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/12/16 14:23:48 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/17 12:08:12 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@
 # include "keys.h"
 # include "error.h"
 
-# define HEIGHT 600
-# define WIDTH 800
+# define HEIGHT	600
+# define WIDTH	800
+# define TILE	32
 
 # define ON_KEYDOWN 2
 # define ON_DESTROY 17
