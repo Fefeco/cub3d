@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:34:29 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/16 14:23:43 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/17 13:53:18 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,6 @@
 # define TEST1		"\033[38;5;236m"	
 # define TEST2		"\033[38;5;216m"	
 # define TEST3		"\033[38;5;209m"	
+
+# define TGRAY		0x00C0C0C0
 #endif

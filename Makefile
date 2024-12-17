@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
-#    Updated: 2024/12/16 14:23:27 by fcarranz         ###   ########.fr        #
+#    Updated: 2024/12/17 13:50:43 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,8 @@ SRCS = add_line_to_map.c \
 	   init_structs.c \
 	   switch_img.c \
 	   render.c \
+	   draw_map.c \
+	   draw_tools.c \
 	   create_image.c
 
 OBJS = $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))

@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/12/17 12:08:12 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/17 15:45:18 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@
 # include <limits.h>
 # include <sys/time.h>
 # include <stdbool.h>
-# include <mlx.h>
+# include "mlx.h"
 # include "keys.h"
 # include "error.h"
 
 # define HEIGHT	600
 # define WIDTH	800
-# define TILE	32
+# define TILE	16
 
 # define ON_KEYDOWN 2
 # define ON_DESTROY 17
@@ -112,6 +112,12 @@ void	free_images(t_img *images, void *disp);
 void	free_coords(t_coords *textures);
 void	free_mlx(t_mlx *mlx);
 
+// draw_map.c
+void	draw_map(t_game *cub3d);
+
+// draw_tools.c
+int		create_trgb(int t, int r, int g, int b);
+void	put_pxl_on_img(t_img *images, int x, int y, int color);
 
 // map_tools.c
 int 	is_ready_for_map(t_game *game);
