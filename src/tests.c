@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:29:45 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/16 14:21:27 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:40:17 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	test(const t_game *cub3d)
 	ft_printf(GREEN"======================\n         TEST         \n======================\n"RESET);
 
 	ft_printf(BLUE"\nTEXTURES\n---------\n"RESET);
-	ft_printf("  NO: %s\n  SO: %s\n  WE: %s\n  EA: %s\n\n", tx->NO, tx->SO, tx->WE, tx->EA);
+	ft_printf("  NO: %s\n  SO: %s\n  WE: %s\n  EA: %s\n\n", tx->no, tx->so, tx->we, tx->ea);
 	
 	ft_printf(BLUE"\nCOLORS\n-----------\n"RESET);
 	ft_printf("\n-----CEILING-----\n");

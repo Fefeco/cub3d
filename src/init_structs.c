@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:57:52 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/16 14:20:32 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/18 16:25:04 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 
 static void	init_textures(t_coords	*textures)
 {
-	textures->NO = NULL;
-	textures->SO = NULL;
-	textures->WE = NULL;
-	textures->EA = NULL;
+	textures->no = NULL;
+	textures->so = NULL;
+	textures->we = NULL;
+	textures->ea = NULL;
 }
 
 static void	init_images(t_img *images)
@@ -43,7 +43,7 @@ static void	init_mlx(t_mlx	*mlx)
 	mlx->win = NULL;
 }
 
-void	init_t_game_ptrs(t_game *cub3d)
+void	init_t_game(t_game *cub3d)
 {
 	init_mlx(&cub3d->mlx);
 	init_textures(&cub3d->textures);
@@ -51,6 +51,6 @@ void	init_t_game_ptrs(t_game *cub3d)
 	init_colors(&cub3d->ceiling);
 	init_colors(&cub3d->floor);
 	cub3d->ready_for_map = false;
-	cub3d->player_orient = 0;
+	cub3d->player.viewdir = 0;
 	cub3d->map = NULL;
 }

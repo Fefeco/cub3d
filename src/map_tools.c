@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:17:41 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/16 14:20:55 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/18 18:52:09 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	is_ready_for_map(t_game *game)
 	if (game->ready_for_map)
 		return (1);
 	text = &game->textures;
-	if (!text->NO || !text->SO || !text->WE || !text->EA)
+	if (!text->no || !text->so || !text->we || !text->ea)
 	{
 		print_error(E_MTXPAR);
 		return (0);
@@ -35,51 +35,37 @@ int	is_ready_for_map(t_game *game)
 	return (1);
 }
 
-static int	find_orientation(char *line)
+static int	set_params(t_player *player, char viewdir, int x, int y)
 {
-	int	found;
-
-	if (!line)
-		return (0);
-	found = 0;
-	while (*line)
-	{
-		if (ft_strchr("NSEW", *line))
-		{
-			if (found)
-				found = -1;
-			else
-				found = *line;
-		}
-		++line;
-	}
-	return (found);
+	if (player->viewdir)
+		return (1);
+	player->viewdir = viewdir;
+	player->x = x * TILE + TILE / 2;
+	player->y = y * TILE + TILE / 2;
+	return (0);;
 }
 
-void	set_player_orient(t_game *cub3d)
+void	set_player(t_game *cub3d)
 {
-	char	**map;
-	char	*line;
-	char	found;
+	int		x;
+	int		y;
+	char	c;
 
-	map = cub3d->map;
-	while (map && *map)
+	y = -1;
+	while (cub3d->map[++y])
 	{
-		line = *map;
-		found = find_orientation(line);
-		if (found == -1 || (found > 0 && cub3d->player_orient > 0))
-			break ;
-		if (found > 0)
-			cub3d->player_orient = found;
-		found = 0;
-		++map;
+		x = -1;
+		while (cub3d->map[y][++x])
+		{
+			c = cub3d->map[y][x];
+			if (ft_strchr("NSEW", c) && set_params(&cub3d->player, c, x, y))
+				break ;
+		}
 	}
-	if (cub3d->player_orient && !found)
-		return ;
-	if (!cub3d->player_orient)
-		clean_exit(cub3d, E_PNOSET, 4);
-	else
+	if (cub3d->map[y])
 		clean_exit(cub3d, E_PTMSET, 4);
+	if (!cub3d->player.viewdir)
+		clean_exit(cub3d, E_PNOSET, 4);
 }
 
 static bool	is_space_arround(int x, int y, char **map)
@@ -113,11 +99,9 @@ static bool	is_space_arround(int x, int y, char **map)
 void	validate_map(t_game *cub3d)
 {
 	char	*line;
-	char	orient;
 	int		x;
 	int		y;
 
-	orient = cub3d->player_orient;
 	y = -1;
 	while (cub3d->map[++y])
 	{
@@ -125,7 +109,7 @@ void	validate_map(t_game *cub3d)
 		x = -1;
 		while (line[++x])
 		{
-			if (line[x] != '0' && line[x] != orient)
+			if (line[x] != '0' && line[x] != cub3d->player.viewdir)
 				continue ;
 			if (is_space_arround(x, y, cub3d->map))
 				clean_exit(cub3d, E_NOWALL, 5);
