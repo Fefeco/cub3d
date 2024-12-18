@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/12/17 15:45:18 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:45:12 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,13 @@
 # define WIDTH	800
 # define TILE	16
 
+# define MAP_WALL_COLOR 0x00433535
+# define GRID_COLOR		0x00C0C0C0
+
 # define ON_KEYDOWN 2
 # define ON_DESTROY 17
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void	*img_to_draw;
 	char	*addr_to_draw;
@@ -45,28 +48,28 @@ typedef struct	s_img
 	int		endian;
 }				t_img;
 
-typedef struct	s_mlx
+typedef struct s_mlx
 {
 	void	*disp;
 	void	*win;
 }				t_mlx;
 
-typedef struct	s_coords
+typedef struct s_coords
 {
-	char	*NO;
-	char	*SO;
-	char	*WE;
-	char	*EA;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
 }				t_coords;
 
-typedef struct	s_color
+typedef struct s_color
 {
 	int		red;
 	int		green;
 	int		blue;
 }				t_color;
 
-typedef struct	s_game
+typedef struct s_game
 {
 	t_mlx		mlx;
 	t_color		ceiling;
@@ -83,7 +86,6 @@ int		print_err(const char *str, int ret);
 
 // map_validations.c
 int		ft_check_extension(const char *filename, const char *ext);
-
 
 // main.c
 void	init_t_game_ptrs(t_game *cub3d);
@@ -104,7 +106,7 @@ int		extract_coord(const char *line, t_game *cub3d);
 
 // extract_color.c
 int		extract_color(const char *line, t_game *cub3d);
-bool    color_ok(t_color *color);
+bool	color_ok(t_color *color);
 
 // free.c
 void	*free_map(char **map);
@@ -120,12 +122,12 @@ int		create_trgb(int t, int r, int g, int b);
 void	put_pxl_on_img(t_img *images, int x, int y, int color);
 
 // map_tools.c
-int 	is_ready_for_map(t_game *game);
+int		is_ready_for_map(t_game *game);
 void	set_player_orient(t_game *cub3d);
 void	validate_map(t_game *cub3d);
 
 // add_line_to_map.c
-int 	add_line_to_map(const char *line, t_game *cub3d);
+int		add_line_to_map(const char *line, t_game *cub3d);
 
 // test.c
 void	test(const t_game *cub3d);
@@ -143,7 +145,7 @@ void	switch_img(t_img *images);
 void	create_image(t_game *cub3d);
 
 // render.c
-int	render(t_game * cub3d);
+int		render(t_game *cub3d);
 
 // switch_img.c
 void	switch_img(t_img *images);

@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:57:52 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/16 14:20:32 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:39:15 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 
 static void	init_textures(t_coords	*textures)
 {
-	textures->NO = NULL;
-	textures->SO = NULL;
-	textures->WE = NULL;
-	textures->EA = NULL;
+	textures->no = NULL;
+	textures->so = NULL;
+	textures->we = NULL;
+	textures->ea = NULL;
 }
 
 static void	init_images(t_img *images)

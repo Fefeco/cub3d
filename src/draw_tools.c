@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:48:06 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/17 13:48:40 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:52:58 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,3 @@ void	put_pxl_on_img(t_img *images, int x, int y, int color)
 			+ x * (images->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
-

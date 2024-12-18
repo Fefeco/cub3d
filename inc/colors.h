@@ -6,12 +6,12 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 11:34:29 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/17 13:53:18 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:45:35 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __COLORS__
-# define __COLORS__
+#ifndef COLORS_H
+# define COLORS_H
 # define DEL_LINE	"\033[2K"
 # define ITALIC		"\033[3m"
 # define BOLD		"\033[1m"
@@ -35,5 +35,4 @@
 # define TEST2		"\033[38;5;216m"	
 # define TEST3		"\033[38;5;209m"	
 
-# define TGRAY		0x00C0C0C0
 #endif

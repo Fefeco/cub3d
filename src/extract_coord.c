@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 13:24:18 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/16 14:20:15 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:41:32 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ static bool	set_coord(const char *tmp, const char *line, t_coords *textures)
 	if (!value)
 		return (false);
 	if (!ft_strncmp(tmp, "NO", 3))
-		return (set(&textures->NO, &value));
+		return (set(&textures->no, &value));
 	else if (!ft_strncmp(tmp, "SO", 3))
-		return (set(&textures->SO, &value));
+		return (set(&textures->so, &value));
 	else if (!ft_strncmp(tmp, "WE", 3))
-		return (set(&textures->WE, &value));
+		return (set(&textures->we, &value));
 	else if (!ft_strncmp(tmp, "EA", 3))
-		return (set(&textures->EA, &value));
+		return (set(&textures->ea, &value));
 	free (value);
 	return (false);
 }
