@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/12/18 12:45:12 by fedeito          ###   ########.fr       */
+/*   Updated: 2024/12/18 17:34:48 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,13 @@ typedef struct s_color
 	int		blue;
 }				t_color;
 
+typedef struct s_player
+{
+	int		x;
+	int		y;
+	char	viewdir;
+}				t_player;
+
 typedef struct s_game
 {
 	t_mlx		mlx;
@@ -77,7 +84,7 @@ typedef struct s_game
 	t_coords	textures;
 	t_img		images;
 	bool		ready_for_map;
-	char		player_orient;
+	t_player	player;
 	char		**map;
 }				t_game;
 
@@ -86,9 +93,6 @@ int		print_err(const char *str, int ret);
 
 // map_validations.c
 int		ft_check_extension(const char *filename, const char *ext);
-
-// main.c
-void	init_t_game_ptrs(t_game *cub3d);
 
 // exit.c
 int		clean_exit(t_game *cub3d, const char *error, int error_nb);
@@ -117,13 +121,16 @@ void	free_mlx(t_mlx *mlx);
 // draw_map.c
 void	draw_map(t_game *cub3d);
 
+// draw_player.c
+void	draw_player(t_game *cub3d);
+
 // draw_tools.c
 int		create_trgb(int t, int r, int g, int b);
 void	put_pxl_on_img(t_img *images, int x, int y, int color);
 
 // map_tools.c
 int		is_ready_for_map(t_game *game);
-void	set_player_orient(t_game *cub3d);
+void	set_player(t_game *cub3d);
 void	validate_map(t_game *cub3d);
 
 // add_line_to_map.c
@@ -136,7 +143,7 @@ void	test(const t_game *cub3d);
 void	init_game(t_game *cub3d);
 
 // init_structs.c
-void	init_t_game_ptrs(t_game *cub3d);
+void	init_t_game(t_game *cub3d);
 
 // switch_img.c
 void	switch_img(t_img *images);

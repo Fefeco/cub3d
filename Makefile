@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
-#    Updated: 2024/12/17 13:50:43 by fcarranz         ###   ########.fr        #
+#    Updated: 2024/12/18 17:34:04 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRCS = add_line_to_map.c \
 	   switch_img.c \
 	   render.c \
 	   draw_map.c \
+	   draw_player.c \
 	   draw_tools.c \
 	   create_image.c
 
