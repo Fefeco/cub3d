@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:17:41 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/18 18:52:09 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/19 13:48:12 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,39 +33,6 @@ int	is_ready_for_map(t_game *game)
 	}
 	game->ready_for_map = true;
 	return (1);
-}
-
-static int	set_params(t_player *player, char viewdir, int x, int y)
-{
-	if (player->viewdir)
-		return (1);
-	player->viewdir = viewdir;
-	player->x = x * TILE + TILE / 2;
-	player->y = y * TILE + TILE / 2;
-	return (0);;
-}
-
-void	set_player(t_game *cub3d)
-{
-	int		x;
-	int		y;
-	char	c;
-
-	y = -1;
-	while (cub3d->map[++y])
-	{
-		x = -1;
-		while (cub3d->map[y][++x])
-		{
-			c = cub3d->map[y][x];
-			if (ft_strchr("NSEW", c) && set_params(&cub3d->player, c, x, y))
-				break ;
-		}
-	}
-	if (cub3d->map[y])
-		clean_exit(cub3d, E_PTMSET, 4);
-	if (!cub3d->player.viewdir)
-		clean_exit(cub3d, E_PNOSET, 4);
 }
 
 static bool	is_space_arround(int x, int y, char **map)

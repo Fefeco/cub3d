@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 21:50:22 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/16 14:20:41 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/19 19:25:21 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,12 @@ static int	handle_key(int key, t_game *cub3d)
 {
 	if (key == ESC)
 		clean_exit(cub3d, NULL, 0);
-	else if (key == LEFT)
-		ft_printf(YELL"keyPress: LEFT\n"RESET);
-	else if (key == RIGHT)
-		ft_printf(YELL"keyPress: RIGHT\n"RESET);
-	else if (key == KEY_A)
-		ft_printf(TEST3"keyPress: A\n"RESET);
-	else if (key == KEY_W)
-		ft_printf(TEST2"keyPress: W\n"RESET);
-	else if (key == KEY_S)
-		ft_printf(TEST2"keyPress: S\n"RESET);
-	else if (key == KEY_D)
-		ft_printf(TEST3"keyPress: D\n"RESET);
+	else if (key == LEFT || key == RIGHT)
+		rotate(key, &cub3d->player);
+	else if (key == KEY_A || key == KEY_D)
+		try_move_x(key, cub3d);
+	else if (key == KEY_W || key == KEY_S)
+		try_move_y(key, cub3d);
 	return (0);
 }
 
