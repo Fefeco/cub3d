@@ -8,3 +8,4 @@ https://reactive.so/post/42-a-comprehensive-guide-to-cub3d/
 Paso a paso del proyecto: https://medium.com/@afatir.ahmedfatir/cub3d-tutorial-af5dd31d2fcf
 
 Notion: https://innate-newsboy-cc3.notion.site/Ray-Casting-35bf6d83ea574d6e96bcc5b9104b3680
+Repo: https://github.com/Serghini04/Cub3D/tree/b41dfeaec9fb760bbeaab1003edc54a429826572
