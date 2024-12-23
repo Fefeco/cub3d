@@ -6,43 +6,48 @@
 /*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:54:38 by fedeito           #+#    #+#             */
-/*   Updated: 2024/12/19 21:22:36 by fedeito          ###   ########.fr       */
+/*   Updated: 2024/12/23 14:46:57 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "cub3d.h"
 
-void	draw_6x6(t_img *img, int x, int y)
+void	draw_line(t_img *img, t_player pt)
 {
-	int	i;
-	int	j;
-
-	i = -2;
-	while (++i < 2)
+	int	i = 0;
+	while (i++ < 20)
 	{
-		j = -2;
-		while (++j < 2)
-			put_pxl_on_img(img, x + j, y + i, 0x00AA0000);
+		pt.x += pt.dx;
+		pt.y += pt.dy;
+		put_pxl_on_img(img, pt.x, pt.y, 0x00AA0000);
 	}
 }
 
 void	draw_ray(t_game *cub3d)
 {
 	t_player	*ply;
+	t_player	pt;
 	int			x;
 	int			y;
-	int			i;
+	int			i = -15;
 
 	ply = &cub3d->player;
+	pt = *ply;
 	x = ply->x;
 	y = ply->y;
-	i = 0;
-	while (i++ < 8)
+	if (ply->prnt_ray_info)
+		printf("Ray from - to\n--------\ndy:%f dx:%f\ny: %d x: %d\n", ply->dy, ply->dx, y, x);
+	while (i++ <= 15)
 	{
-		x = floor(x + ply->dx);
-		y = floor(y + ply->dy);
-		put_pxl_on_img(&cub3d->images, x, y, 0x00AA0000);
+		pt.ang += i * (M_PI / 180);
+		pt.dx = cos(pt.ang);
+		pt.dy = sin(pt.ang);
+		draw_line(&cub3d->images, pt);
 	}
-//	draw_6x6(&cub3d->images, ply->x, ply->y - TILE);
+	if (ply->prnt_ray_info)
+	{
+		printf("y: %d x: %d\n--------\n\n", y, x);
+		ply->prnt_ray_info = 0;
+	}
 }

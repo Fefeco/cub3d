@@ -6,7 +6,7 @@
 /*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:26:14 by fedeito           #+#    #+#             */
-/*   Updated: 2024/12/19 21:12:31 by fedeito          ###   ########.fr       */
+/*   Updated: 2024/12/23 14:47:36 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	try_move_y(int key, t_game *cub3d)
 	}
 	if (check_wall(x + dx, y + dy, cub3d->map))
 		return ;
+//	printf("Delta x: %.1f\nDelta y: %.1f\n", dx, dy);
 	cub3d->player.x += dx;
 	cub3d->player.y += dy;
 }
@@ -69,6 +70,8 @@ void	rotate(int key, t_player *ply)
 	ply->ang = fmod(ply->ang, 2 * M_PI);
 	if (ply->ang < 0)
 		ply->ang += 2 * M_PI;
-	ply->dx = cos(ply->ang) * 5;
-	ply->dy = sin(ply->ang) * 5;
+	ply->dx = cos(ply->ang);
+	ply->dy = sin(ply->ang);
+	printf("Actual angle: %.0f\n", ply->ang * (180 / M_PI));
+	ply->prnt_ray_info = 1;
 }

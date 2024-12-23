@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/12/19 19:24:55 by fedeito          ###   ########.fr       */
+/*   Updated: 2024/12/23 14:36:57 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_player
 	double	dx;
 	double	ang;
 	char	viewdir;
+	int		prnt_ray_info;
 }				t_player;
 
 typedef struct s_game
