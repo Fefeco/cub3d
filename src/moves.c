@@ -6,7 +6,7 @@
 /*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:26:14 by fedeito           #+#    #+#             */
-/*   Updated: 2024/12/23 14:47:36 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/28 20:47:35 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,4 @@ void	rotate(int key, t_player *ply)
 	ply->dx = cos(ply->ang);
 	ply->dy = sin(ply->ang);
 	printf("Actual angle: %.0f\n", ply->ang * (180 / M_PI));
-	ply->prnt_ray_info = 1;
 }

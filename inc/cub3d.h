@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/12/24 15:50:29 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/28 20:53:00 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ typedef struct s_player
 	float	fy;
 	double	ang;
 	char	viewdir;
-	int		prnt_ray_info;
 }				t_player;
 
 typedef struct s_game
@@ -173,5 +172,9 @@ int		render(t_game *cub3d);
 
 // switch_img.c
 void	switch_img(t_img *images);
+
+// utils.c
+double	deg_to_rad(int deg);
+int		rad_to_deg(double rad);
 
 #endif

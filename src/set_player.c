@@ -6,7 +6,7 @@
 /*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:57:33 by fedeito           #+#    #+#             */
-/*   Updated: 2024/12/23 13:47:35 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/28 20:47:16 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static int	set_params(t_player *player, char viewdir, int x, int y)
 		return (1);
 	player->dx = cos(player->ang);
 	player->dy = sin(player->ang);
-	player->prnt_ray_info = 1;
 	return (0);
 }
 
