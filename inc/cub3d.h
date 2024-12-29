@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/12/28 20:53:00 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/29 17:22:44 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define WIDTH		800
 # define TILE		16
 # define STEP_SZ	4
+# define FOV		30
 
 # define MAP_WALL_COLOR 0x00433535
 # define GRID_COLOR		0x00C0C0C0
@@ -76,8 +77,6 @@ typedef struct s_player
 	int		y;
 	double	dy;
 	double	dx;
-	float	fx;
-	float	fy;
 	double	ang;
 	char	viewdir;
 }				t_player;

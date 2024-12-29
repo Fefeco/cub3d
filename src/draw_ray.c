@@ -6,7 +6,7 @@
 /*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:54:38 by fedeito           #+#    #+#             */
-/*   Updated: 2024/12/28 20:53:30 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/29 17:23:07 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,34 +15,34 @@
 
 void	draw_line(t_img *img, t_player pt)
 {
-	int	i = 0;
+	float	fx;
+	float	fy;
+	int		i;
 
-	pt.fx = pt.x;
-	pt.fy = pt.y;
+	fx = pt.x;
+	fy = pt.y;
+	i = 0;
 	while (i++ < 50)
 	{
-
-		pt.fx += pt.dx;
-		pt.fy += pt.dy;
-		pt.x = floor(pt.fx);
-		pt.y = floor(pt.fy);
+		fx += pt.dx;
+		fy += pt.dy;
+		pt.x = floor(fx);
+		pt.y = floor(fy);
 		put_pxl_on_img(img, pt.x, pt.y, 0x00AA0000);
 	}
 }
 
 void	draw_ray(t_game *cub3d)
 {
-	t_player	*ply;
 	t_player	pt;
-	int			i = -29;
+	int			i;
 
-	ply = &cub3d->player;
-	pt = *ply;
-	while (i <= 30)
+	i = (FOV / 2) * -1;
+	pt = cub3d->player;
+	while (i <= FOV / 2)
 	{
-		pt.ang = ply->ang + deg_to_rad(i);
-		pt.dx = cos(pt.ang);
-		pt.dy = sin(pt.ang);
+		pt.dx = cos(pt.ang + deg_to_rad(i));
+		pt.dy = sin(pt.ang + deg_to_rad(i));
 		draw_line(&cub3d->images, pt);
 		++i;
 	}
