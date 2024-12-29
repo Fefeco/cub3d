@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
-#    Updated: 2024/12/18 17:34:04 by fcarranz         ###   ########.fr        #
+#    Updated: 2024/12/29 20:47:43 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ INC			= -Imlx -Iinc -Ilibft/inc
 CFLAGS		= -Wall -Wextra -Werror -g -MMD
 MLX_FLAGS	= -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 LIBFT_FLAGS	= -Llibft -lftprintf
+MATH_FLAGS	= -lm
 
 LFT_PATH	= libft/
 MLX_PATH	= mlx/
@@ -49,9 +50,13 @@ SRCS = add_line_to_map.c \
 	   init_structs.c \
 	   switch_img.c \
 	   render.c \
+	   set_player.c \
+	   moves.c \
 	   draw_map.c \
 	   draw_player.c \
+	   draw_ray.c \
 	   draw_tools.c \
+	   utils.c \
 	   create_image.c
 
 OBJS = $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
@@ -63,7 +68,7 @@ all: $(PHONY_LIBFT) $(NAME)
 
 $(NAME): $(LIBMLX) $(LIBFT) $(OBJS) inc/cub3d.h
 	@echo "$(YELLOW)	Compiling cub3d...\n$(RESET)"
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_FLAGS) $(MLX_FLAGS) $(INC) -o $@
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_FLAGS) $(MLX_FLAGS) $(MATH_FLAGS) $(INC) -o $@
 	@echo "\n$(GREEN)"
 	@echo "	===============	"
 	@echo "	 cub3d created	"

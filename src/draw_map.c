@@ -6,14 +6,14 @@
 /*   By: fcarranz <fcarranz@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:09:55 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/18 12:26:44 by fedeito          ###   ########.fr       */
+/*   Updated: 2024/12/29 20:51:42 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "colors.h"
 #include "libft.h"
-
+/*
 static void	draw_grid(t_img	*images)
 {
 	int	x;
@@ -32,7 +32,7 @@ static void	draw_grid(t_img	*images)
 		++y;
 	}
 }
-
+*/
 void	draw_map(t_game *cub3d)
 {
 	t_img	*images;
@@ -52,5 +52,5 @@ void	draw_map(t_game *cub3d)
 		}
 		++y;
 	}
-	draw_grid(images);
+//	draw_grid(images);
 }

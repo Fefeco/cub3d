@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/12/18 19:56:22 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/29 20:50:44 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@
 # include "keys.h"
 # include "error.h"
 
-# define HEIGHT	600
-# define WIDTH	800
-# define TILE	16
+# define HEIGHT		600
+# define WIDTH		800
+# define TILE		16
+# define STEP_SZ	4
+# define FOV		30
 
 # define MAP_WALL_COLOR 0x00433535
 # define GRID_COLOR		0x00C0C0C0
@@ -73,7 +75,9 @@ typedef struct s_player
 {
 	int		x;
 	int		y;
-	double	viewang;
+	double	dy;
+	double	dx;
+	double	ang;
 	char	viewdir;
 }				t_player;
 
@@ -125,14 +129,24 @@ void	draw_map(t_game *cub3d);
 // draw_player.c
 void	draw_player(t_game *cub3d);
 
+// draw_ray.c
+void	draw_ray(t_game *cub3d);
+
 // draw_tools.c
 int		create_trgb(int t, int r, int g, int b);
 void	put_pxl_on_img(t_img *images, int x, int y, int color);
 
 // map_tools.c
 int		is_ready_for_map(t_game *game);
-void	set_player(t_game *cub3d);
 void	validate_map(t_game *cub3d);
+
+// moves.c
+void	try_move_x(int key, t_game *cub3d);
+void	try_move_y(int key, t_game *cub3d);
+void	rotate(int key, t_player *ply);
+
+// set_pllayer.c
+void	set_player(t_game *cub3d);
 
 // add_line_to_map.c
 int		add_line_to_map(const char *line, t_game *cub3d);
@@ -157,5 +171,11 @@ int		render(t_game *cub3d);
 
 // switch_img.c
 void	switch_img(t_img *images);
+
+// utils.c
+int		check_wall(int x, int y, char **map);
+double	norm_ang(double ang);
+double	deg_to_rad(int deg);
+int		rad_to_deg(double rad);
 
 #endif
