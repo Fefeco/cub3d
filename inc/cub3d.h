@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/12/29 17:22:44 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/29 18:16:25 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,8 @@ int		render(t_game *cub3d);
 void	switch_img(t_img *images);
 
 // utils.c
+int		check_wall(int x, int y, char **map);
+double	norm_ang(double ang);
 double	deg_to_rad(int deg);
 int		rad_to_deg(double rad);
 
