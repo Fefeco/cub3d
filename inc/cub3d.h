@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/12/30 11:31:33 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/30 14:50:36 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,12 @@ typedef struct s_color
 	int		green;
 	int		blue;
 }				t_color;
+
+typedef struct s_vector
+{
+	int	x;
+	int	y;
+}				t_vec;
 
 typedef struct s_player
 {
