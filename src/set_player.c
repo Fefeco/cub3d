@@ -6,7 +6,7 @@
 /*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:57:33 by fedeito           #+#    #+#             */
-/*   Updated: 2024/12/28 20:47:16 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/30 12:07:14 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,8 @@ static double	get_ang(char viewdir)
 
 static int	set_params(t_player *player, char viewdir, int x, int y)
 {
-	if (player->viewdir)
+	if (player->ang != -1)
 		return (1);
-	player->viewdir = viewdir;
 	player->x = x * TILE + TILE / 2;
 	player->y = y * TILE + TILE / 2;
 	player->ang = get_ang(viewdir);
@@ -61,6 +60,6 @@ void	set_player(t_game *cub3d)
 	}
 	if (cub3d->map[y])
 		clean_exit(cub3d, E_PTMSET, 4);
-	if (!cub3d->player.viewdir)
+	if (cub3d->player.ang == -1)
 		clean_exit(cub3d, E_PNOSET, 4);
 }
