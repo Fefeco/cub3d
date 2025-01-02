@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:46:36 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/02 12:01:35 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/02 16:09:34 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,13 @@ void	set_deltas(t_dvec *delta, double ang)
 
 void	get_delta_dists(t_dvec *delta_dist, t_ivec start_pt, t_dvec delta)
 {
-	delta_dist->x = delta.x * TILE_SZ;
+	delta_dist->x = fabs(TILE_SZ / delta.x);
+	delta_dist->y = fabs(TILE_SZ / delta.y);
 }
 
 t_vec	end_ray(t_vec start_pt, double ang, char **map)
 {
+	t_ray	ray;
 	t_ivec	end_ray;
 	t_ivec	step;
 	t_ivec	map_pt;
@@ -51,7 +53,9 @@ t_vec	end_ray(t_vec start_pt, double ang, char **map)
 	set_deltas(&delta, ang);
 	set_steps(&step, delta);
 	get_delta_dists(&delta_dist, start_pt, delta);
-	delta_dist.x *= 
+	get_first_distance(&delta_dist, delta, start_pt);
+	delta_dist.x *= TILE_SZ - (start_pt.x % TILE_SZ); 
+	delta_dist.y *= TILE_SZ - (start_pt.y % TILE_SZ); 
 	while (1)
 	{
 		end_ray = get_next_cell(start_pt, step);

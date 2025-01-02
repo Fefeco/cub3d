@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2025/01/02 11:33:16 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/02 16:09:37 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,14 @@ typedef struct s_double_vector
 	double	x;
 	double	y;
 }				t_dvec;
+
+typedef struct s_ray
+{
+	t_ivec	start;
+	t_ivec	step;
+	t_dvec	delta;
+	t_dvec	delta_dist;
+}				t_ray;
 
 typedef struct s_player
 {
