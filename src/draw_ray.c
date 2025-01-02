@@ -6,44 +6,45 @@
 /*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:54:38 by fedeito           #+#    #+#             */
-/*   Updated: 2025/01/02 11:08:02 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/02 20:09:33 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "cub3d.h"
 
-void	draw_line(t_img *img, t_player pt)
+void	draw_line(t_img *img, t_ivec current, t_ivec end, t_dvec delta)
 {
-	float	fx;
-	float	fy;
-	int		i;
+	t_dvec	tmp;
 
-	fx = pt.x;
-	fy = pt.y;
-	i = 0;
-	while (i++ < 50)
+	tmp.x = (double)current.x;
+	tmp.y = (double)current.y;
+	while (current.x != end.x && current.y != end.y)
 	{
-		fx += pt.dx;
-		fy += pt.dy;
-		pt.x = floor(fx);
-		pt.y = floor(fy);
-		put_pxl_on_img(img, pt.x, pt.y, 0x00AA0000);
+		tmp.x += delta.x;
+		tmp.y += delta.y;
+		current.x = floor(tmp.x);
+		current.y = floor(tmp.y);
+		put_pxl_on_img(img, current.x, current.y, 0x00AA0000);
 	}
 }
 
 void	draw_ray(t_game *cub3d)
 {
-	t_player	pt;
+	t_ivec	start;
+	t_ivec	end;
+	t_dvec	delta;
 	int			i;
 
 	i = (FOV / 2) * -1;
-	pt = cub3d->player;
+	start.x = cub3d->player.x;
+	start.y = cub3d->player.y;
+	end = end_ray(start, cub3d->player.ang, cub3d->map);  
 	while (i <= FOV / 2)
 	{
-		pt.dx = cos(pt.ang + deg_to_rad(i));
-		pt.dy = sin(pt.ang + deg_to_rad(i));
-		draw_line(&cub3d->images, pt);
+		delta.x = cos(cub3d->player.ang + deg_to_rad(i));
+		delta.y = sin(cub3d->player.ang + deg_to_rad(i));
+		draw_line(&cub3d->images, start, end, delta);
 		++i;
 	}
 }

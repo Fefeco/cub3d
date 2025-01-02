@@ -6,18 +6,13 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:46:36 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/02 16:09:34 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/02 20:09:33 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_vec	get_next_cell(t_vec start_pt, t_vec step)
-{
-
-}
-
-void set_steps(t_vec *step, t_dvec delta)
+void set_steps(t_ivec *step, t_dvec delta)
 {
 	if (delta.x < 0)
 		step->x = -1;
@@ -35,35 +30,59 @@ void	set_deltas(t_dvec *delta, double ang)
 	delta->y = sin(ang);
 }
 
-void	get_delta_dists(t_dvec *delta_dist, t_ivec start_pt, t_dvec delta)
+void	set_delta_dists(t_ray *ray)
 {
-	delta_dist->x = fabs(TILE_SZ / delta.x);
-	delta_dist->y = fabs(TILE_SZ / delta.y);
+	ray->delta_dist.x = fabs(TILE / ray->delta.x);
+	ray->delta_dist.y = fabs(TILE / ray->delta.y);
 }
 
-t_vec	end_ray(t_vec start_pt, double ang, char **map)
+t_ivec	get_map_coords(t_ray ray)
+{
+	t_ivec	map_pt;
+
+	map_pt.x = ((ray.pos.x + short_dist) * ray.step.x) / TILE;
+	map_pt.y = ((ray.pos.y + short_dist) * ray.step.y) / TILE;
+	return (map_pt);
+}
+
+void	calc_next_cell_dist(t_ray *ray)
+{
+	if (ray->step.x > 0)
+		ray->next_cell.x = (TILE - (ray->pos.x % TILE)) * ray->delta_dist.x; 
+	else
+		ray->next_cell.x = (ray->pos.x % TILE) * ray->delta_dist.x;
+	if (ray->step.y > 0)
+		ray->next_cell.y = (TILE - (ray->pos.y % TILE)) * ray->delta_dist.y; 
+	else
+		ray->next_cell.y = (ray->pos.y % TILE) * ray->delta_dist.y;
+}
+
+t_ivec	end_ray(t_ivec start_pt, double ang, char **map)
 {
 	t_ray	ray;
-	t_ivec	end_ray;
-	t_ivec	step;
 	t_ivec	map_pt;
-	t_dvec	delta;
-	t_dvec	delta_dist;
+	t_ivec	impact;
 
-	set_deltas(&delta, ang);
-	set_steps(&step, delta);
-	get_delta_dists(&delta_dist, start_pt, delta);
-	get_first_distance(&delta_dist, delta, start_pt);
-	delta_dist.x *= TILE_SZ - (start_pt.x % TILE_SZ); 
-	delta_dist.y *= TILE_SZ - (start_pt.y % TILE_SZ); 
-	while (1)
+	ray.pos = start_pt;
+	set_deltas(&ray.delta, ang);
+	set_steps(&ray.step, ray.delta);
+	set_delta_dists(&ray);
+	calc_next_cell_dist(&ray);
+	map_pt = get_map_coords(ray);
+	while (!check_wall(map_pt.x, map_pt.y, map))
 	{
-		end_ray = get_next_cell(start_pt, step);
-		map_pt.x = end_ray.x / TILE_SZ;
-		map_pt.y = end_ray.y / TILE_SZ;
-		if (check_wall(map_pt.x, map_pt.y, map))
-			break ;
-		start_pt = end_ray;
+		if (ray.next_cell.x < ray.next_cell.y)
+		{
+			short_dist = ray.next_cell.x;
+			ray.next_cell.x += ray.delta_dist.x;
+			map_pt.x += ray.step.x;
+		}
+		else
+		{
+			short_dist = ray.next_cell.y;
+			ray.next_cell.y += ray.delta_dist.y;
+			map_pt.y += ray.step.y;
+		}
 	}
-	return end_ray;
+	return map_pt; 
 }
