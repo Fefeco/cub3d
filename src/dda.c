@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:46:36 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/30 15:26:41 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/02 12:01:35 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,36 +17,47 @@ t_vec	get_next_cell(t_vec start_pt, t_vec step)
 
 }
 
-void set_steps(t_vec *step, double ang)
+void set_steps(t_vec *step, t_dvec delta)
 {
-	double	dx;
-	double	dy;
-
-	dx = cos(ang);
-	dy = sin(ang);
-	if (dx < 0)
+	if (delta.x < 0)
 		step->x = -1;
 	else
 		step->x = 1;
-	if (dy < 0)
+	if (delta.y < 0)
 		step->y = -1;
 	else
 		step->y = 1;
 }
 
+void	set_deltas(t_dvec *delta, double ang)
+{
+	delta->x = cos(ang);
+	delta->y = sin(ang);
+}
+
+void	get_delta_dists(t_dvec *delta_dist, t_ivec start_pt, t_dvec delta)
+{
+	delta_dist->x = delta.x * TILE_SZ;
+}
+
 t_vec	end_ray(t_vec start_pt, double ang, char **map)
 {
-	t_vec	end_ray;
-	t_vec	step;
-	t_vec	map;
+	t_ivec	end_ray;
+	t_ivec	step;
+	t_ivec	map_pt;
+	t_dvec	delta;
+	t_dvec	delta_dist;
 
-	set_steps(&step, ang);
+	set_deltas(&delta, ang);
+	set_steps(&step, delta);
+	get_delta_dists(&delta_dist, start_pt, delta);
+	delta_dist.x *= 
 	while (1)
 	{
 		end_ray = get_next_cell(start_pt, step);
-		map.x = end_ray.x / TILE_SZ;
-		map.y = end_ray.y / TILE_SZ;
-		if (check_wall(map.x, map.y, map))
+		map_pt.x = end_ray.x / TILE_SZ;
+		map_pt.y = end_ray.y / TILE_SZ;
+		if (check_wall(map_pt.x, map_pt.y, map))
 			break ;
 		start_pt = end_ray;
 	}

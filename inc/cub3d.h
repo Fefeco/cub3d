@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/12/30 14:50:36 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/02 11:33:16 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,17 @@ typedef struct s_color
 	int		blue;
 }				t_color;
 
-typedef struct s_vector
+typedef struct s_int_vector
 {
 	int	x;
 	int	y;
-}				t_vec;
+}				t_ivec;
+
+typedef struct s_double_vector
+{
+	double	x;
+	double	y;
+}				t_dvec;
 
 typedef struct s_player
 {
