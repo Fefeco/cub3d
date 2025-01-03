@@ -8,13 +8,13 @@ nmap  k
 nmap  l
 xmap gx <Plug>NetrwBrowseXVis
 nmap gx <Plug>NetrwBrowseX
-nmap <C-H> h
-nmap <C-J> j
-nmap <C-K> k
 nmap <C-L> l
-map <F1> :Stdheader
+nmap <C-K> k
+nmap <C-J> j
+nmap <C-H> h
 xnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(netrw#GX(),netrw#CheckIfRemote(netrw#GX()))
+map <F1> :Stdheader
 let &cpo=s:cpo_save
 unlet s:cpo_save
 set background=dark
@@ -34,7 +34,7 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 set tabstop=4
 set wildmenu
 set wildmode=list:longest,list:full
-set window=51
+set window=42
 let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
 let v:this_session=expand("<sfile>:p")
 silent only
@@ -43,16 +43,27 @@ cd ~/cub3D
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
-set shortmess=aoO
+if &shortmess =~ 'A'
+  set shortmess=aoOA
+else
+  set shortmess=aoO
+endif
+badd +10 src/dda.c
+badd +1 src/draw_ray.c
+badd +24 inc/error.h
+badd +1 src/moves.c
+badd +78 inc/cub3d.h
+badd +67 src/map_tools.c
+badd +50 src/draw_map.c
+badd +14 inc/colors.h
 argglobal
 %argdel
 $argadd src/draw_ray.c
 set stal=2
-tabnew
+tabnew +setlocal\ bufhidden=wipe
 tabrewind
 edit src/dda.c
 argglobal
-balt src/draw_ray.c
 setlocal keymap=
 setlocal noarabic
 setlocal noautoindent
@@ -67,6 +78,7 @@ setlocal buftype=
 setlocal cindent
 setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
 setlocal cinoptions=
+setlocal cinscopedecls=public,protected,private
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
 setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
@@ -81,7 +93,8 @@ setlocal nocursorbind
 setlocal nocursorcolumn
 set cursorline
 setlocal cursorline
-setlocal cursorlineopt=both
+set cursorlineopt=line
+setlocal cursorlineopt=line
 setlocal define=^\\s*#\\s*define
 setlocal dictionary=
 setlocal nodiff
@@ -91,6 +104,7 @@ setlocal noexpandtab
 if &filetype != 'c'
 setlocal filetype=c
 endif
+setlocal fillchars=
 setlocal fixendofline
 setlocal foldcolumn=0
 setlocal foldenable
@@ -103,7 +117,7 @@ setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldtext=foldtext()
 setlocal formatexpr=
-setlocal formatoptions=croql
+setlocal formatoptions=tcq
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal formatprg=
 setlocal grepprg=
@@ -118,6 +132,7 @@ setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
+setlocal lispoptions=
 setlocal lispwords=
 setlocal nolist
 setlocal listchars=
@@ -148,6 +163,7 @@ setlocal showbreak=
 setlocal sidescrolloff=-1
 setlocal signcolumn=auto
 setlocal smartindent
+setlocal nosmoothscroll
 setlocal softtabstop=0
 setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
@@ -183,11 +199,11 @@ setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 2 - ((1 * winheight(0) + 25) / 50)
+let s:l = 10 - ((9 * winheight(0) + 20) / 41)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 2
+keepjumps 10
 normal! 0
 lcd ~/cub3D
 tabnext
@@ -208,6 +224,7 @@ setlocal buftype=
 setlocal cindent
 setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
 setlocal cinoptions=
+setlocal cinscopedecls=public,protected,private
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
 setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
@@ -222,6 +239,7 @@ setlocal nocursorbind
 setlocal nocursorcolumn
 set cursorline
 setlocal nocursorline
+set cursorlineopt=line
 setlocal cursorlineopt=both
 setlocal define=^\\s*#\\s*define
 setlocal dictionary=
@@ -232,6 +250,7 @@ setlocal noexpandtab
 if &filetype != 'cpp'
 setlocal filetype=cpp
 endif
+setlocal fillchars=
 setlocal fixendofline
 setlocal foldcolumn=0
 setlocal foldenable
@@ -259,6 +278,7 @@ setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=
 setlocal nolinebreak
 setlocal nolisp
+setlocal lispoptions=
 setlocal lispwords=
 setlocal nolist
 setlocal listchars=
@@ -289,6 +309,7 @@ setlocal showbreak=
 setlocal sidescrolloff=-1
 setlocal signcolumn=auto
 setlocal smartindent
+setlocal nosmoothscroll
 setlocal softtabstop=0
 setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
@@ -324,7 +345,7 @@ setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 24 - ((23 * winheight(0) + 25) / 50)
+let s:l = 24 - ((22 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -333,25 +354,17 @@ normal! 0
 lcd ~/cub3D
 tabnext 1
 set stal=1
-badd +1 ~/cub3D/src/draw_ray.c
-badd +1 ~/cub3D/src/moves.c
-badd +78 ~/cub3D/inc/cub3d.h
-badd +67 ~/cub3D/src/map_tools.c
-badd +50 ~/cub3D/src/draw_map.c
-badd +14 ~/cub3D/inc/colors.h
-badd +24 ~/cub3D/inc/error.h
-badd +1 ~/cub3D/src/dda.c
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
 unlet! s:wipebuf
-set winheight=1 winwidth=20 shortmess=filnxtToOS
+set winheight=1 winwidth=20
+set shortmess=filnxtToOS
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

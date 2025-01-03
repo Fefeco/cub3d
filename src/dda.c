@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:46:36 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/02 20:09:33 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/03 11:44:03 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ t_ivec	get_map_coords(t_ray ray)
 {
 	t_ivec	map_pt;
 
-	map_pt.x = ((ray.pos.x + short_dist) * ray.step.x) / TILE;
-	map_pt.y = ((ray.pos.y + short_dist) * ray.step.y) / TILE;
+	map_pt.x = ray.pos.x / TILE;
+	map_pt.y = ray.pos.y / TILE;
 	return (map_pt);
 }
 
@@ -62,6 +62,7 @@ t_ivec	end_ray(t_ivec start_pt, double ang, char **map)
 	t_ray	ray;
 	t_ivec	map_pt;
 	t_ivec	impact;
+	double	short_dist;
 
 	ray.pos = start_pt;
 	set_deltas(&ray.delta, ang);
