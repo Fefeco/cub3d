@@ -6,84 +6,123 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:46:36 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/03 11:44:03 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/03 14:23:16 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void set_steps(t_ivec *step, t_dvec delta)
+void set_vector_directions(t_ivec *vec_dir, t_dvec delta)
 {
 	if (delta.x < 0)
-		step->x = -1;
+		vec_dir->x = -1;
 	else
-		step->x = 1;
+		vec_dir->x = 1;
 	if (delta.y < 0)
-		step->y = -1;
+		vec_dir->y = -1;
 	else
-		step->y = 1;
+		vec_dir->y = 1;
 }
 
-void	set_deltas(t_dvec *delta, double ang)
+bool is_close(double a, double b)
+{
+    return fabs(a - b) < EPSILON;
+}
+
+// Función para manejar los ángulos especiales
+void set_deltas(t_dvec *delta, double ang) {
+    if (is_close(ang, 0) || is_close(ang, 2 * M_PI)) {
+        delta->x = 1;
+        delta->y = 0;
+    } else if (is_close(ang, M_PI / 2)) {
+        delta->x = 0;
+        delta->y = 1;
+    } else if (is_close(ang, M_PI)) {
+        delta->x = -1;
+        delta->y = 0;
+    } else if (is_close(ang, 3 * M_PI / 2)) {
+        delta->x = 0;
+        delta->y = -1;
+    } else {
+        // Para ángulos generales, usa las funciones trigonométricas
+        delta->x = cos(ang);
+        delta->y = sin(ang);
+    }
+}
+/*void	set_deltas(t_dvec *delta, double ang)
 {
 	delta->x = cos(ang);
 	delta->y = sin(ang);
-}
+}*/
 
-void	set_delta_dists(t_ray *ray)
+void	set_delta_dists(t_dvec *delta_dist, t_dvec delta)
 {
-	ray->delta_dist.x = fabs(TILE / ray->delta.x);
-	ray->delta_dist.y = fabs(TILE / ray->delta.y);
+	if (delta.x == 0)
+		delta_dist->x = 0;
+	else
+		delta_dist->x = fabs(TILE / delta.x);
+	if (delta.y == 0)
+		delta_dist->y = 0;
+	else
+		delta_dist->y = fabs(TILE / delta.y);
 }
 
-t_ivec	get_map_coords(t_ray ray)
+t_ivec	get_map_coords(t_ivec ply_pos)
 {
 	t_ivec	map_pt;
 
-	map_pt.x = ray.pos.x / TILE;
-	map_pt.y = ray.pos.y / TILE;
+	map_pt.x = ply_pos.x / TILE;
+	map_pt.y = ply_pos.y / TILE;
 	return (map_pt);
 }
 
-void	calc_next_cell_dist(t_ray *ray)
+t_dvec	calc_first_travel_dist(t_ivec vec_dir, t_ivec ply_pos,t_dvec delta_dist)
 {
-	if (ray->step.x > 0)
-		ray->next_cell.x = (TILE - (ray->pos.x % TILE)) * ray->delta_dist.x; 
+	t_dvec	travel_dist;
+
+	if (vec_dir.x > 0)
+		travel_dist.x = (TILE - (ply_pos.x % TILE)) * delta_dist.x; 
 	else
-		ray->next_cell.x = (ray->pos.x % TILE) * ray->delta_dist.x;
-	if (ray->step.y > 0)
-		ray->next_cell.y = (TILE - (ray->pos.y % TILE)) * ray->delta_dist.y; 
+		travel_dist.x = (ply_pos.x % TILE) * delta_dist.x;
+	if (vec_dir.y > 0)
+		travel_dist.y = (TILE - (ply_pos.y % TILE)) * delta_dist.y; 
 	else
-		ray->next_cell.y = (ray->pos.y % TILE) * ray->delta_dist.y;
+		travel_dist.y = (ply_pos.y % TILE) * delta_dist.y;
+	return (travel_dist);
 }
 
-t_ivec	end_ray(t_ivec start_pt, double ang, char **map)
+int	calc_steps(t_dvec travel_dist, t_dvec delta)
 {
-	t_ray	ray;
-	t_ivec	map_pt;
-	t_ivec	impact;
-	double	short_dist;
+	if (!travel_dist.y || (travel_dist.x && travel_dist.x > travel_dist.y))
+		return (travel_dist.x / delta.x);	
+	return (travel_dist.y / delta.y);	
+}
 
-	ray.pos = start_pt;
-	set_deltas(&ray.delta, ang);
-	set_steps(&ray.step, ray.delta);
-	set_delta_dists(&ray);
-	calc_next_cell_dist(&ray);
-	map_pt = get_map_coords(ray);
-	while (!check_wall(map_pt.x, map_pt.y, map))
+double	get_steps(t_ivec ply_pos, double ang, char **map)
+{
+	t_dvec	delta;
+	t_dvec	delta_dist;
+	t_dvec	travel_dist;
+	t_ivec	vec_dir;
+	t_ivec	map_pos;
+
+	set_deltas(&delta, ang);
+	set_vector_directions(&vec_dir, delta);
+	set_delta_dists(&delta_dist, delta);
+	travel_dist = calc_first_travel_dist(vec_dir, ply_pos, delta_dist);
+	map_pos = get_map_coords(ply_pos);
+	while (!check_wall(map_pos.x, map_pos.y, map))
 	{
-		if (ray.next_cell.x < ray.next_cell.y)
+		if (!delta_dist.y || (delta_dist.x && travel_dist.x < travel_dist.y))
 		{
-			short_dist = ray.next_cell.x;
-			ray.next_cell.x += ray.delta_dist.x;
-			map_pt.x += ray.step.x;
+			travel_dist.x += delta_dist.x;
+			map_pos.x += vec_dir.x;
 		}
 		else
 		{
-			short_dist = ray.next_cell.y;
-			ray.next_cell.y += ray.delta_dist.y;
-			map_pt.y += ray.step.y;
+			travel_dist.y += delta_dist.y;
+			map_pos.y += vec_dir.y;
 		}
 	}
-	return map_pt; 
+	return (calc_steps(travel_dist, delta)); 
 }

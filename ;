@@ -1,0 +1,85 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dda.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/30 14:46:36 by fcarranz          #+#    #+#             */
+/*   Updated: 2025/01/03 12:45:21 by fedeito          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+void set_vector_directions(t_ivec *vec_dir, t_dvec delta)
+{
+	if (delta.x < 0)
+		step->x = -1;
+	else
+		step->x = 1;
+	if (delta.y < 0)
+		step->y = -1;
+	else
+		step->y = 1;
+}
+
+void	set_deltas(t_dvec *delta, double ang)
+{
+	delta->x = cos(ang);
+	delta->y = sin(ang);
+}
+
+void	set_delta_dists(t_ray *ray)
+{
+	ray->delta_dist.x = fabs(TILE / ray->delta.x);
+	ray->delta_dist.y = fabs(TILE / ray->delta.y);
+}
+
+t_ivec	get_map_coords(t_ray ray)
+{
+	t_ivec	map_pt;
+
+	map_pt.x = ray.pos.x / TILE;
+	map_pt.y = ray.pos.y / TILE;
+	return (map_pt);
+}
+
+void	calc_next_cell_dist(t_ray *ray)
+{
+	if (ray->step.x > 0)
+		ray->next_cell.x = (TILE - (ray->pos.x % TILE)) * ray->delta_dist.x; 
+	else
+		ray->next_cell.x = (ray->pos.x % TILE) * ray->delta_dist.x;
+	if (ray->step.y > 0)
+		ray->next_cell.y = (TILE - (ray->pos.y % TILE)) * ray->delta_dist.y; 
+	else
+		ray->next_cell.y = (ray->pos.y % TILE) * ray->delta_dist.y;
+}
+
+double	get_steps(t_ivec ply_pos, double ang, char **map)
+{
+	t_ivec	map_pos;
+	double	delta;
+	t_ivec	vec_dir;;		
+
+	set_deltas(&delta, ang);
+	set_vector_directions(&vec_dir, delta);
+	set_delta_dists(&ray);
+	calc_next_cell_dist(&ray);
+	map_pos = get_map_coords(ray);
+	while (!check_wall(map_pos.x, map_pos.y, map))
+	{
+		if (ray.next_cell.x < ray.next_cell.y)
+		{
+			ray.next_cell.x += ray.delta_dist.x;
+			map_pos.x += ray.step.x;
+		}
+		else
+		{
+			ray.next_cell.y += ray.delta_dist.y;
+			map_pos.y += ray.step.y;
+		}
+	}
+	return map_pos; 
+}
