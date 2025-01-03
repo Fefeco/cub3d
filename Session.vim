@@ -34,7 +34,6 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 set tabstop=4
 set wildmenu
 set wildmode=list:longest,list:full
-set window=42
 let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
 let v:this_session=expand("<sfile>:p")
 silent only
@@ -48,16 +47,17 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +63 src/dda.c
-badd +45 src/draw_ray.c
-badd +78 inc/cub3d.h
+badd +56 src/dda.c
+badd +46 src/draw_ray.c
+badd +35 inc/cub3d.h
 badd +33 src/utils.c
+badd +7 ~/cheatsheets/gdb.md
 argglobal
 %argdel
 $argadd src/draw_ray.c
 edit src/dda.c
 argglobal
-balt src/draw_ray.c
+balt inc/cub3d.h
 setlocal keymap=
 setlocal noarabic
 setlocal noautoindent
@@ -137,7 +137,7 @@ setlocal modeline
 setlocal modifiable
 setlocal nrformats=bin,octal,hex
 set number
-setlocal number
+setlocal nonumber
 setlocal numberwidth=4
 setlocal omnifunc=ccomplete#Complete
 setlocal path=
@@ -146,7 +146,7 @@ setlocal nopreviewwindow
 setlocal quoteescape=\\
 setlocal noreadonly
 set relativenumber
-setlocal relativenumber
+setlocal norelativenumber
 setlocal norightleft
 setlocal rightleftcmd=search
 setlocal noscrollbind
@@ -193,12 +193,12 @@ setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 60 - ((12 * winheight(0) + 21) / 42)
+let s:l = 119 - ((41 * winheight(0) + 21) / 42)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 60
-normal! 06|
+keepjumps 119
+normal! 08|
 lcd ~/cub3D
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0

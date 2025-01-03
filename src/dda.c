@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:46:36 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/03 14:23:16 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/03 20:08:06 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,14 @@ void set_vector_directions(t_ivec *vec_dir, t_dvec delta)
 {
 	if (delta.x < 0)
 		vec_dir->x = -1;
+	else if (delta.x == 0)
+		vec_dir->x = 0;
 	else
 		vec_dir->x = 1;
 	if (delta.y < 0)
 		vec_dir->y = -1;
+	else if (delta.y == 0)
+		vec_dir->y = 0;
 	else
 		vec_dir->y = 1;
 }
@@ -76,26 +80,26 @@ t_ivec	get_map_coords(t_ivec ply_pos)
 	return (map_pt);
 }
 
-t_dvec	calc_first_travel_dist(t_ivec vec_dir, t_ivec ply_pos,t_dvec delta_dist)
+t_dvec	calc_first_travel_dist(t_ivec vec_dir, t_ivec ply_pos, t_dvec delta_dist)
 {
 	t_dvec	travel_dist;
 
 	if (vec_dir.x > 0)
-		travel_dist.x = (TILE - (ply_pos.x % TILE)) * delta_dist.x; 
+		travel_dist.x = (TILE - (ply_pos.x % TILE)) * (delta_dist.x / TILE);
 	else
-		travel_dist.x = (ply_pos.x % TILE) * delta_dist.x;
+		travel_dist.x = (ply_pos.x % TILE) * (delta_dist.x / TILE);
 	if (vec_dir.y > 0)
-		travel_dist.y = (TILE - (ply_pos.y % TILE)) * delta_dist.y; 
+		travel_dist.y = (TILE - (ply_pos.y % TILE)) * (delta_dist.x / TILE);
 	else
-		travel_dist.y = (ply_pos.y % TILE) * delta_dist.y;
+		travel_dist.y = (ply_pos.y % TILE) * (delta_dist.x / TILE);
 	return (travel_dist);
 }
 
 int	calc_steps(t_dvec travel_dist, t_dvec delta)
 {
 	if (!travel_dist.y || (travel_dist.x && travel_dist.x > travel_dist.y))
-		return (travel_dist.x / delta.x);	
-	return (travel_dist.y / delta.y);	
+		return (travel_dist.x / fabs(delta.x));
+	return (travel_dist.y / fabs(delta.y));
 }
 
 double	get_steps(t_ivec ply_pos, double ang, char **map)
@@ -109,8 +113,12 @@ double	get_steps(t_ivec ply_pos, double ang, char **map)
 	set_deltas(&delta, ang);
 	set_vector_directions(&vec_dir, delta);
 	set_delta_dists(&delta_dist, delta);
-	travel_dist = calc_first_travel_dist(vec_dir, ply_pos, delta_dist);
 	map_pos = get_map_coords(ply_pos);
+	travel_dist = calc_first_travel_dist(vec_dir, ply_pos, delta_dist);
+	if (!delta_dist.y || (delta_dist.x && travel_dist.x < travel_dist.y))
+		map_pos.x += vec_dir.x;
+	else
+		map_pos.y += vec_dir.y;
 	while (!check_wall(map_pos.x, map_pos.y, map))
 	{
 		if (!delta_dist.y || (delta_dist.x && travel_dist.x < travel_dist.y))

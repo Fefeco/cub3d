@@ -6,7 +6,7 @@
 /*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:54:38 by fedeito           #+#    #+#             */
-/*   Updated: 2025/01/03 14:04:41 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/03 20:09:42 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,12 @@ void	draw_ray(t_game *cub3d)
 
 	ply_pos.x = cub3d->player.x;
 	ply_pos.y = cub3d->player.y;
-//	i = (FOV / 2) * -1;
-	i = 0;
+	i = (FOV / 2) * -1;
 	while (i <= FOV / 2)
 	{
 		current_ang = cub3d->player.ang + deg_to_rad(i);
 		steps = get_steps(ply_pos, current_ang, cub3d->map);  
-		printf("Current_ang: %d - steps %d\n", rad_to_deg(current_ang), steps);
 		draw_line(&cub3d->images, ply_pos, steps, current_ang);
 		++i;
-		if (i == 4)
-			break ;
 	}
-	printf("\n\n\n");
 }

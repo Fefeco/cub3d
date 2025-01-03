@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:49:15 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/29 19:09:47 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/03 18:27:14 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	check_wall(int x, int y, char **map)
 {
-	if (!map || map[y / TILE][x / TILE] == '1')
+	if (!map || map[y][x] == '1')
 		return (1);
 	return (0);
 }
