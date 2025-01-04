@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:17:41 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/29 20:52:21 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/12/30 11:35:29 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	validate_map(t_game *cub3d)
 		x = -1;
 		while (line[++x])
 		{
-			if (line[x] != '0' && line[x] != cub3d->player.viewdir)
+			if (line[x] != '0' && !ft_strchr("NSEW", line[x]))
 				continue ;
 			if (is_space_arround(x, y, cub3d->map))
 				clean_exit(cub3d, E_NOWALL, 5);

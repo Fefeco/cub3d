@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2024/12/29 20:50:44 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/04 12:35:18 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define TILE		16
 # define STEP_SZ	4
 # define FOV		30
+# define EPSILON	1e-10
 
 # define MAP_WALL_COLOR 0x00433535
 # define GRID_COLOR		0x00C0C0C0
@@ -71,6 +72,18 @@ typedef struct s_color
 	int		blue;
 }				t_color;
 
+typedef struct s_int_vector
+{
+	int	x;
+	int	y;
+}				t_ivec;
+
+typedef struct s_double_vector
+{
+	double	x;
+	double	y;
+}				t_dvec;
+
 typedef struct s_player
 {
 	int		x;
@@ -78,7 +91,6 @@ typedef struct s_player
 	double	dy;
 	double	dx;
 	double	ang;
-	char	viewdir;
 }				t_player;
 
 typedef struct s_game
@@ -177,5 +189,10 @@ int		check_wall(int x, int y, char **map);
 double	norm_ang(double ang);
 double	deg_to_rad(int deg);
 int		rad_to_deg(double rad);
+
+// dda.c
+double	get_steps(t_ivec ply_pos, double ang, char **map);
+bool	is_close(double a, double b);
+void	set_deltas(t_dvec *delta, double ang);
 
 #endif

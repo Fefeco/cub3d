@@ -6,7 +6,7 @@
 /*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:26:14 by fedeito           #+#    #+#             */
-/*   Updated: 2024/12/29 20:44:36 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/03 18:25:37 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static void	try_move(t_game *cub3d, int x, int y)
 {
-	if (check_wall(x, y, cub3d->map))
+	if (check_wall(x / TILE, y / TILE, cub3d->map))
 		return ;
 	cub3d->player.x = x;
 	cub3d->player.y = y;
