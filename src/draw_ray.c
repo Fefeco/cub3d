@@ -6,7 +6,7 @@
 /*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:54:38 by fedeito           #+#    #+#             */
-/*   Updated: 2025/01/04 12:47:23 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/04 13:35:04 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	draw_ray(t_game *cub3d)
 		steps = get_steps(ply_pos, current_ang, cub3d->map);  
 		draw_line(&cub3d->images, ply_pos, steps, current_ang);
 		++i;
-		if (i == -11)
-			break;
+//		if (i == -11)
+//			break;
 	}
 }

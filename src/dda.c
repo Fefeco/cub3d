@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:46:36 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/04 13:03:04 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/04 13:33:45 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ t_dvec	calc_first_travel_dist(t_ivec vec_dir, t_ivec ply_pos, t_dvec delta_dist)
 
 int	calc_steps(t_dvec travel_dist, t_dvec delta)
 {
-	if (!travel_dist.y || (travel_dist.x && travel_dist.x > travel_dist.y))
+	if (!travel_dist.y || (travel_dist.x && travel_dist.x < travel_dist.y))
 		return (travel_dist.x / fabs(delta.x));
 	return (travel_dist.y / fabs(delta.y));
 }
