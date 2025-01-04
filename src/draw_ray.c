@@ -6,7 +6,7 @@
 /*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:54:38 by fedeito           #+#    #+#             */
-/*   Updated: 2025/01/03 20:09:42 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/04 12:47:23 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,18 @@
 void	draw_line(t_img *img, t_ivec curr_pos, int steps, double ang)
 {
 	t_dvec	delta;
+	t_dvec	tmp;
 	int		i;
 
 	i = -1;
-	delta.x = cos(ang);
-	delta.y = sin(ang);
+	tmp.x  = curr_pos.x;
+	tmp.y  = curr_pos.y;
+	set_deltas(&delta, ang);
 	while (++i < steps)
 	{
-		curr_pos.x += delta.x;
-		curr_pos.y += delta.y;
-		put_pxl_on_img(img, floor(curr_pos.x), floor(curr_pos.y), 0x00aa0000);
+		tmp.x += delta.x;
+		tmp.y += delta.y;
+		put_pxl_on_img(img, floor(tmp.x), floor(tmp.y), 0x00aa0000);
 	}
 }
 
@@ -45,5 +47,7 @@ void	draw_ray(t_game *cub3d)
 		steps = get_steps(ply_pos, current_ang, cub3d->map);  
 		draw_line(&cub3d->images, ply_pos, steps, current_ang);
 		++i;
+		if (i == -11)
+			break;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2025/01/03 14:22:35 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/04 12:35:18 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,5 +192,7 @@ int		rad_to_deg(double rad);
 
 // dda.c
 double	get_steps(t_ivec ply_pos, double ang, char **map);
+bool	is_close(double a, double b);
+void	set_deltas(t_dvec *delta, double ang);
 
 #endif

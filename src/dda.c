@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:46:36 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/03 20:08:06 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/04 13:03:04 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ t_dvec	calc_first_travel_dist(t_ivec vec_dir, t_ivec ply_pos, t_dvec delta_dist)
 	else
 		travel_dist.x = (ply_pos.x % TILE) * (delta_dist.x / TILE);
 	if (vec_dir.y > 0)
-		travel_dist.y = (TILE - (ply_pos.y % TILE)) * (delta_dist.x / TILE);
+		travel_dist.y = (TILE - (ply_pos.y % TILE)) * (delta_dist.y / TILE);
 	else
-		travel_dist.y = (ply_pos.y % TILE) * (delta_dist.x / TILE);
+		travel_dist.y = (ply_pos.y % TILE) * (delta_dist.y / TILE);
 	return (travel_dist);
 }
 
@@ -109,28 +109,32 @@ double	get_steps(t_ivec ply_pos, double ang, char **map)
 	t_dvec	travel_dist;
 	t_ivec	vec_dir;
 	t_ivec	map_pos;
+	char	flag;
 
+	flag = '0';
 	set_deltas(&delta, ang);
 	set_vector_directions(&vec_dir, delta);
 	set_delta_dists(&delta_dist, delta);
 	map_pos = get_map_coords(ply_pos);
 	travel_dist = calc_first_travel_dist(vec_dir, ply_pos, delta_dist);
-	if (!delta_dist.y || (delta_dist.x && travel_dist.x < travel_dist.y))
-		map_pos.x += vec_dir.x;
-	else
-		map_pos.y += vec_dir.y;
-	while (!check_wall(map_pos.x, map_pos.y, map))
+	while (1)
 	{
 		if (!delta_dist.y || (delta_dist.x && travel_dist.x < travel_dist.y))
 		{
-			travel_dist.x += delta_dist.x;
+			flag = 'x';
 			map_pos.x += vec_dir.x;
 		}
 		else
 		{
-			travel_dist.y += delta_dist.y;
+			flag = 'y';
 			map_pos.y += vec_dir.y;
 		}
+		if (check_wall(map_pos.x, map_pos.y, map))
+			break ;
+		if (flag == 'x')
+			travel_dist.x += delta_dist.x;
+		else
+			travel_dist.y += delta_dist.y;
 	}
 	return (calc_steps(travel_dist, delta)); 
 }
