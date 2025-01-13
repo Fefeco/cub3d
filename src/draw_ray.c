@@ -6,7 +6,7 @@
 /*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:54:38 by fedeito           #+#    #+#             */
-/*   Updated: 2025/01/04 13:35:04 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/13 11:01:54 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	draw_line(t_img *img, t_ivec curr_pos, int steps, double ang)
 	{
 		tmp.x += delta.x;
 		tmp.y += delta.y;
-		put_pxl_on_img(img, floor(tmp.x), floor(tmp.y), 0x00aa0000);
+		put_pxl_on_img(img, floor(tmp.x), floor(tmp.y), 0x00AA0000);
 	}
 }
 

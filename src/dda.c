@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:46:36 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/11 13:49:18 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/13 12:05:44 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,28 +30,34 @@ void set_vector_directions(t_ivec *vec_dir, t_dvec delta)
 
 bool is_close(double a, double b)
 {
-    return fabs(a - b) < EPSILON;
+	return fabs(a - b) < EPSILON;
 }
 
 // Función para manejar los ángulos especiales
-void set_deltas(t_dvec *delta, double ang) {
-    if (is_close(ang, 0) || is_close(ang, 2 * M_PI)) {
-        delta->x = 1;
-        delta->y = 0;
-    } else if (is_close(ang, M_PI / 2)) {
-        delta->x = 0;
-        delta->y = 1;
-    } else if (is_close(ang, M_PI)) {
-        delta->x = -1;
-        delta->y = 0;
-    } else if (is_close(ang, 3 * M_PI / 2)) {
-        delta->x = 0;
-        delta->y = -1;
-    } else {
-        // Para ángulos generales, usa las funciones trigonométricas
-        delta->x = cos(ang);
-        delta->y = sin(ang);
-    }
+void set_deltas(t_dvec *delta, double ang)
+{
+	if (is_close(ang, 0) || is_close(ang, 2 * M_PI))
+	{
+		delta->x = 1;
+		delta->y = 0;
+	} else if (is_close(ang, M_PI / 2))
+	{
+		delta->x = 0;
+		delta->y = 1;
+	} else if (is_close(ang, M_PI))
+	{
+		delta->x = -1;
+		delta->y = 0;
+	} else if (is_close(ang, 3 * M_PI / 2))
+	{
+		delta->x = 0;
+		delta->y = -1;
+	} else
+	{
+		// Para ángulos generales, usa las funciones trigonométricas
+		delta->x = cos(ang);
+		delta->y = sin(ang);
+	}
 }
 
 void	set_delta_dists(t_dvec *delta_dist, t_dvec delta)
@@ -87,8 +93,8 @@ t_dvec	calc_first_travel_dist(t_ivec vec_dir, t_ivec ply_pos, t_dvec delta)
 		travel_dist.y = (TILE - (ply_pos.y % TILE));
 	else
 		travel_dist.y = (ply_pos.y % TILE);
-	travel_dist.x /= delta.x;
-	travel_dist.y = delta.y;
+	travel_dist.x *= 1 / delta.x;
+	travel_dist.y *= 1 / delta.y;
 	return (travel_dist);
 }
 
