@@ -6,7 +6,7 @@
 /*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:57:33 by fedeito           #+#    #+#             */
-/*   Updated: 2024/12/30 12:07:14 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:15:42 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ static int	set_params(t_player *player, char viewdir, int x, int y)
 	player->ang = get_ang(viewdir);
 	if (player->ang == -1)
 		return (1);
-	player->dx = cos(player->ang);
-	player->dy = sin(player->ang);
 	return (0);
 }
 

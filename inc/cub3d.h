@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2025/01/16 16:41:20 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/16 19:16:21 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,6 @@ typedef struct s_player
 {
 	int		x;
 	int		y;
-	double	dy;
-	double	dx;
 	double	ang;
 }				t_player;
 
@@ -153,8 +151,7 @@ int		is_ready_for_map(t_game *game);
 void	validate_map(t_game *cub3d);
 
 // moves.c
-void	try_move_x(int key, t_game *cub3d);
-void	try_move_y(int key, t_game *cub3d);
+void	try_move(int key, t_game *cub3d);
 void	rotate(int key, t_player *ply);
 
 // set_pllayer.c
@@ -192,7 +189,6 @@ int		rad_to_deg(double rad);
 
 // dda.c
 double	get_steps(t_ivec ply_pos, double ang, char **map);
-bool	is_close(double a, double b);
 void	set_deltas(t_dvec *delta, double ang);
 
 #endif

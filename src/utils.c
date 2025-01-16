@@ -6,12 +6,44 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:49:15 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/03 18:27:14 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/16 18:35:50 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "cub3d.h"
+
+static bool is_close(double a, double b)
+{
+	return fabs(a - b) < EPSILON;
+}
+
+// Función para manejar los ángulos especiales
+void set_deltas(t_dvec *delta, double ang)
+{
+	if (is_close(ang, 0) || is_close(ang, 2 * M_PI))
+	{
+		delta->x = 1;
+		delta->y = 0;
+	} else if (is_close(ang, M_PI / 2))
+	{
+		delta->x = 0;
+		delta->y = 1;
+	} else if (is_close(ang, M_PI))
+	{
+		delta->x = -1;
+		delta->y = 0;
+	} else if (is_close(ang, 3 * M_PI / 2))
+	{
+		delta->x = 0;
+		delta->y = -1;
+	} else
+	{
+		// Para ángulos generales, usa las funciones trigonométricas
+		delta->x = cos(ang);
+		delta->y = sin(ang);
+	}
+}
 
 int	check_wall(int x, int y, char **map)
 {
