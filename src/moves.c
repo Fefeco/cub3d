@@ -6,7 +6,7 @@
 /*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:26:14 by fedeito           #+#    #+#             */
-/*   Updated: 2025/01/03 18:25:37 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/16 16:12:00 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	rotate(int key, t_player *ply)
 {
 	double	move_degree;
 
-	move_degree = 10 * (M_PI / 180);
+	move_degree = (M_PI / 180);
 	if (key == LEFT)
 		move_degree *= -1;
 	ply->ang += move_degree;

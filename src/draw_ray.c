@@ -6,20 +6,20 @@
 /*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:54:38 by fedeito           #+#    #+#             */
-/*   Updated: 2025/01/16 14:05:08 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/16 16:51:20 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "cub3d.h"
 
-bool	hit(t_dvec point, char **map)
+bool	hit(int x, int y, char **map)
 {
-	if (map[point.y / TILE][point.x / TILE] == '1')
+	if (map[y / TILE][x / TILE] == '1')
 		return (true);
 	return (false);
 }
-
+/*
 void	draw_line(t_img *img, t_ivec curr_pos, char **map, double ang)
 {
 	t_dvec	delta;
@@ -31,20 +31,29 @@ void	draw_line(t_img *img, t_ivec curr_pos, char **map, double ang)
 	tmp.y  = curr_pos.y;
 	set_deltas(&delta, ang);
 }
-
+*/
 void	draw_ray(t_game *cub3d)
 {
-	t_ivec	ply;
 	t_dvec	tmp;
 	t_dvec	delta;
+	double	i;
+	double	current_ang;
+	double	stop;
 
-	set_deltas(delta, cub3d->player.ang);
-	tmp.x = cub3d->player.x;
-	tmp.y = cub3d->player.y;
-	while (!hit(tmp, cub3d->map))
+	stop = deg_to_rad(FOV / 2);
+	i = stop * -1;
+	while (i < stop)
 	{
-		tmp.x += delta.x;
-		tmp.y += delta.y;
-		put_pxl_on_img(img, floor(tmp.x), floor(tmp.y), 0x00AA0000);
+		current_ang = cub3d->player.ang + i;
+		set_deltas(&delta, current_ang);
+		tmp.x = cub3d->player.x;
+		tmp.y = cub3d->player.y;
+		while (!hit(floor(tmp.x), floor(tmp.y), cub3d->map))
+		{
+			put_pxl_on_img(&cub3d->images, floor(tmp.x), floor(tmp.y), 0x00FFDE21);
+			tmp.x += delta.x;
+			tmp.y += delta.y;
+		}
+		i += 0.001;
 	}
 }
