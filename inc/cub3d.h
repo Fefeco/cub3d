@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2025/01/16 19:16:21 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/16 20:29:58 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,15 @@ typedef struct s_player
 	int		y;
 	double	ang;
 }				t_player;
+
+typedef struct s_ray
+{
+	double	ang;
+	t_dvec	delta;
+	t_dvec	delta_dist;
+	t_dvec	tot_dist;
+	t_ivec	step;
+}				t_ray;
 
 typedef struct s_game
 {
