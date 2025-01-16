@@ -6,14 +6,21 @@
 /*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:54:38 by fedeito           #+#    #+#             */
-/*   Updated: 2025/01/13 11:01:54 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/16 14:05:08 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "cub3d.h"
 
-void	draw_line(t_img *img, t_ivec curr_pos, int steps, double ang)
+bool	hit(t_dvec point, char **map)
+{
+	if (map[point.y / TILE][point.x / TILE] == '1')
+		return (true);
+	return (false);
+}
+
+void	draw_line(t_img *img, t_ivec curr_pos, char **map, double ang)
 {
 	t_dvec	delta;
 	t_dvec	tmp;
@@ -23,31 +30,21 @@ void	draw_line(t_img *img, t_ivec curr_pos, int steps, double ang)
 	tmp.x  = curr_pos.x;
 	tmp.y  = curr_pos.y;
 	set_deltas(&delta, ang);
-	while (++i < steps)
-	{
-		tmp.x += delta.x;
-		tmp.y += delta.y;
-		put_pxl_on_img(img, floor(tmp.x), floor(tmp.y), 0x00AA0000);
-	}
 }
 
 void	draw_ray(t_game *cub3d)
 {
-	double	current_ang;
-	t_ivec	ply_pos;
-	int		steps;
-	int		i;
+	t_ivec	ply;
+	t_dvec	tmp;
+	t_dvec	delta;
 
-	ply_pos.x = cub3d->player.x;
-	ply_pos.y = cub3d->player.y;
-	i = (FOV / 2) * -1;
-	while (i <= FOV / 2)
+	set_deltas(delta, cub3d->player.ang);
+	tmp.x = cub3d->player.x;
+	tmp.y = cub3d->player.y;
+	while (!hit(tmp, cub3d->map))
 	{
-		current_ang = cub3d->player.ang + deg_to_rad(i);
-		steps = get_steps(ply_pos, current_ang, cub3d->map);  
-		draw_line(&cub3d->images, ply_pos, steps, current_ang);
-		++i;
-//		if (i == -11)
-//			break;
+		tmp.x += delta.x;
+		tmp.y += delta.y;
+		put_pxl_on_img(img, floor(tmp.x), floor(tmp.y), 0x00AA0000);
 	}
 }
