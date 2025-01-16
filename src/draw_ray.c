@@ -6,7 +6,7 @@
 /*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:54:38 by fedeito           #+#    #+#             */
-/*   Updated: 2025/01/16 17:11:49 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/16 17:20:53 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,16 @@ void	draw_ray(t_game *cub3d)
 
 	stop = deg_to_rad(FOV / 2);
 	i = stop * -1;
+	current_ang = cub3d->player.ang + i;
+	set_deltas(&delta, current_ang);
+	tmp.x = cub3d->player.x;
+	tmp.y = cub3d->player.y;
+	while (!hit(floor(tmp.x), floor(tmp.y), cub3d->map))
+	{
+		put_pxl_on_img(&cub3d->images, floor(tmp.x), floor(tmp.y), 0x00FFDE21);
+		tmp.x += delta.x;
+		tmp.y += delta.y;
+	}
 	while (i < stop)
 	{
 		current_ang = cub3d->player.ang + i;
@@ -45,5 +55,13 @@ void	draw_ray(t_game *cub3d)
 		tmp.y -= delta.y;
 		put_pxl_on_img(&cub3d->images, floor(tmp.x), floor(tmp.y), 0x00FFDE21);
 		i += 0.001;
+	}
+	tmp.x = cub3d->player.x;
+	tmp.y = cub3d->player.y;
+	while (!hit(floor(tmp.x), floor(tmp.y), cub3d->map))
+	{
+		put_pxl_on_img(&cub3d->images, floor(tmp.x), floor(tmp.y), 0x00FFDE21);
+		tmp.x += delta.x;
+		tmp.y += delta.y;
 	}
 }
