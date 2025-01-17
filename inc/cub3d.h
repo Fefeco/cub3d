@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2025/01/16 20:29:58 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/17 12:35:04 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@
 # include "keys.h"
 # include "error.h"
 
-# define HEIGHT		600
-# define WIDTH		800
-# define TILE		24
+# define HEIGHT		1200
+# define WIDTH		1600
+# define TILE		48
 # define STEP_SZ	4
 # define FOV		60
 # define EPSILON	1e-10
@@ -94,6 +94,7 @@ typedef struct s_player
 typedef struct s_ray
 {
 	double	ang;
+	t_ivec	start;
 	t_dvec	delta;
 	t_dvec	delta_dist;
 	t_dvec	tot_dist;
@@ -197,7 +198,7 @@ double	deg_to_rad(int deg);
 int		rad_to_deg(double rad);
 
 // dda.c
-double	get_steps(t_ivec ply_pos, double ang, char **map);
+double	get_ray_distance(t_ray ray, char **map);
 void	set_deltas(t_dvec *delta, double ang);
 
 #endif

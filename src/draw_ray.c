@@ -6,7 +6,7 @@
 /*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 12:54:38 by fedeito           #+#    #+#             */
-/*   Updated: 2025/01/16 20:34:25 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/17 13:54:52 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,28 @@ bool	hit(int x, int y, char **map)
 void	draw_ray(t_game *cub3d)
 {
 	t_ray	ray;
+	t_dvec	tmp;
 	double	i;
 	double	stop;
+	double	ray_dist;
 
+	ray.start.x = cub3d->player.x;
+	ray.start.y = cub3d->player.y;
 	stop = deg_to_rad(FOV / 2);
 	i = stop * -1;
 	while (i < stop)
 	{
 		ray.ang = cub3d->player.ang + i;
 		set_deltas(&ray.delta, ray.ang);
-		ray.tot_dist.x = cub3d->player.x;
-		ray.tot_dist.y = cub3d->player.y;
-		while (!hit(floor(ray.tot_dist.x), floor(ray.tot_dist.y), cub3d->map))
-		{
-			ray.tot_dist.x += ray.delta.x;
-			ray.tot_dist.y += ray.delta.y;
-		}
-		ray.tot_dist.x -= ray.delta.x;
-		ray.tot_dist.y -= ray.delta.y;
-		put_pxl_on_img(&cub3d->images, floor(ray.tot_dist.x), floor(ray.tot_dist.y), 0x00FFDE21);
+		tmp.x = cub3d->player.x;
+		tmp.y = cub3d->player.y;
+		//while (!hit(floor(tmp.x), floor(tmp.y), cub3d->map))
+		//{
+		//	tmp.x += ray.delta.x;
+		//	tmp.y += ray.delta.y;
+		//}
+		ray_dist = get_ray_distance(ray, cub3d->map);
+		put_pxl_on_img(&cub3d->images, floor(tmp.x), floor(tmp.y), 0x00FFDE21);
 		i += 0.001;
 	}
 }

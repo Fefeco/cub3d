@@ -6,26 +6,26 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:46:36 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/16 18:37:12 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/17 13:40:19 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void set_vector_directions(t_ivec *vec_dir, t_dvec delta)
+void set_step_directions(t_ray *ray)
 {
-	if (delta.x < 0)
-		vec_dir->x = -1;
-	else if (delta.x == 0)
-		vec_dir->x = 0;
+	if (ray->delta.x < 0)
+		ray->step->x = -1;
+	else if (ray->delta.x == 0)
+		ray->step->x = 0;
 	else
-		vec_dir->x = 1;
-	if (delta.y < 0)
-		vec_dir->y = -1;
-	else if (delta.y == 0)
-		vec_dir->y = 0;
+		ray->step->x = 1;
+	if (ray->delta.y < 0)
+		ray->step->y = -1;
+	else if (ray->delta.y == 0)
+		ray->step->y = 0;
 	else
-		vec_dir->y = 1;
+		ray->step->y = 1;
 }
 
 void	set_delta_dists(t_dvec *delta_dist, t_dvec delta)
@@ -49,45 +49,37 @@ t_ivec	get_map_coords(t_ivec ply_pos)
 	return (map_pt);
 }
 
-t_dvec	calc_first_travel_dist(t_ivec vec_dir, t_ivec ply_pos, t_dvec delta)
+static t_dvec	get_first_dist(int	step, int pos, double delta)
 {
-	t_dvec	travel_dist;
+	double	first_dist;
 
-	if (vec_dir.x > 0)
-		travel_dist.x = (TILE - (ply_pos.x % TILE));
+	if (step > 0)
+		first_dist = (TILE - (pos % TILE));
+	else if (step < 0)
+		first_dist = (pos % TILE);
+	if (step == 0)
+		first_dist == 0;
 	else
-		travel_dist.x = (ply_pos.x % TILE);
-	if (vec_dir.y > 0)
-		travel_dist.y = (TILE - (ply_pos.y % TILE));
-	else
-		travel_dist.y = (ply_pos.y % TILE);
-	travel_dist.x *= 1 / delta.x;
-	travel_dist.y *= 1 / delta.y;
-	return (travel_dist);
+		first_dist *= 1 / delta;
+	return (first_dist);
 }
 
-int	calc_steps(t_dvec travel_dist, t_dvec delta)
+t_dvec	calc_first_dist(t_ray *ray)
 {
-	if (!travel_dist.y || (travel_dist.x && travel_dist.x < travel_dist.y))
-		return fabs(travel_dist.x / delta.x);
-	return fabs(travel_dist.y / delta.y);
+	ray->tot_dist.x = get_first_dist(ray->step.x, ray->start.x, ray->delta.x);
+	ray->tot_dist.y = get_first_dist(ray->step.y, ray->start.y, ray->delta.y);
 }
 
-double	get_steps(t_ivec ply_pos, double ang, char **map)
+double	get_ray_distance(t_ray ray, char **map)
 {
-	t_dvec	delta;
-	t_dvec	delta_dist;
-	t_dvec	travel_dist;
-	t_ivec	vec_dir;
 	t_ivec	map_pos;
 	char	flag;
 
 	flag = '0';
-	set_deltas(&delta, ang);
-	set_vector_directions(&vec_dir, delta);
-	set_delta_dists(&delta_dist, delta);
-	map_pos = get_map_coords(ply_pos);
-	travel_dist = calc_first_travel_dist(vec_dir, ply_pos, delta);
+	set_step_directions(&ray);
+	set_delta_dists(&ray.delta_dist, ray.delta);
+	map_pos = get_map_coords(ray.start);
+	calc_first_dist(&ray);
 	while (1)
 	{
 		if (!delta_dist.y || (delta_dist.x && travel_dist.x < travel_dist.y))
