@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2025/01/17 12:35:04 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/20 11:08:05 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ typedef struct s_ray
 	double	ang;
 	t_ivec	start;
 	t_dvec	delta;
-	t_dvec	delta_dist;
-	t_dvec	tot_dist;
+	t_dvec	delta_dst;
+	t_dvec	tot_dst;
 	t_ivec	step;
 }				t_ray;
 

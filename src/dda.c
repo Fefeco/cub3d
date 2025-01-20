@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:46:36 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/17 13:40:19 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/20 11:29:42 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,29 @@
 void set_step_directions(t_ray *ray)
 {
 	if (ray->delta.x < 0)
-		ray->step->x = -1;
+		ray->step.x = -1;
 	else if (ray->delta.x == 0)
-		ray->step->x = 0;
+		ray->step.x = 0;
 	else
-		ray->step->x = 1;
+		ray->step.x = 1;
 	if (ray->delta.y < 0)
-		ray->step->y = -1;
+		ray->step.y = -1;
 	else if (ray->delta.y == 0)
-		ray->step->y = 0;
+		ray->step.y = 0;
 	else
-		ray->step->y = 1;
+		ray->step.y = 1;
 }
 
-void	set_delta_dists(t_dvec *delta_dist, t_dvec delta)
+void	set_delta_distances(t_dvec *delta_dst, t_dvec delta)
 {
 	if (delta.x == 0)
-		delta_dist->x = 0;
+		delta_dst->x = 0;
 	else
-		delta_dist->x = fabs(TILE / delta.x);
+		delta_dst->x = fabs(TILE / delta.x);
 	if (delta.y == 0)
-		delta_dist->y = 0;
+		delta_dst->y = 0;
 	else
-		delta_dist->y = fabs(TILE / delta.y);
+		delta_dst->y = fabs(TILE / delta.y);
 }
 
 t_ivec	get_map_coords(t_ivec ply_pos)
@@ -49,7 +49,7 @@ t_ivec	get_map_coords(t_ivec ply_pos)
 	return (map_pt);
 }
 
-static t_dvec	get_first_dist(int	step, int pos, double delta)
+static double	get_first_dist(int	step, int pos, double delta)
 {
 	double	first_dist;
 
@@ -58,16 +58,18 @@ static t_dvec	get_first_dist(int	step, int pos, double delta)
 	else if (step < 0)
 		first_dist = (pos % TILE);
 	if (step == 0)
-		first_dist == 0;
+		first_dist = 0;
 	else
 		first_dist *= 1 / delta;
 	return (first_dist);
 }
 
-t_dvec	calc_first_dist(t_ray *ray)
+char	next_step_axis(t_dvec delta_dst)
 {
-	ray->tot_dist.x = get_first_dist(ray->step.x, ray->start.x, ray->delta.x);
-	ray->tot_dist.y = get_first_dist(ray->step.y, ray->start.y, ray->delta.y);
+	if (!delta_dst.y || (delta_dst.x && tot_dst.x < tot_dst.y))
+		return ('x');
+	else
+		return ('y');
 }
 
 double	get_ray_distance(t_ray ray, char **map)
@@ -77,27 +79,21 @@ double	get_ray_distance(t_ray ray, char **map)
 
 	flag = '0';
 	set_step_directions(&ray);
-	set_delta_dists(&ray.delta_dist, ray.delta);
+	set_delta_distances(&ray.delta_dst, ray.delta);
 	map_pos = get_map_coords(ray.start);
-	calc_first_dist(&ray);
+	ray.tot_dst.x = get_first_dist(ray.step.x, ray.start.x, ray.delta.x);
+	ray.tot_dst.y = get_first_dist(ray.step.y, ray.start.y, ray.delta.y);
 	while (1)
 	{
-		if (!delta_dist.y || (delta_dist.x && travel_dist.x < travel_dist.y))
-		{
-			flag = 'x';
-			map_pos.x += vec_dir.x;
-		}
+		if (next_step_axis(ray.delta_dist) == 'x')
+			map_pos.x += ray.step.x;
 		else
-		{
-			flag = 'y';
-			map_pos.y += vec_dir.y;
-		}
+			map_pos.y += ray.step.y;
 		if (check_wall(map_pos.x, map_pos.y, map))
 			break ;
 		if (flag == 'x')
-			travel_dist.x += delta_dist.x;
+			ray.tot_dst.x += ray.delta_dst.x;
 		else
-			travel_dist.y += delta_dist.y;
+			ray.tot_dst.y += ray.delta_dst.y;
 	}
-	return (calc_steps(travel_dist, delta)); 
 }
