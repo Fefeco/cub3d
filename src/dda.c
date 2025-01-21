@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:46:36 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/20 11:29:42 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/21 11:25:09 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static double	get_first_dist(int	step, int pos, double delta)
 	return (first_dist);
 }
 
-char	next_step_axis(t_dvec delta_dst)
+char	next_step_axis(t_dvec delta_dst, t_dvec tot_dst)
 {
 	if (!delta_dst.y || (delta_dst.x && tot_dst.x < tot_dst.y))
 		return ('x');
@@ -75,9 +75,9 @@ char	next_step_axis(t_dvec delta_dst)
 double	get_ray_distance(t_ray ray, char **map)
 {
 	t_ivec	map_pos;
-	char	flag;
+	char	next_axis;
 
-	flag = '0';
+	next_axis = '0';
 	set_step_directions(&ray);
 	set_delta_distances(&ray.delta_dst, ray.delta);
 	map_pos = get_map_coords(ray.start);
@@ -85,15 +85,22 @@ double	get_ray_distance(t_ray ray, char **map)
 	ray.tot_dst.y = get_first_dist(ray.step.y, ray.start.y, ray.delta.y);
 	while (1)
 	{
-		if (next_step_axis(ray.delta_dist) == 'x')
+		next_axis = next_step_axis(ray.delta_dst, ray.tot_dst);
+		if (next_axis == 'x')
+		{
 			map_pos.x += ray.step.x;
+			ray.tot_dst.x += ray.delta_dst.x;
+		}
 		else
+		{
 			map_pos.y += ray.step.y;
+			ray.tot_dst.y += ray.delta_dst.y;
+		}
 		if (check_wall(map_pos.x, map_pos.y, map))
 			break ;
-		if (flag == 'x')
-			ray.tot_dst.x += ray.delta_dst.x;
-		else
-			ray.tot_dst.y += ray.delta_dst.y;
 	}
+	if (next_axis == 'x')
+		return (ray.tot_dst.x - ray.delta_dst.x);
+	else
+		return (ray.tot_dst.y - ray.delta_dst.y);
 }
