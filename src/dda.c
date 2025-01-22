@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:46:36 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/21 11:25:09 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/22 23:13:16 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ static double	get_first_dist(int	step, int pos, double delta)
 		first_dist = (TILE - (pos % TILE));
 	else if (step < 0)
 		first_dist = (pos % TILE);
-	if (step == 0)
-		first_dist = 0;
 	else
+		first_dist = 0;
+	if (delta != 0)
 		first_dist *= 1 / delta;
 	return (first_dist);
 }
@@ -72,35 +72,38 @@ char	next_step_axis(t_dvec delta_dst, t_dvec tot_dst)
 		return ('y');
 }
 
-double	get_ray_distance(t_ray ray, char **map)
+double	dda(t_ray ray, char **map)
 {
 	t_ivec	map_pos;
 	char	next_axis;
 
-	next_axis = '0';
-	set_step_directions(&ray);
-	set_delta_distances(&ray.delta_dst, ray.delta);
 	map_pos = get_map_coords(ray.start);
-	ray.tot_dst.x = get_first_dist(ray.step.x, ray.start.x, ray.delta.x);
-	ray.tot_dst.y = get_first_dist(ray.step.y, ray.start.y, ray.delta.y);
+	set_step_directions(&ray);
+	set_deltas(&ray.delta, ray.ang);
+	set_delta_distances(&ray.delta_dst, ray.delta);
+	ray.dst.x = get_first_dist(ray.step.x, ray.start.x, ray.delta.x);
+	ray.dst.y = get_first_dist(ray.step.y, ray.start.y, ray.delta.y);
+	next_axis = '0';
 	while (1)
 	{
-		next_axis = next_step_axis(ray.delta_dst, ray.tot_dst);
+		printf("delta.x: %f, delta.y: %f, step.x: %d, step.y: %d\n",
+       ray.delta.x, ray.delta.y, ray.step.x, ray.step.y);
+		next_axis = next_step_axis(ray.delta_dst, ray.dst);
 		if (next_axis == 'x')
 		{
 			map_pos.x += ray.step.x;
-			ray.tot_dst.x += ray.delta_dst.x;
+			ray.dst.x += ray.delta_dst.x;
 		}
 		else
 		{
 			map_pos.y += ray.step.y;
-			ray.tot_dst.y += ray.delta_dst.y;
+			ray.dst.y += ray.delta_dst.y;
 		}
 		if (check_wall(map_pos.x, map_pos.y, map))
 			break ;
 	}
 	if (next_axis == 'x')
-		return (ray.tot_dst.x - ray.delta_dst.x);
+		return (ray.dst.x - ray.delta_dst.x);
 	else
-		return (ray.tot_dst.y - ray.delta_dst.y);
+		return (ray.dst.y - ray.delta_dst.y);
 }

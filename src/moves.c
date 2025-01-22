@@ -6,7 +6,7 @@
 /*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:26:14 by fedeito           #+#    #+#             */
-/*   Updated: 2025/01/16 19:22:23 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/22 22:31:58 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,21 @@ void	try_move(int key, t_game *cub3d)
 	double	ang;
 
 	if (key == KEY_A || key == KEY_D)
-		ang = norm_ang(cub3d->player.ang + deg_to_rad(90));
+		ang = norm_ang(cub3d->ply.ang + deg_to_rad(90));
 	else
-		ang = cub3d->player.ang;
+		ang = cub3d->ply.ang;
 	set_deltas(&delta, ang);
 	if (key == KEY_S || key == KEY_A)
 	{
 		delta.x *= -1;
 		delta.y *= -1;
 	}
-	ply.x = floor(cub3d->player.x + (delta.x * STEP_SZ));
-	ply.y = floor(cub3d->player.y + (delta.y * STEP_SZ));
+	ply.x = floor(cub3d->ply.pos.x + (delta.x * STEP_SZ));
+	ply.y = floor(cub3d->ply.pos.y + (delta.y * STEP_SZ));
 	if (check_wall(ply.x / TILE, ply.y / TILE, cub3d->map))
 		return ;
-	cub3d->player.x = ply.x;
-	cub3d->player.y = ply.y;
+	cub3d->ply.pos.x = ply.x;
+	cub3d->ply.pos.y = ply.y;
 }
 
 void	rotate(int key, t_player *ply)

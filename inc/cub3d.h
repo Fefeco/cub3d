@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2025/01/20 11:08:05 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/22 22:48:07 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # include "keys.h"
 # include "error.h"
 
-# define HEIGHT		1200
-# define WIDTH		1600
+# define HEIGHT		600
+# define WIDTH		800
 # define TILE		48
 # define STEP_SZ	4
 # define FOV		60
@@ -84,10 +84,15 @@ typedef struct s_double_vector
 	double	y;
 }				t_dvec;
 
+typedef struct s_wall
+{
+	int	line_height;
+	int	color;
+	int	start;
+}				t_wall;
 typedef struct s_player
 {
-	int		x;
-	int		y;
+	t_ivec	pos;
 	double	ang;
 }				t_player;
 
@@ -97,7 +102,7 @@ typedef struct s_ray
 	t_ivec	start;
 	t_dvec	delta;
 	t_dvec	delta_dst;
-	t_dvec	tot_dst;
+	t_dvec	dst;
 	t_ivec	step;
 }				t_ray;
 
@@ -109,7 +114,7 @@ typedef struct s_game
 	t_coords	textures;
 	t_img		images;
 	bool		ready_for_map;
-	t_player	player;
+	t_player	ply;
 	char		**map;
 }				t_game;
 
@@ -198,7 +203,12 @@ double	deg_to_rad(int deg);
 int		rad_to_deg(double rad);
 
 // dda.c
-double	get_ray_distance(t_ray ray, char **map);
+double	dda(t_ray ray, char **map);
 void	set_deltas(t_dvec *delta, double ang);
 
+// render_framme.c
+void	render_frame(t_game *cub3d);
+
+// get_wall_color.c
+int get_wall_color(double ray_dst);
 #endif

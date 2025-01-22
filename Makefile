@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
-#    Updated: 2025/01/02 18:34:46 by fcarranz         ###   ########.fr        #
+#    Updated: 2025/01/22 22:36:43 by fedeito          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,9 +55,10 @@ SRCS = add_line_to_map.c \
 	   draw_map.c \
 	   dda.c \
 	   draw_player.c \
-	   draw_ray.c \
 	   draw_tools.c \
 	   utils.c \
+	   get_wall_color.c \
+	   render_frame.c \
 	   create_image.c
 
 OBJS = $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))

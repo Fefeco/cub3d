@@ -6,7 +6,7 @@
 /*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:57:33 by fedeito           #+#    #+#             */
-/*   Updated: 2025/01/16 18:15:42 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/22 22:29:13 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ static double	get_ang(char viewdir)
 	return (-1);
 }
 
-static int	set_params(t_player *player, char viewdir, int x, int y)
+static int	set_params(t_player *ply, char viewdir, int x, int y)
 {
-	if (player->ang != -1)
+	if (ply->ang != -1)
 		return (1);
-	player->x = x * TILE + TILE / 2;
-	player->y = y * TILE + TILE / 2;
-	player->ang = get_ang(viewdir);
-	if (player->ang == -1)
+	ply->pos.x = x * TILE + TILE / 2;
+	ply->pos.y = y * TILE + TILE / 2;
+	ply->ang = get_ang(viewdir);
+	if (ply->ang == -1)
 		return (1);
 	return (0);
 }
@@ -52,12 +52,12 @@ void	set_player(t_game *cub3d)
 		while (cub3d->map[y][++x])
 		{
 			c = cub3d->map[y][x];
-			if (ft_strchr("NSEW", c) && set_params(&cub3d->player, c, x, y))
+			if (ft_strchr("NSEW", c) && set_params(&cub3d->ply, c, x, y))
 				break ;
 		}
 	}
 	if (cub3d->map[y])
 		clean_exit(cub3d, E_PTMSET, 4);
-	if (cub3d->player.ang == -1)
+	if (cub3d->ply.ang == -1)
 		clean_exit(cub3d, E_PNOSET, 4);
 }

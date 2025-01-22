@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 21:50:22 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/16 19:15:12 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/22 22:25:10 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	handle_key(int key, t_game *cub3d)
 	if (key == ESC)
 		clean_exit(cub3d, NULL, 0);
 	else if (key == LEFT || key == RIGHT)
-		rotate(key, &cub3d->player);
+		rotate(key, &cub3d->ply);
 	else if (key == KEY_A || key == KEY_D || key == KEY_W || key == KEY_S)
 		try_move(key, cub3d);
 	return (0);
