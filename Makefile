@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
-#    Updated: 2025/01/23 12:06:48 by fcarranz         ###   ########.fr        #
+#    Updated: 2025/01/23 21:08:20 by fedeito          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ SRCS = add_line_to_map.c \
 	   utils.c \
 	   get_wall_color.c \
 	   render_walls.c \
+	   render_minimap.c \
 	   create_image.c
 
 OBJS = $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))

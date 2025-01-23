@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2025/01/23 20:24:50 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/23 21:11:45 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,4 +211,7 @@ void	render_walls(t_game *cub3d);
 
 // get_wall_color.c
 int get_wall_color(double ray_dst);
+
+// render_minimap.c
+void render_minimap(t_game *cub3d);
 #endif
