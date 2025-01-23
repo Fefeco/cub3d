@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:46:36 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/22 23:13:16 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/23 12:40:03 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,14 @@ double	dda(t_ray ray, char **map)
 
 	map_pos = get_map_coords(ray.start);
 	set_step_directions(&ray);
-	set_deltas(&ray.delta, ray.ang);
 	set_delta_distances(&ray.delta_dst, ray.delta);
 	ray.dst.x = get_first_dist(ray.step.x, ray.start.x, ray.delta.x);
 	ray.dst.y = get_first_dist(ray.step.y, ray.start.y, ray.delta.y);
 	next_axis = '0';
 	while (1)
 	{
-		printf("delta.x: %f, delta.y: %f, step.x: %d, step.y: %d\n",
-       ray.delta.x, ray.delta.y, ray.step.x, ray.step.y);
+		printf("delta.x: %f, delta.y: %f, step.x: %d, step.y: %d, ang: %i\n",
+       ray.delta.x, ray.delta.y, ray.step.x, ray.step.y, rad_to_deg(ray.ang));
 		next_axis = next_step_axis(ray.delta_dst, ray.dst);
 		if (next_axis == 'x')
 		{
