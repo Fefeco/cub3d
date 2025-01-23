@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2025/01/23 21:11:45 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/23 21:19:32 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ typedef struct s_game
 	t_coords	textures;
 	t_img		images;
 	bool		ready_for_map;
+	bool		render;
 	t_player	ply;
 	char		**map;
 }				t_game;

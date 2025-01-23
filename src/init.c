@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 21:50:22 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/22 22:25:10 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/23 21:20:34 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 static int	handle_key(int key, t_game *cub3d)
 {
+	cub3d->render = true;
 	if (key == ESC)
 		clean_exit(cub3d, NULL, 0);
 	else if (key == LEFT || key == RIGHT)
