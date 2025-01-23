@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:46:36 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/23 14:20:37 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:09:17 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,12 @@ double	dda(t_ray ray, char **map)
 	map_pos = get_map_coords(ray.start);
 	set_step_directions(&ray);
 	set_delta_distances(&ray.delta_dst, ray.delta);
-	ray.dst.x = get_first_dist(ray.step.x, ray.start.x, ray.delta.x);
-	ray.dst.y = get_first_dist(ray.step.y, ray.start.y, ray.delta.y);
+	ray.dst.x = get_first_dist(ray.step.x, ray.start.x, fabs(ray.delta.x));
+	ray.dst.y = get_first_dist(ray.step.y, ray.start.y, fabs(ray.delta.y));
 	next_axis = '0';
 	while (1)
 	{
-		printf("delta.x: %f, delta.y: %f, step.x: %d, step.y: %d, ang: %f\n",
-       ray.delta.x, ray.delta.y, ray.step.x, ray.step.y, ray.ang);
+		//printf("delta.x: %f, delta.y: %f, step.x: %d, step.y: %d, ang: %f\n", ray.delta.x, ray.delta.y, ray.step.x, ray.step.y, ray.ang);
 		next_axis = next_step_axis(ray.delta_dst, ray.dst);
 		if (next_axis == 'x')
 		{

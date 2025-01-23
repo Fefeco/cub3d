@@ -6,7 +6,7 @@
 /*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 20:48:54 by fedeito           #+#    #+#             */
-/*   Updated: 2025/01/23 14:16:47 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:12:00 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void draw_wall(t_game *cub3d, int x, t_wall wall)
         put_pxl_on_img(&cub3d->images, x, y, wall.color);
 		++y;
     }
-	    printf("Drawing wall at x: %d from y: %d to y: %d with color %d\n", x, wall.start, wall_end, wall.color);
+	    //printf("Drawing wall at x: %d from y: %d to y: %d with color %d\n", x, wall.start, wall_end, wall.color);
 }
 
 void	render_walls(t_game *cub3d)
@@ -44,14 +44,14 @@ void	render_walls(t_game *cub3d)
 
 	ray.start = cub3d->ply.pos;
 	ray.ang = cub3d->ply.ang - (deg_to_rad(FOV) / 2);
-	inc = deg_to_rad(FOV) / (WIDTH - 1);
+	inc = deg_to_rad(FOV) / WIDTH;
 	x = -1;
 	while (++x < WIDTH)
 	{
-		printf("Ray ang: %f\n", ray.ang);
+		//printf("Ray ang: %f\n", ray.ang);
 		set_deltas(&ray.delta, ray.ang);
 		ray_dst = dda(ray, cub3d->map);
-		printf("Ray distance: %f\n", ray_dst);
+		printf("My Ray distance: %f - Ang: %f\n", ray_dst, ray.ang);
 		wall.line_height = (int)(TILE / ray_dst);
 		wall.color = get_wall_color(ray_dst);
 		wall.start = HEIGHT / 2 - wall.line_height / 2; 

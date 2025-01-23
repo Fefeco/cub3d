@@ -4,7 +4,7 @@
 !_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
 !_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
 !_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
-!_TAG_PROC_CWD	/home/fcarranz/cub3D/	//
+!_TAG_PROC_CWD	/home/fedeito/cub3D/	//
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
@@ -21,7 +21,7 @@ $(OBJS_PATH)%.o	Makefile	/^$(OBJS_PATH)%.o: $(SRCS_PATH)%.c$/;"	t
 $(OBJ_DIR)/%.o	mlx/Makefile.mk	/^$(OBJ_DIR)\/%.o: %.c$/;"	t
 $(PHONY_LIBFT)	Makefile	/^$(PHONY_LIBFT):$/;"	t
 $(PRF_OBJ_PATH)%.o	libft/Makefile	/^$(PRF_OBJ_PATH)%.o: $(PRF_SRC_PATH)%.c$/;"	t
-<C-P>	Session.vim	/^nnoremap <C-P> :find $/;"	m
+<C-P>	Session.vim	/^nnoremap <C-P> :find *$/;"	m
 <F1>	Session.vim	/^map <F1> :Stdheader$/;"	m
 <Plug>NetrwBrowseX	Session.vim	/^nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(netrw#GX(),netrw#CheckIfRemote(netrw#GX/;"	m
 <Plug>NetrwBrowseXVis	Session.vim	/^xnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()$/;"	m
@@ -265,7 +265,7 @@ X_ShmAttach	mlx/mlx_new_image.c	/^#define	X_ShmAttach	/;"	d	file:
 YELL	inc/colors.h	/^# define YELL	/;"	d
 YELLOW	Makefile	/^YELLOW	= \\033[0;93m$/;"	m
 YELLOW	libft/Makefile	/^YELLOW		= \\033[0;93m$/;"	m
-\x16\x10	Session.vim	/^nnoremap  :find $/;"	m
+\x16\x10	Session.vim	/^nnoremap  :find *$/;"	m
 add_line_to_map	src/add_line_to_map.c	/^int	add_line_to_map(const char *line, t_game *cub3d)$/;"	f	typeref:typename:int
 addr_to_draw	inc/cub3d.h	/^	char	*addr_to_draw;$/;"	m	struct:s_img	typeref:typename:char *
 addr_to_render	inc/cub3d.h	/^	char	*addr_to_render;$/;"	m	struct:s_img	typeref:typename:char *
@@ -594,7 +594,7 @@ rm_spaces_endl	src/extract_coord.c	/^static char	*rm_spaces_endl(const char *str
 root	mlx/mlx_int.h	/^	Window		root;$/;"	m	struct:s_xvar	typeref:typename:Window
 rotate	src/moves.c	/^void	rotate(int key, t_player *ply)$/;"	f	typeref:typename:void
 s:cpo_save	Session.vim	/^let s:cpo_save=&cpo$/;"	v
-s:l	Session.vim	/^let s:l = 47 - ((46 * winheight(0) + 26) \/ 53)$/;"	v
+s:l	Session.vim	/^let s:l = 54 - ((42 * winheight(0) + 22) \/ 45)$/;"	v
 s:so_save	Session.vim	/^let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1$/;"	v
 s:sx	Session.vim	/^let s:sx = expand("<sfile>:p:r")."x.vim"$/;"	v
 s:wipebuf	Session.vim	/^  let s:wipebuf = bufnr('%')$/;"	v

@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2025/01/23 12:17:28 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:24:50 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define WIDTH		800
 # define TILE		48
 # define STEP_SZ	4
-# define FOV		60
+# define FOV		90
 # define EPSILON	1e-10
 
 # define MAP_WALL_COLOR 0x00433535

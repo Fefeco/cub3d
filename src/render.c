@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 20:45:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/23 12:05:36 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:26:57 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	render(t_game *cub3d)
 //	draw_player(cub3d);
 //	draw_ray(cub3d);
 	render_walls(cub3d);
+	render_minimap(cub3d);
 	switch_img(images);
 	mlx_put_image_to_window(mlx->disp, mlx->win, images->img_to_render, 0, 0);
 	return (0);
