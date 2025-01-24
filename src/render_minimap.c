@@ -6,13 +6,14 @@
 /*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 20:53:09 by fedeito           #+#    #+#             */
-/*   Updated: 2025/01/23 22:57:17 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/24 20:15:34 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <math.h>
 
-void	render_border(t_img *images)
+/*void	render_border(t_img *images)
 {
 	int		mini_w;
 	int		mini_h;
@@ -39,31 +40,66 @@ void	render_border(t_img *images)
 		++axis.y;
 	}
 }
-
-void	render_map(char **map, t_ivec pos, t_img *images)
+*/
+void	render_map(char **map, t_img *images)
 {
-	int		x;
-	int		y;
+	t_ivec	mini;
+	int		mini_tile;
 
-	mini_pos.x = pos.x / TILE + ((pos.x % TILE) / 4);
-	mini_pos.y = pos.y / TILE + ((pos.y % TILE) / 4);
-	y = 0;
-	while (y < HEIGHT && map[y / TILE])
+	mini_tile = TILE / 4;
+	mini.y = 0;
+	while (mini.y < HEIGHT && map[mini.y / mini_tile])
 	{
-		x = 0;
-		while (x < WIDTH && map[y / TILE][x / TILE])
+		mini.x = 0;
+		while (map[mini.y / mini_tile][mini.x / mini_tile])
 		{
-			if (map[y / TILE][x / TILE] == '1')
-				put_pxl_on_img(images, x, y, MAP_WALL_COLOR);
-			++x;
+			if (map[mini.y / mini_tile][mini.x / mini_tile] == '1')
+				put_pxl_on_img(images, mini.x, mini.y, MAP_WALL_COLOR);
+			++mini.x;
 		}
-		++y;
+		++mini.y;
+	}
+}
+void	render_ray(t_ivec pos, double ang, char **map, t_img *images)
+{
+	t_dvec	delta;
+	t_dvec	acc;
+	int		mini_tile;
+
+	mini_tile = TILE / 4;
+	set_deltas(&delta, ang);
+	acc.x = pos.x;
+	acc.y = pos.y;
+	while (map[(int)floor(acc.y) / mini_tile][(int)floor(acc.x) / mini_tile] != '1')
+	{
+		put_pxl_on_img(images, floor(acc.x), floor(acc.y), 0x00FF0000);
+		acc.x += delta.x;
+		acc.y += delta.y;
 	}
 }
 
+void	render_player(t_img *images, t_player ply, char **map)
+{
+	t_ivec	pos;
+	t_ivec	grow_dir;
+
+	pos.x = ply.pos.x / 4;
+	pos.y = ply.pos.y / 4;
+	grow_dir.x = 1;
+	if (map[pos.y][pos.x + grow_dir.x] == '1')
+		grow_dir.x = -1;
+	grow_dir.y = 1;
+	if (map[pos.y + grow_dir.y][pos.x] == '1')
+		grow_dir.y = -1;
+	put_pxl_on_img(images, pos.x, pos.y, MAP_WALL_COLOR);
+	put_pxl_on_img(images, pos.x + grow_dir.x, pos.y + grow_dir.y, MAP_WALL_COLOR);
+	put_pxl_on_img(images, pos.x + grow_dir.x, pos.y, MAP_WALL_COLOR);
+	put_pxl_on_img(images, pos.x, pos.y + grow_dir.y, MAP_WALL_COLOR);
+	render_ray(pos, ply.ang, map, images);
+}
 void	render_minimap(t_game *cub3d)
 {
-	render_map(cub3d->map, cub3d->ply.pos, &cub3d->images);
-	render_player(&cub3d->images);
-	render_border(&cub3d->images);
+	render_map(cub3d->map, &cub3d->images);
+	render_player(&cub3d->images, cub3d->ply, cub3d->map);
+	//render_border(&cub3d->images);
 }
