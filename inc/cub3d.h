@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2025/01/23 22:55:39 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/24 20:40:31 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define HEIGHT		600
 # define WIDTH		800
 # define TILE		48
-# define STEP_SZ	4
+# define STEP_SZ	2
 # define FOV		90
 # define EPSILON	1e-10
 

@@ -6,7 +6,7 @@
 /*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 20:48:54 by fedeito           #+#    #+#             */
-/*   Updated: 2025/01/23 20:12:00 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/24 20:34:53 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,10 @@ void	render_walls(t_game *cub3d)
 	x = -1;
 	while (++x < WIDTH)
 	{
-		//printf("Ray ang: %f\n", ray.ang);
 		set_deltas(&ray.delta, ray.ang);
 		ray_dst = dda(ray, cub3d->map);
 		printf("My Ray distance: %f - Ang: %f\n", ray_dst, ray.ang);
-		wall.line_height = (int)(TILE / ray_dst);
+		wall.line_height = (int)(HEIGHT / ray_dst);
 		wall.color = get_wall_color(ray_dst);
 		wall.start = HEIGHT / 2 - wall.line_height / 2; 
 		draw_wall(cub3d, x, wall);
