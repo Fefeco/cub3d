@@ -1,0 +1,38 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Depurar con GDB",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/cub3d",
+            "args": ["maps/map.cub"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "setupCommands": [
+                {
+                    "description": "Hacer que gdb siga al proceso hijo",
+                    "text": "-gdb-set follow-fork-mode parent",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Compilar",
+			"internalConsoleOptions": "openOnSessionStart",
+			"logging": {
+                "engineLogging": false,
+                "trace": false,
+                "traceResponse": false
+            },
+			"launchCompleteCommand": "exec-run",
+            "sourceFileMap": {
+                "/mnt/c": "c:\\"
+            }
+        }
+    ]
+}
+]
+}
