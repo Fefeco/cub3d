@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2025/01/27 12:01:41 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/27 13:53:24 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@
 # include "keys.h"
 # include "error.h"
 
-# define HEIGHT		600
-# define WIDTH		800
-# define TILE		50
-# define STEP_SZ	2
-# define FOV		30
+# define HEIGHT		768
+# define WIDTH		1336
+# define TILE		5
+# define STEP_SZ	1
+# define FOV		65
 # define EPSILON	1e-10
 
 # define MAP_WALL_COLOR 0x00433535
@@ -86,13 +86,13 @@ typedef struct s_double_vector
 
 typedef struct s_wall
 {
-	int	line_height;
+	double	line_height;
 	int	color;
-	int	start;
+	double	start;
 }				t_wall;
 typedef struct s_player
 {
-	t_ivec	pos;
+	t_dvec	pos;
 	double	ang;
 }				t_player;
 
@@ -103,7 +103,7 @@ typedef struct s_ray
 	t_ivec	step;
 	t_dvec	delta_dst;
 	t_dvec	dst;
-	t_ivec	start;
+	t_dvec	start;
 }				t_ray;
 
 typedef struct s_game

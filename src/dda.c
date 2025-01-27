@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:46:36 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/23 20:09:17 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/27 12:40:20 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,14 @@ void	set_delta_distances(t_dvec *delta_dst, t_dvec delta)
 		delta_dst->y = fabs(TILE / delta.y);
 }
 
-t_ivec	get_map_coords(t_ivec ply_pos)
+t_ivec	get_map_coords(t_dvec ply_pos)
 {
 	t_ivec	map_pt;
 
-	map_pt.x = ply_pos.x / TILE;
-	map_pt.y = ply_pos.y / TILE;
+	map_pt.x = floor(ply_pos.x);
+	map_pt.y = floor(ply_pos.y);
+	map_pt.x /= TILE;
+	map_pt.y /= TILE;
 	return (map_pt);
 }
 
@@ -78,6 +80,7 @@ double	dda(t_ray ray, char **map)
 	char	next_axis;
 
 	map_pos = get_map_coords(ray.start);
+	printf("map pos x: %d y:%d\n", map_pos.x, map_pos.y);
 	set_step_directions(&ray);
 	set_delta_distances(&ray.delta_dst, ray.delta);
 	ray.dst.x = get_first_dist(ray.step.x, ray.start.x, fabs(ray.delta.x));
@@ -85,7 +88,6 @@ double	dda(t_ray ray, char **map)
 	next_axis = '0';
 	while (1)
 	{
-		//printf("delta.x: %f, delta.y: %f, step.x: %d, step.y: %d, ang: %f\n", ray.delta.x, ray.delta.y, ray.step.x, ray.step.y, ray.ang);
 		next_axis = next_step_axis(ray.delta_dst, ray.dst);
 		if (next_axis == 'x')
 		{
