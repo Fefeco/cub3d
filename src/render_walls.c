@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 20:48:54 by fedeito           #+#    #+#             */
-/*   Updated: 2025/01/30 18:46:28 by shurtado         ###   ########.fr       */
+/*   Updated: 2025/01/30 19:17:03 by shurtado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	render_walls(t_game *cub3d)
 	double	ray_dst;
 	double	inc;
 	t_wall	wall;
+	double	corrected;
 
 	ray.start = cub3d->ply.pos;
 	ray.ang = cub3d->ply.ang - (deg_to_rad(FOV) / 2);
@@ -99,8 +100,8 @@ void	render_walls(t_game *cub3d)
 	{
 		set_deltas(&ray.delta, ray.ang);
 		ray_dst = dda(&ray, cub3d->map);
-		wall.line_height = (HEIGHT / ray_dst) * TILE;
-		wall.color = get_wall_color(ray_dst);
+		corrected = ray_dst * cos(ray.ang - cub3d->ply.ang);
+		wall.line_height = (HEIGHT / corrected) * TILE;
 		wall.start = HEIGHT / 2 - (wall.line_height / 2);
 		draw_wall(cub3d, x, wall, ray, ray_dst);
 		ray.ang += inc;
