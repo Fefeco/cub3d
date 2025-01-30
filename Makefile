@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
+#    By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
-#    Updated: 2025/01/23 21:08:20 by fedeito          ###   ########.fr        #
+#    Updated: 2025/01/30 17:47:09 by shurtado         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ LIBMLX		= mlx/libmlx.a
 
 CC			= cc
 INC			= -Imlx -Iinc -Ilibft/inc
-CFLAGS		= -Wall -Wextra -Werror -g -MMD
+CFLAGS		= -Wall -Wextra -Werror -g -MMD -fsanitize=address
 MLX_FLAGS	= -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 LIBFT_FLAGS	= -Llibft -lftprintf
 MATH_FLAGS	= -lm

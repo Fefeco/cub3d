@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:56:05 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/30 13:28:30 by shurtado         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:52:41 by shurtado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,25 +64,21 @@ static void	read_source_file(char *filename, t_game *cub3d)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	test(cub3d);	// Prints game data;
+	test(cub3d);
 	if (line || uncomplete_params(cub3d))
 		clean_exit(cub3d, NULL, 2);
 }
 
 void	set_xpm_textures(t_game *cub3d)
 {
-	int	*h;
-	int *w;
-
-	h = calloc(1, sizeof(int));
-	w = calloc(1, sizeof(int));
-	*h = cub3d->xpm_images.height;
-	*w = cub3d->xpm_images.width;
-	cub3d->xpm_images.ea = mlx_xpm_file_to_image(cub3d->mlx.disp, cub3d->textures.ea, w, h);
+	cub3d->xpm_images.ea = mlx_xpm_file_to_image(cub3d->mlx.disp, cub3d->textures.ea, &cub3d->xpm_images.width, &cub3d->xpm_images.height);
 	cub3d->xpm_images.we = mlx_xpm_file_to_image(cub3d->mlx.disp, cub3d->textures.we, &cub3d->xpm_images.width, &cub3d->xpm_images.height);
 	cub3d->xpm_images.no = mlx_xpm_file_to_image(cub3d->mlx.disp, cub3d->textures.no, &cub3d->xpm_images.width, &cub3d->xpm_images.height);
 	cub3d->xpm_images.so = mlx_xpm_file_to_image(cub3d->mlx.disp, cub3d->textures.so, &cub3d->xpm_images.width, &cub3d->xpm_images.height);
-
+	cub3d->xpm_images.ea->addr_to_draw = mlx_get_data_addr(cub3d->xpm_images.ea, &cub3d->xpm_images.ea->bits_per_pixel, &cub3d->xpm_images.ea->line_length, &cub3d->xpm_images.ea->endian);
+	cub3d->xpm_images.we->addr_to_draw = mlx_get_data_addr(cub3d->xpm_images.we, &cub3d->xpm_images.we->bits_per_pixel, &cub3d->xpm_images.we->line_length, &cub3d->xpm_images.we->endian);
+	cub3d->xpm_images.no->addr_to_draw = mlx_get_data_addr(cub3d->xpm_images.no, &cub3d->xpm_images.no->bits_per_pixel, &cub3d->xpm_images.no->line_length, &cub3d->xpm_images.no->endian);
+	cub3d->xpm_images.so->addr_to_draw = mlx_get_data_addr(cub3d->xpm_images.so, &cub3d->xpm_images.so->bits_per_pixel, &cub3d->xpm_images.so->line_length, &cub3d->xpm_images.so->endian);
 }
 
 void	set_game_params(char *filename, t_game *cub3d)

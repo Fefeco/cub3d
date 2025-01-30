@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:57:52 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/30 12:32:05 by shurtado         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:58:46 by shurtado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,4 @@ void	init_t_game(t_game *cub3d)
 	cub3d->map = NULL;
 	cub3d->xpm_images.width = 64;
 	cub3d->xpm_images.height = 64;
-	cub3d->xpm_images.ea = NULL;
-	cub3d->xpm_images.no = NULL;
-	cub3d->xpm_images.we = NULL;
-	cub3d->xpm_images.so = NULL;
 }

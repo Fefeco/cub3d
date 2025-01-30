@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   render_walls.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shurtado <shurtado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 20:48:54 by fedeito           #+#    #+#             */
-/*   Updated: 2025/01/30 15:23:06 by shurtado         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:53:11 by shurtado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "cub3d.h"
 
-void	*get_texture(t_game *cub3d, t_ray ray)
+t_img	*get_texture(t_game *cub3d, t_ray ray)
 {
 	if (ray.axis == 'x')
 	{
@@ -33,17 +33,12 @@ void	*get_texture(t_game *cub3d, t_ray ray)
 
 }
 
-int get_pixel_color(void *texture, int x, int y)
+int get_pixel_color(t_img *img, int x, int y)
 {
 	char			*pixel;
 	int				color;
-	static t_img	img;
 
-	if (!img.addr_to_draw)
-		img.addr_to_draw = mlx_get_data_addr(texture, &img.bits_per_pixel, &img.line_length, &img.endian);
-	if (!img.addr_to_draw)
-		return (0xFF00FF);
-	pixel = img.addr_to_draw + (y * img.line_length + x * (img.bits_per_pixel / 8));
+	pixel = img->addr_to_draw + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	color = *(int *)pixel;
 	return (color);
 }
@@ -53,7 +48,7 @@ void draw_wall(t_game *cub3d, int x, t_wall wall, t_ray ray, double ray_dst)
 {
 	int	y;
 	int	wall_end;
-	void	*texture;
+	t_img	*texture;
 	double	hit_y;
 	double	hit_x;
 	double	tex_x;

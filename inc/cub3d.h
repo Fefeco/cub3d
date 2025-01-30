@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shurtado <shurtado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2025/01/30 15:11:58 by shurtado         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:31:36 by shurtado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ typedef struct s_coords
 
 typedef struct s_textures
 {
-	void	*no;
-	void	*so;
-	void	*we;
-	void	*ea;
+	t_img	*no;
+	t_img	*so;
+	t_img	*we;
+	t_img	*ea;
 	int		width;
 	int		height;
 }			t_textures;
