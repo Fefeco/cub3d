@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
+/*   By: shurtado <shurtado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2025/01/30 13:33:29 by shurtado         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:11:58 by shurtado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 
 # define HEIGHT		768
 # define WIDTH		1336
-# define TILE		9
+# define TILE		1
 # define STEP_SZ	1
 # define FOV		65
 # define EPSILON	1e-10
