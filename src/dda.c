@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
+/*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:46:36 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/27 12:40:20 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:04:18 by shurtado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ double	dda(t_ray ray, char **map)
 	char	next_axis;
 
 	map_pos = get_map_coords(ray.start);
-	printf("map pos x: %d y:%d\n", map_pos.x, map_pos.y);
 	set_step_directions(&ray);
 	set_delta_distances(&ray.delta_dst, ray.delta);
 	ray.dst.x = get_first_dist(ray.step.x, ray.start.x, fabs(ray.delta.x));
