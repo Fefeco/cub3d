@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:26:14 by fedeito           #+#    #+#             */
-/*   Updated: 2025/01/30 10:30:37 by shurtado         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:38:23 by shurtado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	try_move(int key, t_game *cub3d)
 		sumax = -1;
 	if (delta.y < 0)
 		sumay = -1;
-	ply.x = cub3d->ply.pos.x + (delta.x * 0.5);
-	ply.y = cub3d->ply.pos.y + (delta.y * 0.5);
+	ply.x = cub3d->ply.pos.x + (delta.x * 0.2);
+	ply.y = cub3d->ply.pos.y + (delta.y * 0.2);
 	if (!check_wall(floor(ply.x + sumax) / TILE, floor(cub3d->ply.pos.y) / TILE, cub3d->map))
 		cub3d->ply.pos.x = ply.x;
 	if (!check_wall(floor(cub3d->ply.pos.x) / TILE, floor(ply.y + sumay) / TILE, cub3d->map))

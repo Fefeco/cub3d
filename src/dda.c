@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:46:36 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/30 11:04:18 by shurtado         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:37:20 by shurtado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,20 @@ t_ivec	get_map_coords(t_dvec ply_pos)
 	return (map_pt);
 }
 
-static double	get_first_dist(int	step, int pos, double delta)
+static double	get_first_dist(int step, double pos, double delta)
 {
 	double	first_dist;
+	double	tile;
 
+	tile = (double) TILE;
 	if (step > 0)
-		first_dist = (TILE - (pos % TILE));
+		first_dist = (tile - fmod(pos, tile));
 	else if (step < 0)
-		first_dist = (pos % TILE);
+		first_dist = fmod(pos, tile);
 	else
 		first_dist = 0;
 	if (delta != 0)
-		first_dist *= 1 / delta;
+		first_dist /= fabs(delta);
 	return (first_dist);
 }
 

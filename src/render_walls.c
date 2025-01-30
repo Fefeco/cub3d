@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 20:48:54 by fedeito           #+#    #+#             */
-/*   Updated: 2025/01/30 11:04:49 by shurtado         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:33:00 by shurtado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ void	render_walls(t_game *cub3d)
 	x = -1;
 	while (++x < WIDTH)
 	{
-		set_deltas(&ray.delta, ray.ang);
-		ray_dst = dda(ray, cub3d->map);
 		if (x == 668)
 		{
 			printf ("ray_dst:%.03f\n", ray_dst);
 			printf ("posx:%.03f posy:%.03f\n", ray.start.x, ray.start.y);
 		}
+		set_deltas(&ray.delta, ray.ang);
+		ray_dst = dda(ray, cub3d->map);
 		wall.line_height = (HEIGHT / ray_dst);
 		wall.color = get_wall_color(ray_dst);
 		wall.start = HEIGHT / 2 - (wall.line_height / 2);
