@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
+/*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:57:52 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/23 21:19:59 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/30 12:32:05 by shurtado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,10 @@ void	init_t_game(t_game *cub3d)
 	cub3d->render = true;
 	cub3d->ply.ang = -1;
 	cub3d->map = NULL;
+	cub3d->xpm_images.width = 64;
+	cub3d->xpm_images.height = 64;
+	cub3d->xpm_images.ea = NULL;
+	cub3d->xpm_images.no = NULL;
+	cub3d->xpm_images.we = NULL;
+	cub3d->xpm_images.so = NULL;
 }

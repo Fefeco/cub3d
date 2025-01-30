@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2025/01/30 11:08:25 by shurtado         ###   ########.fr       */
+/*   Updated: 2025/01/30 13:33:29 by shurtado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,16 @@ typedef struct s_coords
 	char	*ea;
 }				t_coords;
 
+typedef struct s_textures
+{
+	void	*no;
+	void	*so;
+	void	*we;
+	void	*ea;
+	int		width;
+	int		height;
+}			t_textures;
+
 typedef struct s_color
 {
 	int		red;
@@ -87,7 +97,7 @@ typedef struct s_double_vector
 typedef struct s_wall
 {
 	double	line_height;
-	int	color;
+	int		color;
 	double	start;
 }				t_wall;
 typedef struct s_player
@@ -99,6 +109,7 @@ typedef struct s_player
 typedef struct s_ray
 {
 	double	ang;
+	char	axis;
 	t_dvec	delta;
 	t_ivec	step;
 	t_dvec	delta_dst;
@@ -116,6 +127,7 @@ typedef struct s_game
 	bool		ready_for_map;
 	bool		render;
 	t_player	ply;
+	t_textures	xpm_images;
 	char		**map;
 }				t_game;
 
@@ -204,7 +216,7 @@ double	deg_to_rad(int deg);
 int		rad_to_deg(double rad);
 
 // dda.c
-double	dda(t_ray ray, char **map);
+double	dda(t_ray *ray, char **map);
 void	set_deltas(t_dvec *delta, double ang);
 
 // render_walls.c
@@ -215,4 +227,6 @@ int get_wall_color(double ray_dst);
 
 // render_minimap.c
 void render_minimap(t_game *cub3d);
+
+void	set_xpm_textures(t_game *cub3d);
 #endif

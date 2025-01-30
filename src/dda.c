@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:46:36 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/30 11:37:20 by shurtado         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:56:59 by shurtado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,35 +76,34 @@ char	next_step_axis(t_dvec delta_dst, t_dvec tot_dst)
 		return ('y');
 }
 
-double	dda(t_ray ray, char **map)
+double	dda(t_ray *ray, char **map)
 {
 	t_ivec	map_pos;
-	char	next_axis;
 
-	map_pos = get_map_coords(ray.start);
-	set_step_directions(&ray);
-	set_delta_distances(&ray.delta_dst, ray.delta);
-	ray.dst.x = get_first_dist(ray.step.x, ray.start.x, fabs(ray.delta.x));
-	ray.dst.y = get_first_dist(ray.step.y, ray.start.y, fabs(ray.delta.y));
-	next_axis = '0';
+	map_pos = get_map_coords(ray->start);
+	set_step_directions(ray);
+	set_delta_distances(&ray->delta_dst, ray->delta);
+	ray->dst.x = get_first_dist(ray->step.x, ray->start.x, fabs(ray->delta.x));
+	ray->dst.y = get_first_dist(ray->step.y, ray->start.y, fabs(ray->delta.y));
+	ray->axis = '0';
 	while (1)
 	{
-		next_axis = next_step_axis(ray.delta_dst, ray.dst);
-		if (next_axis == 'x')
+		ray->axis = next_step_axis(ray->delta_dst, ray->dst);
+		if (ray->axis == 'x')
 		{
-			map_pos.x += ray.step.x;
-			ray.dst.x += ray.delta_dst.x;
+			map_pos.x += ray->step.x;
+			ray->dst.x += ray->delta_dst.x;
 		}
 		else
 		{
-			map_pos.y += ray.step.y;
-			ray.dst.y += ray.delta_dst.y;
+			map_pos.y += ray->step.y;
+			ray->dst.y += ray->delta_dst.y;
 		}
 		if (check_wall(map_pos.x, map_pos.y, map))
 			break ;
 	}
-	if (next_axis == 'x')
-		return (ray.dst.x - ray.delta_dst.x);
+	if (ray->axis == 'x')
+		return (ray->dst.x - ray->delta_dst.x);
 	else
-		return (ray.dst.y - ray.delta_dst.y);
+		return (ray->dst.y - ray->delta_dst.y);
 }
