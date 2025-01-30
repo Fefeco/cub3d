@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 20:48:54 by fedeito           #+#    #+#             */
-/*   Updated: 2025/01/30 17:53:11 by shurtado         ###   ########.fr       */
+/*   Updated: 2025/01/30 18:46:28 by shurtado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,20 @@ void draw_wall(t_game *cub3d, int x, t_wall wall, t_ray ray, double ray_dst)
 	if (tex_x < 0)
 		tex_x += TILE;
 	tex_x = (tex_x * cub3d->xpm_images.width) / TILE;
-	if (wall.start < 0)
-		wall.start = 0;
 	if (wall_end > HEIGHT)
 	{
 		wall_end = HEIGHT;
 	}
+	if (wall.start < 0)
+	{
+		tex_y = ((wall.start * -1) * cub3d->xpm_images.height) / wall.line_height;
+		wall.start = 0;
+	}
 	y = wall.start;
 	while (y < wall_end)
 	{
-		tex_y = ((y - wall.start) * cub3d->xpm_images.height) / wall.line_height;
-		put_pxl_on_img(&cub3d->images, x, y, get_pixel_color(texture, tex_x, tex_y));
+		put_pxl_on_img(&cub3d->images, x, y, get_pixel_color(texture, (int)tex_x, (int)tex_y));
+		tex_y += (double)cub3d->xpm_images.height / wall.line_height;
 		++y;
 	}
 }
@@ -96,7 +99,7 @@ void	render_walls(t_game *cub3d)
 	{
 		set_deltas(&ray.delta, ray.ang);
 		ray_dst = dda(&ray, cub3d->map);
-		wall.line_height = (HEIGHT / ray_dst);
+		wall.line_height = (HEIGHT / ray_dst) * TILE;
 		wall.color = get_wall_color(ray_dst);
 		wall.start = HEIGHT / 2 - (wall.line_height / 2);
 		draw_wall(cub3d, x, wall, ray, ray_dst);

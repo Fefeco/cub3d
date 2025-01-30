@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2025/01/30 17:31:36 by shurtado         ###   ########.fr       */
+/*   Updated: 2025/01/30 18:47:47 by shurtado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@
 # include "error.h"
 
 # define HEIGHT		768
-# define WIDTH		1336
-# define TILE		1
-# define STEP_SZ	1
-# define FOV		65
+# define WIDTH		1024
+# define TILE		64
+# define STEP_SZ	5
+# define FOV		62
 # define EPSILON	1e-10
 
 # define MAP_WALL_COLOR 0x00433535
