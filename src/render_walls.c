@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 20:48:54 by fedeito           #+#    #+#             */
-/*   Updated: 2025/01/31 13:48:03 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/31 22:13:24 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,25 @@ t_img	*get_texture(t_game *cub3d, t_ray ray)
 	if (ray.axis == 'x')
 	{
 		if (ray.step.x > 0)
-			return (cub3d->tex.img_ea);
+			return (&cub3d->ea.data);
 		else
-			return (cub3d->tex.img_we);
+			return (&cub3d->we.data);
 	}
 	else
 	{
 		if (ray.step.y > 0)
-			return (cub3d->tex.img_so);
+			return (&cub3d->so.data);
 		else
-			return (cub3d->tex.img_no);
+			return (&cub3d->no.data);
 	}
-
-
 }
 
-int get_pixel_color(t_img *img, int x, int y)
+int get_pixel_color(t_img *data, int x, int y)
 {
 	char			*pixel;
 	int				color;
 
-	pixel = img->addr_to_draw + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	pixel = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	color = *(int *)pixel;
 	return (color);
 }
@@ -53,6 +51,7 @@ void draw_wall(t_game *cub3d, int x, t_wall wall, t_ray ray, double ray_dst)
 	double	hit_x;
 	double	tex_x;
 	double	tex_y;
+	int		color;
 
 	texture = get_texture(cub3d, ray);
 	wall_end = wall.start + wall.line_height;
@@ -64,21 +63,22 @@ void draw_wall(t_game *cub3d, int x, t_wall wall, t_ray ray, double ray_dst)
 		tex_x = fmod(hit_x, TILE);
 	if (tex_x < 0)
 		tex_x += TILE;
-	tex_x = (tex_x * cub3d->tex.w) / TILE;
+	tex_x = (tex_x * cub3d->no.w) / TILE;
 	if (wall_end > HEIGHT)
 	{
 		wall_end = HEIGHT;
 	}
 	if (wall.start < 0)
 	{
-		tex_y = ((wall.start * -1) * cub3d->tex.h) / wall.line_height;
+		tex_y = ((wall.start * -1) * cub3d->no.h) / wall.line_height;
 		wall.start = 0;
 	}
 	y = wall.start;
 	while (y < wall_end)
 	{
-		put_pxl_on_img(&cub3d->images, x, y, get_pixel_color(texture, (int)tex_x, (int)tex_y));
-		tex_y += (double)cub3d->tex.h / wall.line_height;
+		color = get_pixel_color(texture, (int)tex_x, (int)tex_y);
+		put_pxl_on_img(cub3d->draw.img, x, y, color);
+		tex_y += (double)cub3d->no.h / wall.line_height;
 		++y;
 	}
 }

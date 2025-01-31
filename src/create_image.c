@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 19:10:28 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/16 14:20:02 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/31 21:56:53 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,21 @@
 
 void	create_image(t_game *cub3d)
 {
-	t_img	*images;
 	t_mlx	*mlx;
+	t_img	*draw;
+	t_img	*render;
 
-	images = &cub3d->images;
 	mlx = &cub3d->mlx;
-	images->img_to_draw = mlx_new_image(mlx->disp, WIDTH, HEIGHT);
-	images->img_to_render = mlx_new_image(mlx->disp, WIDTH, HEIGHT);
-	if (!images->img_to_draw || !images->img_to_render)
+	draw = &cub3d->draw;
+	render = &cub3d->render;
+	draw->img = mlx_new_image(mlx->disp, WIDTH, HEIGHT);
+	render->img = mlx_new_image(mlx->disp, WIDTH, HEIGHT);
+	if (!draw->img || !render->img)
 		clean_exit(cub3d, E_NEWIMG, 6);
-	images->addr_to_draw = mlx_get_data_addr(images->img_to_draw,
-			&images->bits_per_pixel, &images->line_length, &images->endian);
-	images->addr_to_render = mlx_get_data_addr(images->img_to_render,
-			&images->bits_per_pixel, &images->line_length, &images->endian);
-	if (!images->img_to_draw || !images->img_to_render)
+	draw->addr = mlx_get_data_addr(draw->img, &draw->bits_per_pixel,
+			&draw->line_length, &draw->endian);
+	render->addr = mlx_get_data_addr(render->img,
+			&render->bits_per_pixel, &render->line_length, &render->endian);
+	if (!draw->img|| !render->img)
 		clean_exit(cub3d, E_DATIMG, 6);
 }

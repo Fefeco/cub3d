@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 13:00:35 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/31 11:21:10 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/31 21:17:03 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	clean_game_ptrs(t_game *cub3d)
 {
-	free_textures(&cub3d->tex);
-	free_images(&cub3d->images, cub3d->mlx.disp);
+	free_textures(cub3d);
+	free_image(&cub3d->render, cub3d->mlx.disp);
+	free_image(&cub3d->draw, cub3d->mlx.disp);
 	free_mlx(&cub3d->mlx);
 	free_map(cub3d->map);
 }

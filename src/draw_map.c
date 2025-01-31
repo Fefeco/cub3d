@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:09:55 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/29 20:51:42 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/31 21:31:18 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	draw_grid(t_img	*images)
 		++y;
 	}
 }
-*/
 void	draw_map(t_game *cub3d)
 {
 	t_img	*images;
@@ -54,3 +53,4 @@ void	draw_map(t_game *cub3d)
 	}
 //	draw_grid(images);
 }
+*/

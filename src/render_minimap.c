@@ -6,7 +6,7 @@
 /*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 20:53:09 by fedeito           #+#    #+#             */
-/*   Updated: 2025/01/24 20:15:34 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/01/31 21:42:25 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,10 @@ void	render_player(t_img *images, t_player ply, char **map)
 	put_pxl_on_img(images, pos.x, pos.y + grow_dir.y, MAP_WALL_COLOR);
 	render_ray(pos, ply.ang, map, images);
 }
-void	render_minimap(t_game *cub3d)
+/*void	render_minimap(t_game *cub3d)
 {
 	render_map(cub3d->map, &cub3d->images);
 	render_player(&cub3d->images, cub3d->ply, cub3d->map);
 	//render_border(&cub3d->images);
 }
+*/

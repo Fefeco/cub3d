@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:21:52 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/31 11:17:15 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/31 21:16:07 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,40 +26,34 @@ void	*free_map(char **map)
 	return (NULL);
 }
 
-void	free_images(t_img *images, void *disp)
+void	free_image(t_img *data, void *disp)
 {
-	if (images->img_to_render)
+	if (data->img)
 	{
-		mlx_destroy_image(disp, images->img_to_render);
-		images->img_to_render = NULL;
-		images->addr_to_render = NULL;
-	}
-	if (images->img_to_draw)
-	{
-		mlx_destroy_image(disp, images->img_to_draw);
-		images->img_to_draw = NULL;
-		images->addr_to_draw = NULL;
+		mlx_destroy_image(disp, data->img);
+		data->img= NULL;
+		data->addr= NULL;
 	}
 }
 
-void	free_textures(t_tex *tex)
+void	free_textures(t_game *cub3d)
 {
-	if (tex->file_no)
-		free(tex->file_no);
-	if (tex->file_so)
-		free(tex->file_so);
-	if (tex->file_we)
-		free(tex->file_we);
-	if (tex->file_ea)
-		free(tex->file_ea);
-	if (tex->img_no)
-		free(tex->img_no);
-	if (tex->img_so)
-		free(tex->img_so);
-	if (tex->img_we)
-		free(tex->img_we);
-	if (tex->img_ea)
-		free(tex->img_ea);
+	if (cub3d->no.file)
+		free(cub3d->no.file);
+	if (cub3d->so.file)
+		free(cub3d->so.file);
+	if (cub3d->we.file)
+		free(cub3d->we.file);
+	if (cub3d->ea.file)
+		free(cub3d->ea.file);
+	if (cub3d->no.data.img)
+		free(cub3d->no.data.img);
+	if (cub3d->so.data.img)
+		free(cub3d->so.data.img);
+	if (cub3d->we.data.img)
+		free(cub3d->we.data.img);
+	if (cub3d->ea.data.img)
+		free(cub3d->ea.data.img);
 }
 
 void	free_mlx(t_mlx *mlx)

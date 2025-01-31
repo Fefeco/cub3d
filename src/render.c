@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 20:45:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/27 12:23:05 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/31 21:30:15 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static void	draw_background(t_game *cub3d)
 {
-	t_img	*images;
+	t_img	*draw;
 	int		color;
 	t_color	col;
 	int		x;
 	int		y;
 
-	images = &cub3d->images;
+	draw = &cub3d->draw;
 	col = cub3d->ceiling;
 	color = create_trgb(0, col.red, col.green, col.blue);
 	col = cub3d->floor;
@@ -32,7 +32,7 @@ static void	draw_background(t_game *cub3d)
 			color = create_trgb(0, col.red, col.green, col.blue);
 		while (x < WIDTH)
 		{
-			put_pxl_on_img(images, x, y, color);
+			put_pxl_on_img(draw, x, y, color);
 			++x;
 		}
 		++y;
@@ -41,12 +41,10 @@ static void	draw_background(t_game *cub3d)
 
 int	render(t_game *cub3d)
 {
-	t_img	*images;
 	t_mlx	*mlx;
 
-	if (!cub3d->render)
+	if (!cub3d->key_press)
 		return (1);
-	images = &cub3d->images;
 	mlx = &cub3d->mlx;
 	draw_background(cub3d);
 //	draw_map(cub3d);
@@ -54,8 +52,8 @@ int	render(t_game *cub3d)
 //	draw_ray(cub3d);
 	render_walls(cub3d);
 	// render_minimap(cub3d);
-	switch_img(images);
-	mlx_put_image_to_window(mlx->disp, mlx->win, images->img_to_render, 0, 0);
-	cub3d->render = false;
+	switch_img(&cub3d->draw, &cub3d->render);
+	mlx_put_image_to_window(mlx->disp, mlx->win, &cub3d->render, 0, 0);
+	cub3d->key_press = false;
 	return (0);
 }

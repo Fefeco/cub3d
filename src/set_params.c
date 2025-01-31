@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:56:05 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/31 13:41:28 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/31 21:00:44 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,24 +74,27 @@ void	set_xpm_textures(t_game *cub3d)
 	t_tex	*tex;
 	void	*disp;
 
-	tex = &cub3d->tex;
 	disp = cub3d->mlx.disp;
-	tex->img_ea = mlx_xpm_file_to_image(disp, tex->file_ea, &tex->w, &tex->h);
-	tex->img_we = mlx_xpm_file_to_image(disp, tex->file_we, &tex->w, &tex->h);
-	tex->img_no = mlx_xpm_file_to_image(disp, tex->file_no, &tex->w, &tex->h);
-	tex->img_so = mlx_xpm_file_to_image(disp, tex->file_so, &tex->w, &tex->h);
-	tex->img_ea->addr_to_draw = mlx_get_data_addr(tex->img_ea,
-			&tex->img_ea->bits_per_pixel, &tex->img_ea->line_length,
-			&tex->img_ea->endian);
-	tex->img_we->addr_to_draw = mlx_get_data_addr(tex->img_we,
-			&tex->img_we->bits_per_pixel, &tex->img_we->line_length,
-			&tex->img_we->endian);
-	tex->img_no->addr_to_draw = mlx_get_data_addr(tex->img_no,
-			&tex->img_no->bits_per_pixel, &tex->img_no->line_length,
-			&tex->img_no->endian);
-	tex->img_so->addr_to_draw = mlx_get_data_addr(tex->img_so,
-			&tex->img_so->bits_per_pixel, &tex->img_so->line_length,
-			&tex->img_so->endian);
+	tex = &cub3d->no;
+	tex->data.img = mlx_xpm_file_to_image(disp, tex->file, &tex->w, &tex->h);
+	tex->data.addr = mlx_get_data_addr(tex->data.img,
+			&tex->data.bits_per_pixel, &tex->data.line_length,
+			&tex->data.endian);
+	tex = &cub3d->so;
+	tex->data.img = mlx_xpm_file_to_image(disp, tex->file, &tex->w, &tex->h);
+	tex->data.addr = mlx_get_data_addr(tex->data.img,
+			&tex->data.bits_per_pixel, &tex->data.line_length,
+			&tex->data.endian);
+	tex = &cub3d->ea;
+	tex->data.img = mlx_xpm_file_to_image(disp, tex->file, &tex->w, &tex->h);
+	tex->data.addr = mlx_get_data_addr(tex->data.img,
+			&tex->data.bits_per_pixel, &tex->data.line_length,
+			&tex->data.endian);
+	tex = &cub3d->we;
+	tex->data.img = mlx_xpm_file_to_image(disp, tex->file, &tex->w, &tex->h);
+	tex->data.addr = mlx_get_data_addr(tex->data.img,
+			&tex->data.bits_per_pixel, &tex->data.line_length,
+			&tex->data.endian);
 }
 
 void	set_game_params(char *filename, t_game *cub3d)
