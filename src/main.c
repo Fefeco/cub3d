@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:57:47 by davifer2          #+#    #+#             */
-/*   Updated: 2024/12/18 16:26:42 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/31 10:59:13 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	init_t_game(&cub3d);
-	set_game_params(argv[1], &cub3d);	// Load params from .cub file
-	init_game(&cub3d);						// Game initialization
+	set_game_params(argv[1], &cub3d);
+	init_game(&cub3d);
 	return (0);
 }

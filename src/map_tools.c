@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:17:41 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/30 11:35:29 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/31 13:40:48 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 
 int	is_ready_for_map(t_game *game)
 {
-	t_coords	*text;
+	t_tex	*tex;
 
 	if (game->ready_for_map)
 		return (1);
-	text = &game->textures;
-	if (!text->no || !text->so || !text->we || !text->ea)
+	tex = &game->tex;
+	if (!tex->file_no || !tex->file_so || !tex->file_we || !tex->file_ea)
 	{
 		print_error(E_MTXPAR);
 		return (0);

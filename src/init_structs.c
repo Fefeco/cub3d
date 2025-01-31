@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:57:52 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/30 17:58:46 by shurtado         ###   ########.fr       */
+/*   Updated: 2025/01/31 13:44:09 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 #include <stdbool.h>
 #include "cub3d.h"
 
-static void	init_textures(t_coords	*textures)
+static void	init_textures(t_tex *tex)
 {
-	textures->no = NULL;
-	textures->so = NULL;
-	textures->we = NULL;
-	textures->ea = NULL;
+	tex->file_no = NULL;
+	tex->file_so = NULL;
+	tex->file_we = NULL;
+	tex->file_ea = NULL;
+	tex->img_no = NULL;
+	tex->img_so = NULL;
+	tex->img_we = NULL;
+	tex->img_ea = NULL;
 }
 
 static void	init_images(t_img *images)
@@ -46,7 +50,7 @@ static void	init_mlx(t_mlx	*mlx)
 void	init_t_game(t_game *cub3d)
 {
 	init_mlx(&cub3d->mlx);
-	init_textures(&cub3d->textures);
+	init_textures(&cub3d->tex);
 	init_images(&cub3d->images);
 	init_colors(&cub3d->ceiling);
 	init_colors(&cub3d->floor);
@@ -54,6 +58,6 @@ void	init_t_game(t_game *cub3d)
 	cub3d->render = true;
 	cub3d->ply.ang = -1;
 	cub3d->map = NULL;
-	cub3d->xpm_images.width = 64;
-	cub3d->xpm_images.height = 64;
+	cub3d->tex.w = 64;
+	cub3d->tex.h = 64;
 }

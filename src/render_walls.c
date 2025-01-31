@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 20:48:54 by fedeito           #+#    #+#             */
-/*   Updated: 2025/01/30 19:17:03 by shurtado         ###   ########.fr       */
+/*   Updated: 2025/01/31 13:48:03 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ t_img	*get_texture(t_game *cub3d, t_ray ray)
 	if (ray.axis == 'x')
 	{
 		if (ray.step.x > 0)
-			return (cub3d->xpm_images.ea);
+			return (cub3d->tex.img_ea);
 		else
-			return (cub3d->xpm_images.we);
+			return (cub3d->tex.img_we);
 	}
 	else
 	{
 		if (ray.step.y > 0)
-			return (cub3d->xpm_images.so);
+			return (cub3d->tex.img_so);
 		else
-			return (cub3d->xpm_images.no);
+			return (cub3d->tex.img_no);
 	}
 
 
@@ -64,21 +64,21 @@ void draw_wall(t_game *cub3d, int x, t_wall wall, t_ray ray, double ray_dst)
 		tex_x = fmod(hit_x, TILE);
 	if (tex_x < 0)
 		tex_x += TILE;
-	tex_x = (tex_x * cub3d->xpm_images.width) / TILE;
+	tex_x = (tex_x * cub3d->tex.w) / TILE;
 	if (wall_end > HEIGHT)
 	{
 		wall_end = HEIGHT;
 	}
 	if (wall.start < 0)
 	{
-		tex_y = ((wall.start * -1) * cub3d->xpm_images.height) / wall.line_height;
+		tex_y = ((wall.start * -1) * cub3d->tex.h) / wall.line_height;
 		wall.start = 0;
 	}
 	y = wall.start;
 	while (y < wall_end)
 	{
 		put_pxl_on_img(&cub3d->images, x, y, get_pixel_color(texture, (int)tex_x, (int)tex_y));
-		tex_y += (double)cub3d->xpm_images.height / wall.line_height;
+		tex_y += (double)cub3d->tex.h / wall.line_height;
 		++y;
 	}
 }

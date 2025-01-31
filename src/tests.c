@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:29:45 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/18 12:40:17 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/31 13:42:32 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,17 @@ static void	ft_print_map(char **map)
 
 void	test(const t_game *cub3d)
 {
-	const t_coords	*tx;
+	const t_tex		*tx;
 	const t_color	*C;
 	const t_color	*F;
 
 	C = &cub3d->ceiling;
 	F = &cub3d->floor;
-	tx = &cub3d->textures;
+	tx = &cub3d->tex;
 	ft_printf(GREEN"======================\n         TEST         \n======================\n"RESET);
 
 	ft_printf(BLUE"\nTEXTURES\n---------\n"RESET);
-	ft_printf("  NO: %s\n  SO: %s\n  WE: %s\n  EA: %s\n\n", tx->no, tx->so, tx->we, tx->ea);
+	ft_printf("  NO: %s\n  SO: %s\n  WE: %s\n  EA: %s\n\n", tx->file_no, tx->file_so, tx->file_we, tx->file_ea);
 	
 	ft_printf(BLUE"\nCOLORS\n-----------\n"RESET);
 	ft_printf("\n-----CEILING-----\n");

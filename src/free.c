@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:21:52 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/18 12:54:44 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/31 11:17:15 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,24 @@ void	free_images(t_img *images, void *disp)
 	}
 }
 
-void	free_coords(t_coords *textures)
+void	free_textures(t_tex *tex)
 {
-	if (textures->no)
-		free(textures->no);
-	if (textures->so)
-		free(textures->so);
-	if (textures->we)
-		free(textures->we);
-	if (textures->ea)
-		free(textures->ea);
+	if (tex->file_no)
+		free(tex->file_no);
+	if (tex->file_so)
+		free(tex->file_so);
+	if (tex->file_we)
+		free(tex->file_we);
+	if (tex->file_ea)
+		free(tex->file_ea);
+	if (tex->img_no)
+		free(tex->img_no);
+	if (tex->img_so)
+		free(tex->img_so);
+	if (tex->img_we)
+		free(tex->img_we);
+	if (tex->img_ea)
+		free(tex->img_ea);
 }
 
 void	free_mlx(t_mlx *mlx)

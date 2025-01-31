@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2025/01/30 18:47:47 by shurtado         ###   ########.fr       */
+/*   Updated: 2025/01/31 13:38:38 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,23 +57,19 @@ typedef struct s_mlx
 	void	*win;
 }				t_mlx;
 
-typedef struct s_coords
-{
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-}				t_coords;
-
 typedef struct s_textures
 {
-	t_img	*no;
-	t_img	*so;
-	t_img	*we;
-	t_img	*ea;
-	int		width;
-	int		height;
-}			t_textures;
+	char	*file_no;
+	char	*file_so;
+	char	*file_we;
+	char	*file_ea;
+	t_img	*img_no;
+	t_img	*img_so;
+	t_img	*img_we;
+	t_img	*img_ea;
+	int		w;
+	int		h;
+}				t_tex;
 
 typedef struct s_color
 {
@@ -122,12 +118,11 @@ typedef struct s_game
 	t_mlx		mlx;
 	t_color		ceiling;
 	t_color		floor;
-	t_coords	textures;
+	t_tex		tex;
 	t_img		images;
 	bool		ready_for_map;
 	bool		render;
 	t_player	ply;
-	t_textures	xpm_images;
 	char		**map;
 }				t_game;
 
@@ -158,7 +153,7 @@ bool	color_ok(t_color *color);
 // free.c
 void	*free_map(char **map);
 void	free_images(t_img *images, void *disp);
-void	free_coords(t_coords *textures);
+void	free_textures(t_tex *tex);
 void	free_mlx(t_mlx *mlx);
 
 // draw_map.c

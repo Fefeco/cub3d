@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 13:24:18 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/18 12:41:32 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/01/31 11:30:26 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char	*rm_spaces_endl(const char *str)
 	return (ret);
 }
 
-static bool	set_coord(const char *tmp, const char *line, t_coords *textures)
+static bool	set_coord(const char *tmp, const char *line, t_tex *tex)
 {
 	char	*value;
 
@@ -47,13 +47,13 @@ static bool	set_coord(const char *tmp, const char *line, t_coords *textures)
 	if (!value)
 		return (false);
 	if (!ft_strncmp(tmp, "NO", 3))
-		return (set(&textures->no, &value));
+		return (set(&tex->file_no, &value));
 	else if (!ft_strncmp(tmp, "SO", 3))
-		return (set(&textures->so, &value));
+		return (set(&tex->file_so, &value));
 	else if (!ft_strncmp(tmp, "WE", 3))
-		return (set(&textures->we, &value));
+		return (set(&tex->file_we, &value));
 	else if (!ft_strncmp(tmp, "EA", 3))
-		return (set(&textures->ea, &value));
+		return (set(&tex->file_ea, &value));
 	free (value);
 	return (false);
 }
@@ -78,7 +78,7 @@ int	extract_coord(const char *line, t_game *cub3d)
 	{
 		tmp[1] = *line++;
 		if (*line && ft_isspace(*line) && ft_strnarrcmp(tmp, coords, 3))
-			success = set_coord(tmp, line, &cub3d->textures);
+			success = set_coord(tmp, line, &cub3d->tex);
 	}
 	free (tmp);
 	if (success)
