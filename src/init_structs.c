@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:57:52 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/31 13:44:09 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/01 10:17:07 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	init_t_game(t_game *cub3d)
 	init_colors(&cub3d->ceiling);
 	init_colors(&cub3d->floor);
 	cub3d->ready_for_map = false;
-	cub3d->render = true;
+	cub3d->key_press = true;
 	cub3d->ply.ang = -1;
 	cub3d->map = NULL;
 	cub3d->tex.w = 64;

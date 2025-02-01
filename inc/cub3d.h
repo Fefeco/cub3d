@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2025/01/31 13:38:38 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/01 10:19:42 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ typedef struct s_game
 	t_tex		tex;
 	t_img		images;
 	bool		ready_for_map;
-	bool		render;
+	bool		key_press;
 	t_player	ply;
 	char		**map;
 }				t_game;
