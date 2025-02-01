@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:57:52 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/01 10:17:07 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/01 10:56:53 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	init_textures(t_tex *tex)
 	tex->img_we = NULL;
 	tex->img_ea = NULL;
 }
-
+// Function to change
 static void	init_images(t_img *images)
 {
 	images->img_to_render = NULL;
@@ -33,6 +33,13 @@ static void	init_images(t_img *images)
 	images->img_to_draw = NULL;
 	images->addr_to_draw = NULL;
 }
+// To
+static void	init_image(t_iimg *data)
+{
+	data->img= NULL;
+	data->addr= NULL;
+}
+// End
 
 static void	init_colors(t_color *color)
 {
@@ -51,7 +58,12 @@ void	init_t_game(t_game *cub3d)
 {
 	init_mlx(&cub3d->mlx);
 	init_textures(&cub3d->tex);
+	// Change
 	init_images(&cub3d->images);
+	// To
+	init_image(&cub3d->render);
+	init_image(&cub3d->draw);
+	// End
 	init_colors(&cub3d->ceiling);
 	init_colors(&cub3d->floor);
 	cub3d->ready_for_map = false;

@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:46:36 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/30 12:56:59 by shurtado         ###   ########.fr       */
+/*   Updated: 2025/02/01 10:39:12 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,5 @@ double	dda(t_ray *ray, char **map)
 	if (ray->axis == 'x')
 		return (ray->dst.x - ray->delta_dst.x);
 	else
-		return (ray->dst.y - ray->delta_dst.y);
+			return (ray->dst.y - ray->delta_dst.y);
 }

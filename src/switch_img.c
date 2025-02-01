@@ -6,12 +6,13 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 19:56:03 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/16 14:21:18 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/01 11:38:43 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+// Function to change
 void	switch_img(t_img *images)
 {
 	void	*tmp_img;
@@ -24,3 +25,14 @@ void	switch_img(t_img *images)
 	images->img_to_draw = tmp_img;
 	images->addr_to_draw = tmp_addr;
 }
+// To
+void	switch_iimg(t_iimg *img1, t_iimg *img2)
+{
+	t_iimg	tmp;
+
+	tmp = *img1; 
+	*img1 = *img2; 
+	*img2 = tmp; 
+}
+
+// End

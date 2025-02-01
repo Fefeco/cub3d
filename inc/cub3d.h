@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2025/02/01 10:19:42 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/01 11:33:38 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@
 # define ON_KEYDOWN 2
 # define ON_DESTROY 17
 
+
+
+
+// Struct to replace
 typedef struct s_img
 {
 	void	*img_to_draw;
@@ -50,6 +54,18 @@ typedef struct s_img
 	int		line_length;
 	int		endian;
 }				t_img;
+// New struct
+typedef struct s_iimg
+{
+	void	*img;
+	char	*addr;
+	int		bits_x_pxl;
+	int		line_len;
+	int		endian;
+}				t_iimg;
+// END
+
+
 
 typedef struct s_mlx
 {
@@ -119,7 +135,14 @@ typedef struct s_game
 	t_color		ceiling;
 	t_color		floor;
 	t_tex		tex;
+	
+	// Replace
 	t_img		images;
+	// New
+	t_iimg		render;
+	t_iimg		draw;
+	// End
+
 	bool		ready_for_map;
 	bool		key_press;
 	t_player	ply;
@@ -168,6 +191,7 @@ void	draw_ray(t_game *cub3d);
 // draw_tools.c
 int		create_trgb(int t, int r, int g, int b);
 void	put_pxl_on_img(t_img *images, int x, int y, int color);
+void	put_pxl_on_iimg(t_iimg *data, int x, int y, int color);
 
 // map_tools.c
 int		is_ready_for_map(t_game *game);
@@ -194,6 +218,7 @@ void	init_t_game(t_game *cub3d);
 
 // switch_img.c
 void	switch_img(t_img *images);
+void	switch_iimg(t_iimg *img1, t_iimg *img2);
 
 // create_image.c
 void	create_image(t_game *cub3d);

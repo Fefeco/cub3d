@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 20:48:54 by fedeito           #+#    #+#             */
-/*   Updated: 2025/01/31 13:48:03 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/01 11:24:11 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,11 @@ void draw_wall(t_game *cub3d, int x, t_wall wall, t_ray ray, double ray_dst)
 	y = wall.start;
 	while (y < wall_end)
 	{
-		put_pxl_on_img(&cub3d->images, x, y, get_pixel_color(texture, (int)tex_x, (int)tex_y));
+		// Function to change
+		//put_pxl_on_img(&cub3d->images, x, y, get_pixel_color(texture, (int)tex_x, (int)tex_y));
+		// To
+		put_pxl_on_iimg(&cub3d->draw, x, y, get_pixel_color(texture, (int)tex_x, (int)tex_y));
+		// End
 		tex_y += (double)cub3d->tex.h / wall.line_height;
 		++y;
 	}
