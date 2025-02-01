@@ -6,14 +6,15 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 20:48:54 by fedeito           #+#    #+#             */
-/*   Updated: 2025/02/01 12:01:30 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/01 13:47:37 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "cub3d.h"
 
-t_iimg	*get_texture(t_game *cub3d, t_ray ray)
+// Function to change
+t_iimg	*get_textures(t_game *cub3d, t_ray ray)
 {
 	if (ray.axis == 'x')
 	{
@@ -29,11 +30,9 @@ t_iimg	*get_texture(t_game *cub3d, t_ray ray)
 		else
 			return (cub3d->tex.img_no);
 	}
-
-
 }
 
-int get_pixel_color(t_iimg *img, int x, int y)
+int get_pixel_colors(t_iimg *img, int x, int y)
 {
 	char			*pixel;
 	int				color;
@@ -42,19 +41,55 @@ int get_pixel_color(t_iimg *img, int x, int y)
 	color = *(int *)pixel;
 	return (color);
 }
+// To
+t_img	*get_data_texture(t_game *cub3d, t_ray ray)
+{
+	if (ray.axis == 'x')
+	{
+		if (ray.step.x > 0)
+			return (&cub3d->ea.data);
+		else
+			return (&cub3d->we.data);
+	}
+	else
+	{
+		if (ray.step.y > 0)
+			return (&cub3d->so.data);
+		else
+			return (&cub3d->no.data);
+	}
+}
+int get_pixel_color(t_img *data, int x, int y)
+{
+	char	*pixel;
+	int		color;
+
+	pixel = data->addr + (y * data->line_len + x * (data->bits_x_pxl / 8));
+	color = *(int *)pixel;
+	return (color);
+}
+//End
 
 
 void draw_wall(t_game *cub3d, int x, t_wall wall, t_ray ray, double ray_dst)
 {
 	int	y;
 	int	wall_end;
-	t_iimg	*texture;
+	// Variable to change
+	//t_iimg	*texture;
+	// To
+	t_img	*tex;
+	// End
 	double	hit_y;
 	double	hit_x;
 	double	tex_x;
 	double	tex_y;
 
-	texture = get_texture(cub3d, ray);
+	// Line to change
+	//texture = get_textures(cub3d, ray);
+	// To
+	tex= get_data_texture(cub3d, ray);
+	// End
 	wall_end = wall.start + wall.line_height;
 	hit_y = ray.start.y + ray.delta.y * ray_dst;
 	hit_x = ray.start.x + ray.delta.x * ray_dst;
@@ -77,7 +112,11 @@ void draw_wall(t_game *cub3d, int x, t_wall wall, t_ray ray, double ray_dst)
 	y = wall.start;
 	while (y < wall_end)
 	{
-		put_pxl_on_img(&cub3d->draw, x, y, get_pixel_color(texture, (int)tex_x, (int)tex_y));
+		// Fucntion to change
+		//put_pxl_on_img(&cub3d->draw, x, y, get_pixel_colors(texture, (int)tex_x, (int)tex_y));
+		// To
+		put_pxl_on_img(&cub3d->draw, x, y, get_pixel_color(tex, (int)tex_x, (int)tex_y));
+		// End
 		tex_y += (double)cub3d->tex.h / wall.line_height;
 		++y;
 	}

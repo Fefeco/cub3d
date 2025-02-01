@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 21:50:22 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/01 10:18:25 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/01 13:17:31 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,11 @@ void	init_game(t_game *cub3d)
 	mlx->disp = mlx_init();
 	if (!mlx->disp)
 		return ;
+	// Function to change
+	set_xpm_texturess(cub3d);
+	// To
 	set_xpm_textures(cub3d);
+	// End
 	create_image(cub3d);
 	mlx->win = mlx_new_window(mlx->disp, WIDTH, HEIGHT, "CUB3D");
 	mlx_loop_hook(mlx->disp, render, cub3d);

@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:57:52 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/01 11:42:53 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/01 13:08:53 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,14 @@
 #include <stdbool.h>
 #include "cub3d.h"
 
-static void	init_textures(t_tex *tex)
+static void	init_image(t_img *data)
+{
+	data->img = NULL;
+	data->addr = NULL;
+}
+
+// Function to change
+static void	init_texturess(t_ttex *tex)
 {
 	tex->file_no = NULL;
 	tex->file_so = NULL;
@@ -25,12 +32,35 @@ static void	init_textures(t_tex *tex)
 	tex->img_we = NULL;
 	tex->img_ea = NULL;
 }
-
-static void	init_image(t_img *data)
+// To
+static void init_with_height(t_tex	*tex)
 {
-	data->img= NULL;
-	data->addr= NULL;
+	tex->w = 64;
+	tex->h = 64;
 }
+
+static void	init_textures(t_game *cub3d)
+{
+	t_tex	*tex;
+
+	tex = &cub3d->no;
+	tex->file = NULL;
+	init_image(&tex->data);
+	init_with_height(tex);
+	tex = &cub3d->so;
+	tex->file = NULL;
+	init_image(&tex->data);
+	init_with_height(tex);
+	tex = &cub3d->ea;
+	tex->file = NULL;
+	init_image(&tex->data);
+	init_with_height(tex);
+	tex = &cub3d->we;
+	tex->file = NULL;
+	init_image(&tex->data);
+	init_with_height(tex);
+}
+// End
 
 static void	init_colors(t_color *color)
 {
@@ -48,7 +78,11 @@ static void	init_mlx(t_mlx	*mlx)
 void	init_t_game(t_game *cub3d)
 {
 	init_mlx(&cub3d->mlx);
-	init_textures(&cub3d->tex);
+	// Function to change
+	init_texturess(&cub3d->tex);
+	// To
+	init_textures(cub3d);
+	// End
 	init_image(&cub3d->render);
 	init_image(&cub3d->draw);
 	init_colors(&cub3d->ceiling);

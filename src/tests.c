@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:29:45 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/31 13:42:32 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/01 12:29:30 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	ft_print_map(char **map)
 
 void	test(const t_game *cub3d)
 {
-	const t_tex		*tx;
+	const t_ttex		*tx;
 	const t_color	*C;
 	const t_color	*F;
 

@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:17:41 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/31 13:40:48 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/01 12:30:07 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	is_ready_for_map(t_game *game)
 {
-	t_tex	*tex;
+	t_ttex	*tex;
 
 	if (game->ready_for_map)
 		return (1);

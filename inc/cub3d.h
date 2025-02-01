@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2025/02/01 12:09:26 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/01 13:14:49 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ typedef struct s_mlx
 	void	*disp;
 	void	*win;
 }				t_mlx;
-
-typedef struct s_textures
+// Struct to chenge
+typedef struct s_ttextures
 {
 	char	*file_no;
 	char	*file_so;
@@ -78,7 +78,17 @@ typedef struct s_textures
 	t_iimg	*img_ea;
 	int		w;
 	int		h;
+}				t_ttex;
+// To
+typedef struct s_textures
+{
+	char	*file;
+	t_img	data;
+	int		w;
+	int		h;
 }				t_tex;
+
+// End
 
 typedef struct s_color
 {
@@ -127,7 +137,15 @@ typedef struct s_game
 	t_mlx		mlx;
 	t_color		ceiling;
 	t_color		floor;
-	t_tex		tex;
+	// Var to change
+	t_ttex		tex;
+	// To
+	t_tex		no;
+	t_tex		so;
+	t_tex		ea;
+	t_tex		we;
+	
+	// End
 	t_iimg		images;
 	t_img		render;
 	t_img		draw;
@@ -164,7 +182,16 @@ bool	color_ok(t_color *color);
 // free.c
 void	*free_map(char **map);
 void	free_image(t_img *data, void *disp);
-void	free_textures(t_tex *tex);
+
+
+// Function to change
+void	free_textures(t_ttex *tex);
+// To
+void	free_texture(t_tex *tex, void *disp);
+// End
+
+
+
 void	free_mlx(t_mlx *mlx);
 
 // draw_map.c
@@ -231,5 +258,9 @@ int get_wall_color(double ray_dst);
 // render_minimap.c
 void render_minimap(t_game *cub3d);
 
+// Function to change
+void	set_xpm_texturess(t_game *cub3d);
+// To
 void	set_xpm_textures(t_game *cub3d);
+// End
 #endif
