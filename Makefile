@@ -6,7 +6,7 @@
 #    By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
-#    Updated: 2025/01/30 17:47:09 by shurtado         ###   ########.fr        #
+#    Updated: 2025/02/01 12:12:04 by fedeito          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,14 +52,11 @@ SRCS = add_line_to_map.c \
 	   render.c \
 	   set_player.c \
 	   moves.c \
-	   draw_map.c \
 	   dda.c \
-	   draw_player.c \
 	   draw_tools.c \
 	   utils.c \
 	   get_wall_color.c \
 	   render_walls.c \
-	   render_minimap.c \
 	   create_image.c
 
 OBJS = $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))

@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2025/02/01 11:33:38 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/01 12:09:26 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,7 @@
 # define ON_KEYDOWN 2
 # define ON_DESTROY 17
 
-
-
-
-// Struct to replace
-typedef struct s_img
+typedef struct s_iimg
 {
 	void	*img_to_draw;
 	char	*addr_to_draw;
@@ -53,19 +49,16 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}				t_img;
-// New struct
-typedef struct s_iimg
+}				t_iimg;
+
+typedef struct s_img
 {
 	void	*img;
 	char	*addr;
 	int		bits_x_pxl;
 	int		line_len;
 	int		endian;
-}				t_iimg;
-// END
-
-
+}				t_img;
 
 typedef struct s_mlx
 {
@@ -79,10 +72,10 @@ typedef struct s_textures
 	char	*file_so;
 	char	*file_we;
 	char	*file_ea;
-	t_img	*img_no;
-	t_img	*img_so;
-	t_img	*img_we;
-	t_img	*img_ea;
+	t_iimg	*img_no;
+	t_iimg	*img_so;
+	t_iimg	*img_we;
+	t_iimg	*img_ea;
 	int		w;
 	int		h;
 }				t_tex;
@@ -135,14 +128,9 @@ typedef struct s_game
 	t_color		ceiling;
 	t_color		floor;
 	t_tex		tex;
-	
-	// Replace
-	t_img		images;
-	// New
-	t_iimg		render;
-	t_iimg		draw;
-	// End
-
+	t_iimg		images;
+	t_img		render;
+	t_img		draw;
 	bool		ready_for_map;
 	bool		key_press;
 	t_player	ply;
@@ -175,7 +163,7 @@ bool	color_ok(t_color *color);
 
 // free.c
 void	*free_map(char **map);
-void	free_images(t_img *images, void *disp);
+void	free_image(t_img *data, void *disp);
 void	free_textures(t_tex *tex);
 void	free_mlx(t_mlx *mlx);
 
@@ -190,8 +178,7 @@ void	draw_ray(t_game *cub3d);
 
 // draw_tools.c
 int		create_trgb(int t, int r, int g, int b);
-void	put_pxl_on_img(t_img *images, int x, int y, int color);
-void	put_pxl_on_iimg(t_iimg *data, int x, int y, int color);
+void	put_pxl_on_img(t_img *data, int x, int y, int color);
 
 // map_tools.c
 int		is_ready_for_map(t_game *game);
@@ -217,17 +204,13 @@ void	init_game(t_game *cub3d);
 void	init_t_game(t_game *cub3d);
 
 // switch_img.c
-void	switch_img(t_img *images);
-void	switch_iimg(t_iimg *img1, t_iimg *img2);
+void	switch_img(t_img *img1, t_img *img2);
 
 // create_image.c
 void	create_image(t_game *cub3d);
 
 // render.c
 int		render(t_game *cub3d);
-
-// switch_img.c
-void	switch_img(t_img *images);
 
 // utils.c
 int		check_wall(int x, int y, char **map);

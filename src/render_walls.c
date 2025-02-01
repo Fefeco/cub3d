@@ -6,14 +6,14 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 20:48:54 by fedeito           #+#    #+#             */
-/*   Updated: 2025/02/01 11:24:11 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/01 12:01:30 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "cub3d.h"
 
-t_img	*get_texture(t_game *cub3d, t_ray ray)
+t_iimg	*get_texture(t_game *cub3d, t_ray ray)
 {
 	if (ray.axis == 'x')
 	{
@@ -33,7 +33,7 @@ t_img	*get_texture(t_game *cub3d, t_ray ray)
 
 }
 
-int get_pixel_color(t_img *img, int x, int y)
+int get_pixel_color(t_iimg *img, int x, int y)
 {
 	char			*pixel;
 	int				color;
@@ -48,7 +48,7 @@ void draw_wall(t_game *cub3d, int x, t_wall wall, t_ray ray, double ray_dst)
 {
 	int	y;
 	int	wall_end;
-	t_img	*texture;
+	t_iimg	*texture;
 	double	hit_y;
 	double	hit_x;
 	double	tex_x;
@@ -77,11 +77,7 @@ void draw_wall(t_game *cub3d, int x, t_wall wall, t_ray ray, double ray_dst)
 	y = wall.start;
 	while (y < wall_end)
 	{
-		// Function to change
-		//put_pxl_on_img(&cub3d->images, x, y, get_pixel_color(texture, (int)tex_x, (int)tex_y));
-		// To
-		put_pxl_on_iimg(&cub3d->draw, x, y, get_pixel_color(texture, (int)tex_x, (int)tex_y));
-		// End
+		put_pxl_on_img(&cub3d->draw, x, y, get_pixel_color(texture, (int)tex_x, (int)tex_y));
 		tex_y += (double)cub3d->tex.h / wall.line_height;
 		++y;
 	}

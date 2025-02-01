@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:21:52 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/01/31 11:17:15 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/01 12:05:17 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,13 @@ void	*free_map(char **map)
 	return (NULL);
 }
 
-void	free_images(t_img *images, void *disp)
+void	free_image(t_img *data, void *disp)
 {
-	if (images->img_to_render)
+	if (data->img)
 	{
-		mlx_destroy_image(disp, images->img_to_render);
-		images->img_to_render = NULL;
-		images->addr_to_render = NULL;
-	}
-	if (images->img_to_draw)
-	{
-		mlx_destroy_image(disp, images->img_to_draw);
-		images->img_to_draw = NULL;
-		images->addr_to_draw = NULL;
+		mlx_destroy_image(disp, data->img);
+		data->img = NULL;
+		data->addr = NULL;
 	}
 }
 
