@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2025/02/02 11:46:09 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/02 12:30:44 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_wall
 	int		color;
 	double	start;
 }				t_wall;
+
 typedef struct s_player
 {
 	t_dvec	pos;
@@ -131,7 +132,6 @@ int		ft_check_extension(const char *filename, const char *ext);
 // exit.c
 int		clean_exit(t_game *cub3d, const char *error, int error_nb);
 void	clean_game_ptrs(t_game *cub3d);
-void	*free_map(char **map);
 
 // set_params.c
 void	set_game_params(char *filename, t_game *cub3d);
@@ -147,7 +147,7 @@ int		extract_color(const char *line, t_game *cub3d);
 bool	color_ok(t_color *color);
 
 // free.c
-void	*free_map(char **map);
+void	free_map(char **map);
 void	free_image(t_img *data, void *disp);
 void	free_texture(t_tex *tex, void *disp);
 void	free_mlx(t_mlx *mlx);
@@ -212,9 +212,6 @@ void	render_walls(t_game *cub3d);
 
 // get_wall_color.c
 int get_wall_color(double ray_dst);
-
-// render_minimap.c
-void render_minimap(t_game *cub3d);
 
 void	set_xpm_textures(t_game *cub3d);
 #endif

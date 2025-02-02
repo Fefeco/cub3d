@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:56:05 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/02 11:37:20 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/02 12:29:04 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ static void	read_source_file(char *filename, t_game *cub3d)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	test(cub3d);
-	if (line || uncomplete_params(cub3d))
+	test(cub3d); // Line to remove
+	if (uncomplete_params(cub3d))
 		clean_exit(cub3d, NULL, 2);
 }
 

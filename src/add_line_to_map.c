@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 12:58:23 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/16 14:19:43 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/02 12:26:51 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	add_line_to_map(const char *line, t_game *cub3d)
 	}
 	if (map_line)
 		free(map_line);
-	cub3d->map = free_map(cub3d->map);
+	free_map(cub3d->map);
+	cub3d->map = NULL;
 	return (-1);
 }

@@ -6,13 +6,13 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:21:52 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/02 11:40:54 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/02 12:29:02 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	*free_map(char **map)
+void	free_map(char **map)
 {
 	char	**tmp;
 
@@ -23,7 +23,6 @@ void	*free_map(char **map)
 			free(*tmp++);
 		free(map);
 	}
-	return (NULL);
 }
 
 void	free_image(t_img *data, void *disp)
