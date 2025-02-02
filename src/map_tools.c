@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:17:41 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/01 12:30:07 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/02 11:44:07 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,21 @@
 #include "libft.h"
 #include "error.h"
 
-int	is_ready_for_map(t_game *game)
+int	is_ready_for_map(t_game *cub)
 {
-	t_ttex	*tex;
-
-	if (game->ready_for_map)
+	if (cub->ready_for_map)
 		return (1);
-	tex = &game->tex;
-	if (!tex->file_no || !tex->file_so || !tex->file_we || !tex->file_ea)
+	if (!cub->no.file || !cub->so.file || !cub->we.file || !cub->ea.file)
 	{
 		print_error(E_MTXPAR);
 		return (0);
 	}
-	if (!color_ok(&game->ceiling) || !color_ok(&game->floor))
+	if (!color_ok(&cub->ceiling) || !color_ok(&cub->floor))
 	{
 		print_error(E_MCPAR);
 		return (0);
 	}
-	game->ready_for_map = true;
+	cub->ready_for_map = true;
 	return (1);
 }
 

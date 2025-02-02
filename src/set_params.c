@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:56:05 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/01 13:28:38 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/02 11:37:20 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,32 +69,6 @@ static void	read_source_file(char *filename, t_game *cub3d)
 		clean_exit(cub3d, NULL, 2);
 }
 
-// Function to change
-void	set_xpm_texturess(t_game *cub3d)
-{
-	t_ttex	*tex;
-	void	*disp;
-
-	tex = &cub3d->tex;
-	disp = cub3d->mlx.disp;
-	tex->img_ea = mlx_xpm_file_to_image(disp, tex->file_ea, &tex->w, &tex->h);
-	tex->img_we = mlx_xpm_file_to_image(disp, tex->file_we, &tex->w, &tex->h);
-	tex->img_no = mlx_xpm_file_to_image(disp, tex->file_no, &tex->w, &tex->h);
-	tex->img_so = mlx_xpm_file_to_image(disp, tex->file_so, &tex->w, &tex->h);
-	tex->img_ea->addr_to_draw = mlx_get_data_addr(tex->img_ea,
-			&tex->img_ea->bits_per_pixel, &tex->img_ea->line_length,
-			&tex->img_ea->endian);
-	tex->img_we->addr_to_draw = mlx_get_data_addr(tex->img_we,
-			&tex->img_we->bits_per_pixel, &tex->img_we->line_length,
-			&tex->img_we->endian);
-	tex->img_no->addr_to_draw = mlx_get_data_addr(tex->img_no,
-			&tex->img_no->bits_per_pixel, &tex->img_no->line_length,
-			&tex->img_no->endian);
-	tex->img_so->addr_to_draw = mlx_get_data_addr(tex->img_so,
-			&tex->img_so->bits_per_pixel, &tex->img_so->line_length,
-			&tex->img_so->endian);
-}
-// To
 void	set_xpm_textures(t_game *cub3d)
 {
 	void	*disp;
@@ -118,7 +92,6 @@ void	set_xpm_textures(t_game *cub3d)
 	tex->data.addr = mlx_get_data_addr(tex->data.img, &tex->data.bits_x_pxl,
 			&tex->data.line_len, &tex->data.endian);
 }
-// End
 
 void	set_game_params(char *filename, t_game *cub3d)
 {

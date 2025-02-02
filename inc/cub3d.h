@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by davifer2          #+#    #+#             */
-/*   Updated: 2025/02/01 13:14:49 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/02 11:46:09 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,6 @@
 # define ON_KEYDOWN 2
 # define ON_DESTROY 17
 
-typedef struct s_iimg
-{
-	void	*img_to_draw;
-	char	*addr_to_draw;
-	void	*img_to_render;
-	char	*addr_to_render;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_iimg;
-
 typedef struct s_img
 {
 	void	*img;
@@ -65,21 +54,7 @@ typedef struct s_mlx
 	void	*disp;
 	void	*win;
 }				t_mlx;
-// Struct to chenge
-typedef struct s_ttextures
-{
-	char	*file_no;
-	char	*file_so;
-	char	*file_we;
-	char	*file_ea;
-	t_iimg	*img_no;
-	t_iimg	*img_so;
-	t_iimg	*img_we;
-	t_iimg	*img_ea;
-	int		w;
-	int		h;
-}				t_ttex;
-// To
+
 typedef struct s_textures
 {
 	char	*file;
@@ -87,8 +62,6 @@ typedef struct s_textures
 	int		w;
 	int		h;
 }				t_tex;
-
-// End
 
 typedef struct s_color
 {
@@ -137,16 +110,10 @@ typedef struct s_game
 	t_mlx		mlx;
 	t_color		ceiling;
 	t_color		floor;
-	// Var to change
-	t_ttex		tex;
-	// To
 	t_tex		no;
 	t_tex		so;
 	t_tex		ea;
 	t_tex		we;
-	
-	// End
-	t_iimg		images;
 	t_img		render;
 	t_img		draw;
 	bool		ready_for_map;
@@ -182,16 +149,7 @@ bool	color_ok(t_color *color);
 // free.c
 void	*free_map(char **map);
 void	free_image(t_img *data, void *disp);
-
-
-// Function to change
-void	free_textures(t_ttex *tex);
-// To
 void	free_texture(t_tex *tex, void *disp);
-// End
-
-
-
 void	free_mlx(t_mlx *mlx);
 
 // draw_map.c
@@ -258,9 +216,5 @@ int get_wall_color(double ray_dst);
 // render_minimap.c
 void render_minimap(t_game *cub3d);
 
-// Function to change
-void	set_xpm_texturess(t_game *cub3d);
-// To
 void	set_xpm_textures(t_game *cub3d);
-// End
 #endif

@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:21:52 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/01 13:06:43 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/02 11:40:54 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,28 +36,6 @@ void	free_image(t_img *data, void *disp)
 	}
 }
 
-// Function to change
-void	free_textures(t_ttex *tex)
-{
-	if (tex->file_no)
-		free(tex->file_no);
-	if (tex->file_so)
-		free(tex->file_so);
-	if (tex->file_we)
-		free(tex->file_we);
-	if (tex->file_ea)
-		free(tex->file_ea);
-	if (tex->img_no)
-		free(tex->img_no);
-	if (tex->img_so)
-		free(tex->img_so);
-	if (tex->img_we)
-		free(tex->img_we);
-	if (tex->img_ea)
-		free(tex->img_ea);
-}
-// To
-
 void	free_texture(t_tex *tex, void *disp)
 {
 	if (tex->file)
@@ -67,7 +45,6 @@ void	free_texture(t_tex *tex, void *disp)
 	}
 	free_image(&tex->data, disp);
 }
-// End
 
 void	free_mlx(t_mlx *mlx)
 {

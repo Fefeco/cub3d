@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:57:52 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/01 13:08:53 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/02 11:38:04 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,6 @@ static void	init_image(t_img *data)
 	data->addr = NULL;
 }
 
-// Function to change
-static void	init_texturess(t_ttex *tex)
-{
-	tex->file_no = NULL;
-	tex->file_so = NULL;
-	tex->file_we = NULL;
-	tex->file_ea = NULL;
-	tex->img_no = NULL;
-	tex->img_so = NULL;
-	tex->img_we = NULL;
-	tex->img_ea = NULL;
-}
-// To
 static void init_with_height(t_tex	*tex)
 {
 	tex->w = 64;
@@ -60,7 +47,6 @@ static void	init_textures(t_game *cub3d)
 	init_image(&tex->data);
 	init_with_height(tex);
 }
-// End
 
 static void	init_colors(t_color *color)
 {
@@ -78,11 +64,7 @@ static void	init_mlx(t_mlx	*mlx)
 void	init_t_game(t_game *cub3d)
 {
 	init_mlx(&cub3d->mlx);
-	// Function to change
-	init_texturess(&cub3d->tex);
-	// To
 	init_textures(cub3d);
-	// End
 	init_image(&cub3d->render);
 	init_image(&cub3d->draw);
 	init_colors(&cub3d->ceiling);
@@ -91,6 +73,4 @@ void	init_t_game(t_game *cub3d)
 	cub3d->key_press = true;
 	cub3d->ply.ang = -1;
 	cub3d->map = NULL;
-	cub3d->tex.w = 64;
-	cub3d->tex.h = 64;
 }
