@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/02 12:37:56 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/03 11:44:16 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,5 +213,4 @@ void	render_walls(t_game *cub3d);
 // get_wall_color.c
 int get_wall_color(double ray_dst);
 
-void	set_xpm_textures(t_game *cub3d);
 #endif

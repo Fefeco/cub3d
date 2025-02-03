@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:56:05 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/02 12:29:04 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/03 13:42:41 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ static bool	uncomplete_params(t_game *cub3d)
 {
 	if (cub3d->ready_for_map && cub3d->map)
 		return (false);
+	if (!cub3d->no.data.img || !cub3d->so.data.img || !cub3d->ea.data.img
+			|| !cub3d->we.data.img)
+		return (true);
 	print_error(E_UPARAM);
 	return (true);
 }
@@ -64,33 +67,9 @@ static void	read_source_file(char *filename, t_game *cub3d)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	test(cub3d); // Line to remove
+	//test(cub3d); // Line to remove
 	if (uncomplete_params(cub3d))
 		clean_exit(cub3d, NULL, 2);
-}
-
-void	set_xpm_textures(t_game *cub3d)
-{
-	void	*disp;
-	t_tex	*tex;
-
-	disp = cub3d->mlx.disp;
-	tex = &cub3d->no;
-	tex->data.img = mlx_xpm_file_to_image(disp, tex->file, &tex->w, &tex->h);
-	tex->data.addr = mlx_get_data_addr(tex->data.img, &tex->data.bits_x_pxl,
-			&tex->data.line_len, &tex->data.endian);
-	tex = &cub3d->so;
-	tex->data.img = mlx_xpm_file_to_image(disp, tex->file, &tex->w, &tex->h);
-	tex->data.addr = mlx_get_data_addr(tex->data.img, &tex->data.bits_x_pxl,
-			&tex->data.line_len, &tex->data.endian);
-	tex = &cub3d->ea;
-	tex->data.img = mlx_xpm_file_to_image(disp, tex->file, &tex->w, &tex->h);
-	tex->data.addr = mlx_get_data_addr(tex->data.img, &tex->data.bits_x_pxl,
-			&tex->data.line_len, &tex->data.endian);
-	tex = &cub3d->we;
-	tex->data.img = mlx_xpm_file_to_image(disp, tex->file, &tex->w, &tex->h);
-	tex->data.addr = mlx_get_data_addr(tex->data.img, &tex->data.bits_x_pxl,
-			&tex->data.line_len, &tex->data.endian);
 }
 
 void	set_game_params(char *filename, t_game *cub3d)
