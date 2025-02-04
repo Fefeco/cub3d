@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_walls.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
+/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 20:48:54 by fedeito           #+#    #+#             */
-/*   Updated: 2025/02/02 11:42:59 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/04 12:27:21 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_tex	*get_data_texture(t_game *cub3d, t_ray ray)
 }
 int get_pixel_color(t_img *data, int x, int y)
 {
-	char	*pixel;
+	char	*pixel = NULL;
 	int		color;
 
 	pixel = data->addr + (y * data->line_len + x * (data->bits_x_pxl / 8));
@@ -77,27 +77,30 @@ void draw_wall(t_game *cub3d, int x, t_wall wall, t_ray ray, double ray_dst)
 	}
 }
 
+static double	del_fish_eye(double ray_dst, double ray_ang, double ply_ang)
+{
+	return (HEIGHT / (ray_dst * cos(ray_ang - ply_ang)) * TILE);
+}
+
 void	render_walls(t_game *cub3d)
 {
 	int		x;
 	t_ray	ray;
 	double	ray_dst;
-	double	inc;
+	double	increment;
 	t_wall	wall;
-	double	corrected;
 
 	ray.start = cub3d->ply.pos;
 	ray.ang = cub3d->ply.ang - (deg_to_rad(FOV) / 2);
-	inc = deg_to_rad(FOV) / WIDTH;
+	increment = deg_to_rad(FOV) / WIDTH;
 	x = -1;
 	while (++x < WIDTH)
 	{
 		set_deltas(&ray.delta, ray.ang);
 		ray_dst = dda(&ray, cub3d->map);
-		corrected = ray_dst * cos(ray.ang - cub3d->ply.ang);
-		wall.line_height = (HEIGHT / corrected) * TILE;
+		wall.line_height = del_fish_eye(ray_dst, ray.ang, cub3d->ply.ang);
 		wall.start = HEIGHT / 2 - (wall.line_height / 2);
 		draw_wall(cub3d, x, wall, ray, ray_dst);
-		ray.ang += inc;
+		ray.ang += increment;
 	}
 }

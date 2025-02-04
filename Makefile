@@ -6,7 +6,7 @@
 #    By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
-#    Updated: 2025/02/01 12:12:04 by fedeito          ###   ########.fr        #
+#    Updated: 2025/02/04 10:27:12 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ LIBMLX		= mlx/libmlx.a
 
 CC			= cc
 INC			= -Imlx -Iinc -Ilibft/inc
-CFLAGS		= -Wall -Wextra -Werror -g -MMD -fsanitize=address
+CFLAGS		= -Wall -Wextra -Werror -g -MMD 
 MLX_FLAGS	= -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 LIBFT_FLAGS	= -Llibft -lftprintf
 MATH_FLAGS	= -lm

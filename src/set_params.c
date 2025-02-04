@@ -6,7 +6,7 @@
 /*   By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:56:05 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/03 13:42:41 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/04 11:58:34 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ static int	open_source_file(char *filename)
 
 static bool	uncomplete_params(t_game *cub3d)
 {
-	if (cub3d->ready_for_map && cub3d->map)
-		return (false);
 	if (!cub3d->no.data.img || !cub3d->so.data.img || !cub3d->ea.data.img
 			|| !cub3d->we.data.img)
 		return (true);
+	if (cub3d->ready_for_map && cub3d->map)
+		return (false);
 	print_error(E_UPARAM);
 	return (true);
 }
@@ -67,7 +67,6 @@ static void	read_source_file(char *filename, t_game *cub3d)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	//test(cub3d); // Line to remove
 	if (uncomplete_params(cub3d))
 		clean_exit(cub3d, NULL, 2);
 }
