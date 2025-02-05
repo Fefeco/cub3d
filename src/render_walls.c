@@ -33,11 +33,9 @@ t_tex	*get_data_texture(t_game *cub3d, t_ray ray)
 int get_pixel_color(t_img *data, int x, int y)
 {
 	char	*pixel = NULL;
-	int		color;
 
 	pixel = data->addr + (y * data->line_len + x * (data->bits_x_pxl / 8));
-	color = *(int *)pixel;
-	return (color);
+	return (*(unsigned int *)pixel);
 }
 
 void draw_wall(t_game *cub3d, int x, t_wall wall, t_ray ray)
