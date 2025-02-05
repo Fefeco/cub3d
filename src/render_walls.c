@@ -63,6 +63,8 @@ void draw_wall(t_game *cub3d, int x, t_wall wall, t_ray ray)
 		tex.y = ((wall.start * -1) * texture->h) / wall.line_height;
 		wall.start = 0;
 	}
+	else
+		tex.y = 0;
 	y = wall.start;
 	while (y < wall_end)
 	{
