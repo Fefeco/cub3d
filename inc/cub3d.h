@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/05 14:42:34 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/05 21:28:22 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,35 +40,11 @@
 # define ON_KEYDOWN 2
 # define ON_DESTROY 17
 
-typedef struct s_img
-{
-	void	*img;
-	char	*addr;
-	int		bits_x_pxl;
-	int		line_len;
-	int		endian;
-}				t_img;
-
 typedef struct s_mlx
 {
 	void	*disp;
 	void	*win;
 }				t_mlx;
-
-typedef struct s_textures
-{
-	char	*file;
-	t_img	data;
-	int		w;
-	int		h;
-}				t_tex;
-
-typedef struct s_color
-{
-	int		red;
-	int		green;
-	int		blue;
-}				t_color;
 
 typedef struct s_int_vector
 {
@@ -82,11 +58,36 @@ typedef struct s_double_vector
 	double	y;
 }				t_dvec;
 
+typedef struct s_color
+{
+	int		red;
+	int		green;
+	int		blue;
+}				t_color;
+
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_x_pxl;
+	int		line_len;
+	int		endian;
+}				t_img;
+
+typedef struct s_textures
+{
+	char	*file;
+	t_img	data;
+	int		w;
+	int		h;
+}				t_tex;
+
 typedef struct s_wall
 {
-	double	line_height;
-	int		color;
-	double	start;
+	double			line_height;
+	unsigned int	px_color;
+	double			start;
+	double			end;
 }				t_wall;
 
 typedef struct s_player
