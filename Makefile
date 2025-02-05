@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
-#    Updated: 2025/02/05 22:04:30 by fcarranz         ###   ########.fr        #
+#    Updated: 2025/02/05 22:40:59 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ SRCS = add_line_to_map.c \
 	   set_player.c \
 	   moves.c \
 	   dda.c \
+	   dda_utils.c \
 	   draw_tools.c \
 	   utils.c \
 	   get_wall_color.c \

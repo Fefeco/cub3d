@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/05 22:03:56 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/05 22:40:41 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,11 @@ int		rad_to_deg(double rad);
 // dda.c
 void	dda(t_ray *ray, char **map);
 void	set_deltas(t_dvec *delta, double ang);
+
+// dda_utils.c
+t_ivec	get_map_coords(t_dvec ply_pos);
+void	set_delta_distances(t_dvec *delta_dst, t_dvec delta);
+void 	set_step_directions(t_ray *ray);
 
 // render_walls.c
 void	render_walls(t_game *cub3d);

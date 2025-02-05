@@ -6,50 +6,11 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:46:36 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/05 21:54:34 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/05 22:41:41 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void set_step_directions(t_ray *ray)
-{
-	if (ray->delta.x < 0)
-		ray->step.x = -1;
-	else if (ray->delta.x == 0)
-		ray->step.x = 0;
-	else
-		ray->step.x = 1;
-	if (ray->delta.y < 0)
-		ray->step.y = -1;
-	else if (ray->delta.y == 0)
-		ray->step.y = 0;
-	else
-		ray->step.y = 1;
-}
-
-void	set_delta_distances(t_dvec *delta_dst, t_dvec delta)
-{
-	if (delta.x == 0)
-		delta_dst->x = 0;
-	else
-		delta_dst->x = fabs(TILE / delta.x);
-	if (delta.y == 0)
-		delta_dst->y = 0;
-	else
-		delta_dst->y = fabs(TILE / delta.y);
-}
-
-t_ivec	get_map_coords(t_dvec ply_pos)
-{
-	t_ivec	map_pt;
-
-	map_pt.x = floor(ply_pos.x);
-	map_pt.y = floor(ply_pos.y);
-	map_pt.x /= TILE;
-	map_pt.y /= TILE;
-	return (map_pt);
-}
 
 static double	get_first_dist(int step, double pos, double delta)
 {
@@ -76,6 +37,12 @@ char	next_step_axis(t_dvec delta_dst, t_dvec tot_dst)
 		return ('y');
 }
 
+static void	update_pos_dist(int *pos, double *dst, int step, double dlt_dst)
+{
+	*pos += step;
+	*dst += dlt_dst;
+}
+
 void	dda(t_ray *ray, char **map)
 {
 	t_ivec	map_pos;
@@ -87,21 +54,13 @@ void	dda(t_ray *ray, char **map)
 	dst.x = get_first_dist(ray->step.x, ray->start.x, fabs(ray->delta.x));
 	dst.y = get_first_dist(ray->step.y, ray->start.y, fabs(ray->delta.y));
 	ray->axis = '0';
-	while (1)
+	while (!check_wall(map_pos.x, map_pos.y, map))
 	{
 		ray->axis = next_step_axis(ray->delta_dst, dst);
 		if (ray->axis == 'x')
-		{
-			map_pos.x += ray->step.x;
-			dst.x += ray->delta_dst.x;
-		}
+			update_pos_dist(&map_pos.x, &dst.x, ray->step.x, ray->delta_dst.x);
 		else
-		{
-			map_pos.y += ray->step.y;
-			dst.y += ray->delta_dst.y;
-		}
-		if (check_wall(map_pos.x, map_pos.y, map))
-			break ;
+			update_pos_dist(&map_pos.y, &dst.y, ray->step.y, ray->delta_dst.y);
 	}
 	if (ray->axis == 'x')
 		ray->dst = dst.x - ray->delta_dst.x;
