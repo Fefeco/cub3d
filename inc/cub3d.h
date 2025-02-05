@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/03 11:44:16 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/05 13:29:40 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,11 @@ typedef struct s_player
 typedef struct s_ray
 {
 	double	ang;
+	double	dst;
 	char	axis;
 	t_dvec	delta;
 	t_ivec	step;
 	t_dvec	delta_dst;
-	t_dvec	dst;
 	t_dvec	start;
 }				t_ray;
 
@@ -204,7 +204,7 @@ double	deg_to_rad(int deg);
 int		rad_to_deg(double rad);
 
 // dda.c
-double	dda(t_ray *ray, char **map);
+void	dda(t_ray *ray, char **map);
 void	set_deltas(t_dvec *delta, double ang);
 
 // render_walls.c

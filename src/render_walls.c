@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 20:48:54 by fedeito           #+#    #+#             */
-/*   Updated: 2025/02/04 12:27:21 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/05 13:28:47 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void	render_walls(t_game *cub3d)
 {
 	int		x;
 	t_ray	ray;
-	double	ray_dst;
 	double	increment;
 	t_wall	wall;
 
@@ -97,10 +96,10 @@ void	render_walls(t_game *cub3d)
 	while (++x < WIDTH)
 	{
 		set_deltas(&ray.delta, ray.ang);
-		ray_dst = dda(&ray, cub3d->map);
-		wall.line_height = del_fish_eye(ray_dst, ray.ang, cub3d->ply.ang);
+		dda(&ray, cub3d->map);
+		wall.line_height = del_fish_eye(ray.dst, ray.ang, cub3d->ply.ang);
 		wall.start = HEIGHT / 2 - (wall.line_height / 2);
-		draw_wall(cub3d, x, wall, ray, ray_dst);
+		draw_wall(cub3d, x, wall, ray, ray.dst);
 		ray.ang += increment;
 	}
 }
