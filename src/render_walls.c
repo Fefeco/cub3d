@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 20:48:54 by fedeito           #+#    #+#             */
-/*   Updated: 2025/02/05 13:28:47 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:45:02 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,22 @@ int get_pixel_color(t_img *data, int x, int y)
 	return (color);
 }
 
-void draw_wall(t_game *cub3d, int x, t_wall wall, t_ray ray, double ray_dst)
+void draw_wall(t_game *cub3d, int x, t_wall wall, t_ray ray)
 {
 	int	y;
 	int	wall_end;
 	t_tex	*tex;
-	double	hit_y;
-	double	hit_x;
 	double	tex_x;
 	double	tex_y;
 
 	tex = get_data_texture(cub3d, ray);
 	wall_end = wall.start + wall.line_height;
-	hit_y = ray.start.y + ray.delta.y * ray_dst;
-	hit_x = ray.start.x + ray.delta.x * ray_dst;
+	ray.hit.y = ray.start.y + ray.delta.y * ray.dst;
+	ray.hit.x = ray.start.x + ray.delta.x * ray.dst;
 	if (ray.axis == 'x')
-		tex_x = fmod(hit_y, TILE);
+		tex_x = fmod(ray.hit.y, TILE);
 	else
-		tex_x = fmod(hit_x, TILE);
+		tex_x = fmod(ray.hit.x, TILE);
 	if (tex_x < 0)
 		tex_x += TILE;
 	tex_x = (tex_x * tex->w) / TILE;
@@ -76,6 +74,42 @@ void draw_wall(t_game *cub3d, int x, t_wall wall, t_ray ray, double ray_dst)
 		++y;
 	}
 }
+//void draw_wall(t_game *cub3d, int x, t_wall wall, t_ray ray)
+//{
+//	int	y;
+//	int	wall_end;
+//	t_tex	*tex;
+//	double	hit_y;
+//	double	hit_x;
+//	double	tex_x;
+//	double	tex_y;
+//
+//	tex = get_data_texture(cub3d, ray);
+//	wall_end = wall.start + wall.line_height;
+//	hit_y = ray.start.y + ray.delta.y * ray_dst;
+//	hit_x = ray.start.x + ray.delta.x * ray_dst;
+//	if (ray.axis == 'x')
+//		tex_x = fmod(hit_y, TILE);
+//	else
+//		tex_x = fmod(hit_x, TILE);
+//	if (tex_x < 0)
+//		tex_x += TILE;
+//	tex_x = (tex_x * tex->w) / TILE;
+//	if (wall_end > HEIGHT)
+//		wall_end = HEIGHT;
+//	if (wall.start < 0)
+//	{
+//		tex_y = ((wall.start * -1) * tex->h) / wall.line_height;
+//		wall.start = 0;
+//	}
+//	y = wall.start;
+//	while (y < wall_end)
+//	{
+//		put_pxl_on_img(&cub3d->draw, x, y, get_pixel_color(&tex->data, (int)tex_x, (int)tex_y));
+//		tex_y += (double)tex->h / wall.line_height;
+//		++y;
+//	}
+//}
 
 static double	del_fish_eye(double ray_dst, double ray_ang, double ply_ang)
 {
@@ -99,7 +133,7 @@ void	render_walls(t_game *cub3d)
 		dda(&ray, cub3d->map);
 		wall.line_height = del_fish_eye(ray.dst, ray.ang, cub3d->ply.ang);
 		wall.start = HEIGHT / 2 - (wall.line_height / 2);
-		draw_wall(cub3d, x, wall, ray, ray.dst);
+		draw_wall(cub3d, x, wall, ray);
 		ray.ang += increment;
 	}
 }

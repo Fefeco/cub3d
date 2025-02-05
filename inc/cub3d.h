@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/05 13:29:40 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:42:34 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ typedef struct s_ray
 	t_ivec	step;
 	t_dvec	delta_dst;
 	t_dvec	start;
+	t_dvec	hit;
 }				t_ray;
 
 typedef struct s_game
