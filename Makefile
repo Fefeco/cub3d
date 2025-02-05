@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: shurtado <shurtado@student.42barcelona.fr> +#+  +:+       +#+         #
+#    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
-#    Updated: 2025/02/04 10:27:12 by fcarranz         ###   ########.fr        #
+#    Updated: 2025/02/05 22:04:30 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,7 @@ SRCS = add_line_to_map.c \
 	   utils.c \
 	   get_wall_color.c \
 	   render_walls.c \
+	   draw_wall.c \
 	   create_image.c
 
 OBJS = $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))

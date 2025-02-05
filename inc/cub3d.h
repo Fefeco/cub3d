@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/05 21:28:22 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/05 22:03:56 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,6 +211,9 @@ void	set_deltas(t_dvec *delta, double ang);
 
 // render_walls.c
 void	render_walls(t_game *cub3d);
+
+// draw_walls.c
+void	draw_wall(t_game *cub3d, int x, t_wall wall, t_ray ray);
 
 // get_wall_color.c
 int get_wall_color(double ray_dst);
