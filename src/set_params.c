@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:56:05 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/06 10:55:05 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/06 19:44:15 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static int	open_source_file(char *filename)
 		print_error(strerror(errno));
 		exit(errno);
 	}
+	check_file_extension(filename);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
@@ -73,7 +74,6 @@ static void	read_source_file(char *filename, t_game *cub3d)
 
 void	set_game_params(char *filename, t_game *cub3d)
 {
-	check_file_extension(filename);
 	read_source_file(filename, cub3d);
 	set_player(cub3d);
 	validate_map(cub3d);

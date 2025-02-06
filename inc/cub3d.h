@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/06 13:56:38 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/06 19:23:53 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,16 @@
 
 # define ON_KEYDOWN 2
 # define ON_DESTROY 17
+
+typedef struct s_keys
+{
+	bool	w;
+	bool	a;
+	bool	s;
+	bool	d;
+	bool	left;
+	bool	right;
+}	t_keys;
 
 typedef struct s_mlx
 {
@@ -110,6 +120,7 @@ typedef struct s_game
 {
 	t_mlx		mlx;
 	t_color		ceiling;
+	t_keys		keys;
 	t_color		floor;
 	t_tex		no;
 	t_tex		so;
@@ -161,6 +172,8 @@ int		is_ready_for_map(t_game *game);
 void	validate_map(t_game *cub3d);
 
 // moves.c
+int		handle_key_press(int key, t_game *cub3d);
+int		handle_key_release(int key, t_game *cub3d);
 void	try_move(int key, t_game *cub3d);
 void	rotate(int key, t_player *ply);
 

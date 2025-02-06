@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:26:14 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/06 11:46:28 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/06 19:29:40 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,40 @@ void	rotate(int key, t_player *ply)
 	if (key == LEFT)
 		move_degree *= -1;
 	ply->ang = norm_ang(ply->ang + move_degree);
+}
+
+int	handle_key_press(int key, t_game *cub3d)
+{
+	if (key == ESC)
+		clean_exit(cub3d, NULL, 0);
+	else if (key == LEFT)
+		cub3d->keys.left = true;
+	else if (key == RIGHT)
+		cub3d->keys.right = true;
+	else if (key == KEY_A)
+		cub3d->keys.a = true;
+	else if (key == KEY_D)
+		cub3d->keys.d = true;
+	else if (key == KEY_W)
+		cub3d->keys.w = true;
+	else if (key == KEY_S)
+		cub3d->keys.s = true;
+	return (0);
+}
+
+int	handle_key_release(int key, t_game *cub3d)
+{
+	if (key == LEFT)
+		cub3d->keys.left = false;
+	else if (key == RIGHT)
+		cub3d->keys.right = false;
+	else if (key == KEY_A)
+		cub3d->keys.a = false;
+	else if (key == KEY_D)
+		cub3d->keys.d = false;
+	else if (key == KEY_W)
+		cub3d->keys.w = false;
+	else if (key == KEY_S)
+		cub3d->keys.s = false;
+	return (0);
 }
