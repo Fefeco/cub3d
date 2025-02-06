@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/05 22:40:41 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:24:23 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define WIDTH		1024
 # define TILE		64
 # define STEP_SZ	5
+# define SPEED_ROT	3
 # define FOV		62
 # define EPSILON	1e-10
 
@@ -189,6 +190,7 @@ void	init_game(t_game *cub3d);
 
 // init_structs.c
 void	init_t_game(t_game *cub3d);
+void	init_image(t_img *data);
 
 // switch_img.c
 void	switch_img(t_img *img1, t_img *img2);
@@ -221,6 +223,12 @@ void	render_walls(t_game *cub3d);
 void	draw_wall(t_game *cub3d, int x, t_wall wall, t_ray ray);
 
 // get_wall_color.c
-int get_wall_color(double ray_dst);
+int		get_wall_color(double ray_dst);
+
+// set_desltas.c
+void	set_deltas(t_dvec *delta, double ang);
+
+// init_textures.c
+void	init_textures(t_game *cub3d);
 
 #endif
