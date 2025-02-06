@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
-#    Updated: 2025/02/06 13:10:42 by fcarranz         ###   ########.fr        #
+#    Updated: 2025/02/06 19:57:04 by fedeito          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,14 +100,14 @@ $(LIBMLX):
 	@echo "\n$(RESET)"
 
 clean:
-	@if [ -d $(OBJS_PATH) ]; then \
+	@if [ -d $(OBJS_PATH) ] || [ -d $(LFT_PATH)objs ]; then \
 		make clean-objects --no-print-directory; \
 	else \
 		make no-objects --no-print-directory; \
 	fi
 
 fclean: clean
-	@if [ -f $(NAME) ] || [ -f $(LIBFT) ] ; then \
+	@if [ -f $(NAME) ] || [ -f $(LIBFT) ]; then \
 		make clean-files --no-print-directory; \
 	else \
 		make no-files --no-print-directory; \
