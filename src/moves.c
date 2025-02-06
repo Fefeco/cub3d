@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:26:14 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/06 11:23:34 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:46:28 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@
 void	try_move(int key, t_game *cub3d)
 {
 	t_dvec	delta;
-	t_dvec	ply;
-	t_dvec	sum;
+	t_dvec	*ply;
+	t_dvec	tmp;
 	double	ang;
 
-	sum.x = 0;
-	sum.y = 0;
+	ply = &cub3d->ply.pos;
 	if (key == KEY_A || key == KEY_D)
 		ang = norm_ang(cub3d->ply.ang + deg_to_rad(90));
 	else
@@ -32,16 +31,12 @@ void	try_move(int key, t_game *cub3d)
 		delta.x *= -1;
 		delta.y *= -1;
 	}
-	if (delta.x < 0)
-		sum.x = -1;
-	if (delta.y < 0)
-		sum.y = -1;
-	ply.x = cub3d->ply.pos.x + (delta.x * STEP_SZ);
-	ply.y = cub3d->ply.pos.y + (delta.y * STEP_SZ);
-	if (!check_wall(floor(ply.x + sum.x) / TILE, floor(cub3d->ply.pos.y) / TILE, cub3d->map))
-		cub3d->ply.pos.x = ply.x;
-	if (!check_wall(floor(cub3d->ply.pos.x) / TILE, floor(ply.y + sum.y) / TILE, cub3d->map))
-		cub3d->ply.pos.y = ply.y;
+	tmp.x = ply->x + (delta.x * STEP_SZ);
+	tmp.y = ply->y + (delta.y * STEP_SZ);
+	if (!check_wall(floor(tmp.x) / TILE, floor(ply->y) / TILE, cub3d->map))
+		ply->x = tmp.x;
+	if (!check_wall(floor(ply->x) / TILE, floor(tmp.y) / TILE, cub3d->map))
+		ply->y = tmp.y;
 }
 
 void	rotate(int key, t_player *ply)
