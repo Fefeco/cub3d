@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:57:52 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/05 21:53:22 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:06:50 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,10 @@
 #include <stdbool.h>
 #include "cub3d.h"
 
-static void	init_image(t_img *data)
+void	init_image(t_img *data)
 {
 	data->img = NULL;
 	data->addr = NULL;
-}
-
-static void init_with_height(t_tex	*tex)
-{
-	tex->w = 64;
-	tex->h = 64;
-}
-
-static void	init_textures(t_game *cub3d)
-{
-	t_tex	*tex;
-
-	tex = &cub3d->no;
-	tex->file = NULL;
-	init_image(&tex->data);
-	init_with_height(tex);
-	tex = &cub3d->so;
-	tex->file = NULL;
-	init_image(&tex->data);
-	init_with_height(tex);
-	tex = &cub3d->ea;
-	tex->file = NULL;
-	init_image(&tex->data);
-	init_with_height(tex);
-	tex = &cub3d->we;
-	tex->file = NULL;
-	init_image(&tex->data);
-	init_with_height(tex);
 }
 
 static void	init_colors(t_color *color)
