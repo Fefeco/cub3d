@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_wall_color.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedeito <fcarranz@student.42barcel>        +#+  +:+       +#+        */
+/*   By: fcarranz <fcarranz@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/22 22:22:28 by fedeito           #+#    #+#             */
-/*   Updated: 2025/01/22 22:23:30 by fedeito          ###   ########.fr       */
+/*   Created: 2025/01/22 22:22:28 by fcarranz          #+#    #+#             */
+/*   Updated: 2025/02/06 10:52:28 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

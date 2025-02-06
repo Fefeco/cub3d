@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 19:10:28 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/01 11:50:46 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/06 10:54:25 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	create_image(t_game *cub3d)
 	void	*disp;
 
 	render = &cub3d->render;
-	draw  = &cub3d->draw;
+	draw = &cub3d->draw;
 	disp = cub3d->mlx.disp;
 	render->img = mlx_new_image(disp, WIDTH, HEIGHT);
 	draw->img = mlx_new_image(disp, WIDTH, HEIGHT);

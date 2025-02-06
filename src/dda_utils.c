@@ -6,13 +6,13 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 22:38:19 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/05 22:41:19 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/06 10:53:01 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void set_step_directions(t_ray *ray)
+void	set_step_directions(t_ray *ray)
 {
 	if (ray->delta.x < 0)
 		ray->step.x = -1;

@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 13:24:18 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/04 11:56:13 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/06 10:53:39 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	set_xpm_texture(void *disp, t_tex *tex)
 			&tex->data.line_len, &tex->data.endian);
 }
 
-static t_tex *get_texture(const char *id, t_game *cub3d)
+static t_tex	*get_texture(const char *id, t_game *cub3d)
 {
 	if (!ft_strncmp(id, "NO", 3))
 		return (&cub3d->no);

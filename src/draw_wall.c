@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 21:49:08 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/05 21:52:29 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:06:15 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static t_tex	*get_data_texture(t_game *cub3d, t_ray ray)
 	}
 }
 
-static int get_pixel_color(t_img *data, int x, int y)
+static int	get_pixel_color(t_img *data, int x, int y)
 {
 	char	*pixel;
 
@@ -60,7 +60,7 @@ static t_dvec	calc_texture_pt(t_ray ray, t_tex *texture, t_wall *wall)
 	return (tex);
 }
 
-void draw_wall(t_game *cub3d, int x, t_wall wall, t_ray ray)
+void	draw_wall(t_game *cub3d, int x, t_wall wall, t_ray ray)
 {
 	int		y;
 	t_tex	*texture;

@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 19:56:03 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/01 11:51:25 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/06 12:04:11 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	switch_img(t_img *img1, t_img *img2)
 {
 	t_img	tmp;
 
-	tmp = *img1; 
-	*img1 = *img2; 
-	*img2 = tmp; 
+	tmp = *img1;
+	*img1 = *img2;
+	*img2 = tmp;
 }

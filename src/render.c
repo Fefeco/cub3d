@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 20:45:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/01 12:08:41 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/06 11:49:16 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ static void	draw_background(t_game *cub3d)
 int	render(t_game *cub3d)
 {
 	t_mlx	*mlx;
-	t_img *render;
-	t_img *draw;
+	t_img	*render;
+	t_img	*draw;
 
 	if (!cub3d->key_press)
 		return (1);
