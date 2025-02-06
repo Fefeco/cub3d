@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 19:57:47 by davifer2          #+#    #+#             */
-/*   Updated: 2025/02/03 11:40:45 by fcarranz         ###   ########.fr       */
+/*   Created: 2024/12/28 20:49:15 by fcarranz          #+#    #+#             */
+/*   Updated: 2025/02/06 10:57:53 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "cub3d.h"
 
-int	main(int argc, char **argv)
+int	check_wall(int x, int y, char **map)
 {
-	t_game	cub3d;
-
-	if (argc != 2 || !argv[1][0])
-	{
-		print_error(E_WARGS);
+	if (!map || map[y][x] == '1')
 		return (1);
-	}
-	init_t_game(&cub3d);
-	cub3d.mlx.disp = mlx_init();
-	if (!cub3d.mlx.disp)
-	{
-		print_error(E_NODISP);
-		return (-1);
-	}
-	set_game_params(argv[1], &cub3d);
-	init_game(&cub3d);
 	return (0);
+}
+
+double	norm_ang(double ang)
+{
+	if (ang < 0)
+		ang += 2 * M_PI;
+	if (ang >= 2 * M_PI)
+		ang -= 2 * M_PI;
+	return (ang);
+}
+
+double	deg_to_rad(int deg)
+{
+	return (deg * (M_PI / 180.0));
+}
+
+int	rad_to_deg(double rad)
+{
+	return ((int)(rad * (180.0 / M_PI)));
 }

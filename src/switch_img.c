@@ -6,21 +6,17 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 19:56:03 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/16 14:21:18 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:04:11 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	switch_img(t_img *images)
+void	switch_img(t_img *img1, t_img *img2)
 {
-	void	*tmp_img;
-	char	*tmp_addr;
+	t_img	tmp;
 
-	tmp_img = images->img_to_render;
-	tmp_addr = images->addr_to_render;
-	images->img_to_render = images->img_to_draw;
-	images->addr_to_render = images->addr_to_draw;
-	images->img_to_draw = tmp_img;
-	images->addr_to_draw = tmp_addr;
+	tmp = *img1;
+	*img1 = *img2;
+	*img2 = tmp;
 }

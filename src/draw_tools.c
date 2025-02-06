@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   draw_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 19:57:47 by davifer2          #+#    #+#             */
-/*   Updated: 2025/02/03 11:40:45 by fcarranz         ###   ########.fr       */
+/*   Created: 2024/12/17 13:48:06 by fcarranz          #+#    #+#             */
+/*   Updated: 2025/02/06 13:19:30 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char **argv)
+int	create_trgb(int t, int r, int g, int b)
 {
-	t_game	cub3d;
+	return (t << 24 | r << 16 | g << 8 | b);
+}
 
-	if (argc != 2 || !argv[1][0])
-	{
-		print_error(E_WARGS);
-		return (1);
-	}
-	init_t_game(&cub3d);
-	cub3d.mlx.disp = mlx_init();
-	if (!cub3d.mlx.disp)
-	{
-		print_error(E_NODISP);
-		return (-1);
-	}
-	set_game_params(argv[1], &cub3d);
-	init_game(&cub3d);
-	return (0);
+void	put_pxl_on_img(t_img *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->line_len + x * (data->bits_x_pxl / 8));
+	*(unsigned int *)dst = color;
 }

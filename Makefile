@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
-#    Updated: 2024/12/16 14:23:27 by fcarranz         ###   ########.fr        #
+#    Updated: 2025/02/06 13:10:42 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,10 @@ LIBMLX		= mlx/libmlx.a
 
 CC			= cc
 INC			= -Imlx -Iinc -Ilibft/inc
-CFLAGS		= -Wall -Wextra -Werror -g -MMD
+CFLAGS		= -Wall -Wextra -Werror -g -MMD 
 MLX_FLAGS	= -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 LIBFT_FLAGS	= -Llibft -lftprintf
+MATH_FLAGS	= -lm
 
 LFT_PATH	= libft/
 MLX_PATH	= mlx/
@@ -34,22 +35,31 @@ OBJS_PATH	= obj/
 DEPS_PATH	= dep/
 
 SRCS = add_line_to_map.c \
+	   create_image.c \
+	   dda.c \
+	   dda_utils.c \
+	   draw_tools.c \
+	   draw_wall.c \
 	   exit.c \
 	   extract.c \
 	   extract_color.c \
 	   extract_coord.c \
 	   free.c \
+	   init.c \
+	   init_structs.c \
+	   init_textures.c \
 	   main.c \
 	   map_tools.c \
 	   map_validations.c \
+	   moves.c \
 	   print_error.c \
-	   set_params.c \
-	   tests.c \
-	   init.c \
-	   init_structs.c \
-	   switch_img.c \
 	   render.c \
-	   create_image.c
+	   render_walls.c \
+	   set_deltas.c \
+	   set_params.c \
+	   set_player.c \
+	   switch_img.c \
+	   utils.c
 
 OBJS = $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
 DEPS = $(addprefix $(DEPS_PATH), $(SRCS:.c=.d))
@@ -60,7 +70,7 @@ all: $(PHONY_LIBFT) $(NAME)
 
 $(NAME): $(LIBMLX) $(LIBFT) $(OBJS) inc/cub3d.h
 	@echo "$(YELLOW)	Compiling cub3d...\n$(RESET)"
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_FLAGS) $(MLX_FLAGS) $(INC) -o $@
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_FLAGS) $(MLX_FLAGS) $(MATH_FLAGS) $(INC) -o $@
 	@echo "\n$(GREEN)"
 	@echo "	===============	"
 	@echo "	 cub3d created	"

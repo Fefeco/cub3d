@@ -6,42 +6,21 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 20:45:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/16 14:21:07 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:49:16 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
-}
-
-static void	put_pxl_on_img(t_img *images, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = images->addr_to_draw + (y * images->line_length
-			+ x * (images->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
-static void	put_pxl_on_img(t_img *images, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = images->addr_to_draw + (y * images->line_length
-			+ x * (images->bits_per_pixel / 8));
-	dst = color;
-}
 static void	draw_background(t_game *cub3d)
 {
-	t_img	*images;
+	t_img	*draw;
 	int		color;
 	t_color	col;
 	int		x;
 	int		y;
 
-	images = &cub3d->images;
+	draw = &cub3d->draw;
 	col = cub3d->ceiling;
 	color = create_trgb(0, col.red, col.green, col.blue);
 	col = cub3d->floor;
@@ -53,7 +32,7 @@ static void	draw_background(t_game *cub3d)
 			color = create_trgb(0, col.red, col.green, col.blue);
 		while (x < WIDTH)
 		{
-			put_pxl_on_img(images, x, y, color);
+			put_pxl_on_img(draw, x, y, color);
 			++x;
 		}
 		++y;
@@ -62,13 +41,19 @@ static void	draw_background(t_game *cub3d)
 
 int	render(t_game *cub3d)
 {
-	t_img	*images;
 	t_mlx	*mlx;
+	t_img	*render;
+	t_img	*draw;
 
-	images = &cub3d->images;
+	if (!cub3d->key_press)
+		return (1);
 	mlx = &cub3d->mlx;
+	render = &cub3d->render;
+	draw = &cub3d->draw;
 	draw_background(cub3d);
-	switch_img(images);
-	mlx_put_image_to_window(mlx->disp, mlx->win, images->img_to_render, 0, 0);
+	render_walls(cub3d);
+	switch_img(draw, render);
+	mlx_put_image_to_window(mlx->disp, mlx->win, render->img, 0, 0);
+	cub3d->key_press = false;
 	return (0);
 }

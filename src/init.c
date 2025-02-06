@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 21:50:22 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/16 14:20:41 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/05 21:54:14 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,13 @@
 
 static int	handle_key(int key, t_game *cub3d)
 {
+	cub3d->key_press = true;
 	if (key == ESC)
 		clean_exit(cub3d, NULL, 0);
-	else if (key == LEFT)
-		ft_printf(YELL"keyPress: LEFT\n"RESET);
-	else if (key == RIGHT)
-		ft_printf(YELL"keyPress: RIGHT\n"RESET);
-	else if (key == KEY_A)
-		ft_printf(TEST3"keyPress: A\n"RESET);
-	else if (key == KEY_W)
-		ft_printf(TEST2"keyPress: W\n"RESET);
-	else if (key == KEY_S)
-		ft_printf(TEST2"keyPress: S\n"RESET);
-	else if (key == KEY_D)
-		ft_printf(TEST3"keyPress: D\n"RESET);
+	else if (key == LEFT || key == RIGHT)
+		rotate(key, &cub3d->ply);
+	else if (key == KEY_A || key == KEY_D || key == KEY_W || key == KEY_S)
+		try_move(key, cub3d);
 	return (0);
 }
 
@@ -47,9 +40,6 @@ void	init_game(t_game *cub3d)
 	t_mlx	*mlx;
 
 	mlx = &cub3d->mlx;
-	mlx->disp = mlx_init();
-	if (!mlx->disp)
-		return ;
 	create_image(cub3d);
 	mlx->win = mlx_new_window(mlx->disp, WIDTH, HEIGHT, "CUB3D");
 	mlx_loop_hook(mlx->disp, render, cub3d);
