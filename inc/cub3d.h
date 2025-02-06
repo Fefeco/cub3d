@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/06 12:59:10 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/06 13:09:14 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,6 @@
 # define SPEED_ROT	3
 # define FOV		62
 # define EPSILON	1e-10
-
-# define MAP_WALL_COLOR 0x00433535
-# define GRID_COLOR		0x00C0C0C0
 
 # define ON_KEYDOWN 2
 # define ON_DESTROY 17
@@ -167,7 +164,7 @@ void	validate_map(t_game *cub3d);
 void	try_move(int key, t_game *cub3d);
 void	rotate(int key, t_player *ply);
 
-// set_pllayer.c
+// set_player.c
 void	set_player(t_game *cub3d);
 
 // add_line_to_map.c
@@ -205,7 +202,7 @@ void	set_deltas(t_dvec *delta, double ang);
 // dda_utils.c
 t_ivec	get_map_coords(t_dvec ply_pos);
 void	set_delta_distances(t_dvec *delta_dst, t_dvec delta);
-void 	set_step_directions(t_ray *ray);
+void	set_step_directions(t_ray *ray);
 
 // render_walls.c
 void	render_walls(t_game *cub3d);

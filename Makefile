@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
-#    Updated: 2025/02/06 12:57:31 by fcarranz         ###   ########.fr        #
+#    Updated: 2025/02/06 13:10:42 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,8 +59,7 @@ SRCS = add_line_to_map.c \
 	   set_params.c \
 	   set_player.c \
 	   switch_img.c \
-	   tests.c \
-	   utils.c \
+	   utils.c
 
 OBJS = $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
 DEPS = $(addprefix $(DEPS_PATH), $(SRCS:.c=.d))
