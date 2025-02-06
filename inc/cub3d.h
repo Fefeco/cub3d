@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/06 13:09:14 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/06 13:56:38 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,7 @@ int		check_wall(int x, int y, char **map);
 double	norm_ang(double ang);
 double	deg_to_rad(int deg);
 int		rad_to_deg(double rad);
+bool	file_access(char *value);
 
 // dda.c
 void	dda(t_ray *ray, char **map);

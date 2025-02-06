@@ -6,7 +6,7 @@
 #    By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/09 13:06:50 by davifer2          #+#    #+#              #
-#    Updated: 2024/12/10 12:08:40 by fcarranz         ###   ########.fr        #
+#    Updated: 2025/02/06 14:15:32 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ LFT_FILES = ft_atoi.c \
 			ft_split.c \
 			ft_strchr.c \
 			ft_strdup.c \
+			ft_strjoin.c \
 			ft_striteri.c \
 			ft_strlcat.c \
 			ft_strlcpy.c \

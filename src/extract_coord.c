@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 13:24:18 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/06 10:53:39 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/06 14:20:39 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,11 @@ static bool	set_coord(const char *tmp, const char *line, t_game *cub3d)
 	if (tex->file)
 	{
 		print_error(E_TMCOOR);
+		free (value);
+		return (false);
+	}
+	if (!file_access(value))
+	{
 		free (value);
 		return (false);
 	}
