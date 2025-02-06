@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
+/*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 20:45:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/06 19:49:13 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/06 20:29:23 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int	render(t_game *cub3d)
 	t_img	*render;
 	t_img	*draw;
 
-	if (cub3d->keys.left || cub3d->keys.right || cub3d->keys.a ||
-		cub3d->keys.d || cub3d->keys.w || cub3d->keys.s)
+	if (cub3d->keys.left || cub3d->keys.right || cub3d->keys.a
+		|| cub3d->keys.d || cub3d->keys.w || cub3d->keys.s)
 		cub3d->key_press = true;
 	if (!cub3d->key_press)
 		return (1);

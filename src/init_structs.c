@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
+/*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:57:52 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/06 20:15:24 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/06 20:30:28 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 #include <stdbool.h>
 #include "cub3d.h"
 
-
 static void	init_keys(t_keys *keys)
 {
-
 	keys->w = false;
 	keys->a = false;
 	keys->s = false;
