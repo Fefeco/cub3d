@@ -6,13 +6,25 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:57:52 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/06 11:06:50 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/06 20:15:24 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <stdbool.h>
 #include "cub3d.h"
+
+
+static void	init_keys(t_keys *keys)
+{
+
+	keys->w = false;
+	keys->a = false;
+	keys->s = false;
+	keys->d = false;
+	keys->left = false;
+	keys->right = false;
+}
 
 void	init_image(t_img *data)
 {
@@ -36,6 +48,7 @@ static void	init_mlx(t_mlx	*mlx)
 void	init_t_game(t_game *cub3d)
 {
 	init_mlx(&cub3d->mlx);
+	init_keys(&cub3d->keys);
 	init_textures(cub3d);
 	init_image(&cub3d->render);
 	init_image(&cub3d->draw);
