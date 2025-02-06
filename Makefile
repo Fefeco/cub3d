@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/23 21:09:29 by fcarranz          #+#    #+#              #
-#    Updated: 2025/02/06 11:05:13 by fcarranz         ###   ########.fr        #
+#    Updated: 2025/02/06 12:57:31 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,33 +35,32 @@ OBJS_PATH	= obj/
 DEPS_PATH	= dep/
 
 SRCS = add_line_to_map.c \
+	   create_image.c \
+	   dda.c \
+	   dda_utils.c \
+	   draw_tools.c \
+	   draw_wall.c \
 	   exit.c \
 	   extract.c \
 	   extract_color.c \
 	   extract_coord.c \
 	   free.c \
-	   main.c \
-	   map_tools.c \
-	   map_validations.c \
-	   print_error.c \
-	   set_params.c \
-	   tests.c \
 	   init.c \
 	   init_structs.c \
 	   init_textures.c \
-	   switch_img.c \
-	   render.c \
-	   set_player.c \
+	   main.c \
+	   map_tools.c \
+	   map_validations.c \
 	   moves.c \
-	   dda.c \
-	   dda_utils.c \
-	   set_deltas.c \
-	   draw_tools.c \
-	   utils.c \
-	   get_wall_color.c \
+	   print_error.c \
+	   render.c \
 	   render_walls.c \
-	   draw_wall.c \
-	   create_image.c
+	   set_deltas.c \
+	   set_params.c \
+	   set_player.c \
+	   switch_img.c \
+	   tests.c \
+	   utils.c \
 
 OBJS = $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
 DEPS = $(addprefix $(DEPS_PATH), $(SRCS:.c=.d))

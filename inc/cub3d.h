@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/06 11:24:23 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:59:10 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,15 +155,6 @@ void	free_image(t_img *data, void *disp);
 void	free_texture(t_tex *tex, void *disp);
 void	free_mlx(t_mlx *mlx);
 
-// draw_map.c
-void	draw_map(t_game *cub3d);
-
-// draw_player.c
-void	draw_player(t_game *cub3d);
-
-// draw_ray.c
-void	draw_ray(t_game *cub3d);
-
 // draw_tools.c
 int		create_trgb(int t, int r, int g, int b);
 void	put_pxl_on_img(t_img *data, int x, int y, int color);
@@ -221,9 +212,6 @@ void	render_walls(t_game *cub3d);
 
 // draw_walls.c
 void	draw_wall(t_game *cub3d, int x, t_wall wall, t_ray ray);
-
-// get_wall_color.c
-int		get_wall_color(double ray_dst);
 
 // set_desltas.c
 void	set_deltas(t_dvec *delta, double ang);
