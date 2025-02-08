@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:49:15 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/06 14:21:29 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/08 11:00:48 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	rad_to_deg(double rad)
 	return ((int)(rad * (180.0 / M_PI)));
 }
 
-bool	file_access(char *value)
+bool	file_access(char *value, t_game *cub3d)
 {
 	char	*error;
 
@@ -50,7 +50,7 @@ bool	file_access(char *value)
 		error = ft_strjoin(E_FLNOTF, value);
 		if (error)
 		{
-			print_error(error);
+			print_error(error, cub3d);
 			free (error);
 		}
 		return (false);
@@ -60,7 +60,7 @@ bool	file_access(char *value)
 		error = ft_strjoin(E_NOREAD, value);
 		if (error)
 		{
-			print_error(error);
+			print_error(error, cub3d);
 			free (error);
 		}
 		return (false);

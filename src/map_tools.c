@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:17:41 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/03 13:33:26 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/08 11:58:54 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int	is_ready_for_map(t_game *cub)
 		return (1);
 	if (!cub->no.file || !cub->so.file || !cub->we.file || !cub->ea.file)
 	{
-		print_error(E_MTXPAR);
+		print_error(E_MTXPAR, cub);
 		return (0);
 	}
 	if (!color_ok(&cub->ceiling) || !color_ok(&cub->floor))
 	{
-		print_error(E_MCPAR);
+		print_error(E_MCPAR, cub);
 		return (0);
 	}
 	cub->ready_for_map = true;
@@ -51,9 +51,7 @@ static bool	is_space_arround(int x, int y, char **map)
 			++col;
 			if (x + col < 0 || (row == 0 && col == 0))
 				continue ;
-			if (!map[y + row][x + col])
-				continue ;
-			if (map[y + row][x + col] == ' ')
+			if (!map[y + row][x + col] || map[y + row][x + col] == ' ')
 				return (true);
 		}
 	}
@@ -71,6 +69,8 @@ void	validate_map(t_game *cub3d)
 	{
 		line = cub3d->map[y];
 		x = -1;
+		if (line && !ft_strchr(" 1", *line))
+			clean_exit(cub3d, E_NOWALL, 5);
 		while (line[++x])
 		{
 			if (line[x] != '0' && !ft_strchr("NSEW", line[x]))

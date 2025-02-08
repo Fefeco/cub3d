@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:56:05 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/08 10:10:17 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/08 11:05:21 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 #include "ft_printf.h"
 #include "get_next_line.h"
 
-static void	check_file_extension(char *filename)
+static void	check_file_extension(char *filename, t_game *cub3d)
 {
 	if (ft_check_extension(filename, ".cub"))
 	{
-		print_error(E_WEXT);
+		print_error(E_WEXT, cub3d);
 		exit(2);
 	}
 }
@@ -30,7 +30,7 @@ static int	open_source_file(char *filename, t_game *cub3d)
 
 	if (access(filename, F_OK | R_OK))
 		clean_exit(cub3d, strerror(errno), 2);
-	check_file_extension(filename);
+	check_file_extension(filename, cub3d);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		clean_exit(cub3d, strerror(errno), 3);
@@ -44,7 +44,7 @@ static bool	uncomplete_params(t_game *cub3d)
 		return (true);
 	if (cub3d->ready_for_map && cub3d->map)
 		return (false);
-	print_error(E_UPARAM);
+	print_error(E_UPARAM, cub3d);
 	return (true);
 }
 

@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:57:52 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/06 20:30:28 by davifer2         ###   ########.fr       */
+/*   Updated: 2025/02/08 10:46:41 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	init_t_game(t_game *cub3d)
 	init_colors(&cub3d->ceiling);
 	init_colors(&cub3d->floor);
 	cub3d->ready_for_map = false;
+	cub3d->has_print_error = false;
 	cub3d->key_press = true;
 	cub3d->ply.ang = -1;
 	cub3d->map = NULL;

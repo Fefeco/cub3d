@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 21:27:14 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/06 13:55:10 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/08 11:10:47 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,5 @@
 # define E_UPARAM	"Uncomplete game parameters"
 # define E_NEWIMG	"Mlx failed creating image"
 # define E_DATIMG	"Mlx failed returning data from image"
-
-void	print_error(const char *error);
 
 #endif

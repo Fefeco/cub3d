@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 13:00:35 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/04 11:37:22 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/08 10:54:53 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	clean_game_ptrs(t_game *cub3d)
 
 int	clean_exit(t_game *cub3d, const char *error, int nb_error)
 {
-	print_error(error);
+	print_error(error, cub3d);
 	clean_game_ptrs(cub3d);
 	exit(nb_error);
 }

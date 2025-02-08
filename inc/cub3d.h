@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/06 20:07:13 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/08 11:10:30 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ typedef struct s_game
 	t_img		render;
 	t_img		draw;
 	bool		ready_for_map;
+	bool		has_print_error;
 	bool		key_press;
 	t_player	ply;
 	char		**map;
@@ -151,7 +152,7 @@ void	set_game_params(char *filename, t_game *cub3d);
 int		extract_params(char **line_ref, t_game *cub3d);
 
 // extract_coord.c
-int		extract_coord(const char *line, t_game *cub3d);
+int		extract_coord(const char *line, t_game *cub3d, char *ref_line);
 
 // extract_color.c
 int		extract_color(const char *line, t_game *cub3d);
@@ -207,7 +208,7 @@ int		check_wall(int x, int y, char **map);
 double	norm_ang(double ang);
 double	deg_to_rad(int deg);
 int		rad_to_deg(double rad);
-bool	file_access(char *value);
+bool	file_access(char *value, t_game *cub3d);
 
 // dda.c
 void	dda(t_ray *ray, char **map);
@@ -230,4 +231,5 @@ void	set_deltas(t_dvec *delta, double ang);
 // init_textures.c
 void	init_textures(t_game *cub3d);
 
+void	print_error(const char *error, t_game *cub3d);
 #endif

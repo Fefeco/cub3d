@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 11:49:23 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/12/16 14:20:13 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/08 11:12:04 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	char_rgb_to_int(char **octet)
 	return (tmp);
 }
 
-int	get_color(const char **line)
+int	get_color(const char **line, t_game *cub3d)
 {
 	char	*octet;
 	int		pos;
@@ -47,7 +47,7 @@ int	get_color(const char **line)
 	octet = (char *)calloc(4, sizeof(char));
 	if (!octet)
 	{
-		print_error(E_MALLOC);
+		print_error(E_MALLOC, cub3d);
 		return (-1);
 	}
 	pos = 0;
@@ -72,7 +72,7 @@ int	extract_color(const char *line, t_game *cub3d)
 
 	if (!ft_isspace(*(line + 1)))
 	{
-		print_error(E_WINST);
+		print_error(E_WINST, cub3d);
 		return (-1);
 	}
 	if (*line++ == 'F')
@@ -81,15 +81,15 @@ int	extract_color(const char *line, t_game *cub3d)
 		rgb = &cub3d->ceiling;
 	if (color_ok(rgb))
 	{
-		print_error(E_TMCOL);
+		print_error(E_TMCOL, cub3d);
 		return (-1);
 	}
-	rgb->red = get_color(&line);
-	rgb->green = get_color(&line);
-	rgb->blue = get_color(&line);
+	rgb->red = get_color(&line, cub3d);
+	rgb->green = get_color(&line, cub3d);
+	rgb->blue = get_color(&line, cub3d);
 	if (color_ok(rgb) == false)
 	{
-		print_error(E_WCOLOR);
+		print_error(E_WCOLOR, cub3d);
 		return (-1);
 	}
 	return (0);

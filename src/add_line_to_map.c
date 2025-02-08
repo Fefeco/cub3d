@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 12:58:23 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/06 13:21:19 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/08 11:06:08 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ static char	**append_line(char **map, const char *map_line)
 	return (new_array);
 }
 
-static int	invalid_char(const char *line)
+static int	invalid_char(const char *line, t_game *cub3d)
 {
 	while (*line)
 	{
 		if (ft_strchr(" 01NSEW", *line++) == NULL)
 		{
-			print_error(E_WCHAR);
+			print_error(E_WCHAR, cub3d);
 			return (1);
 		}
 	}
@@ -48,7 +48,7 @@ int	add_line_to_map(const char *line, t_game *cub3d)
 	char	*map_line;
 
 	map_line = ft_strtrim(line, "\n");
-	if (map_line && !invalid_char(map_line))
+	if (map_line && !invalid_char(map_line, cub3d))
 	{
 		map = append_line(cub3d->map, map_line);
 		if (map)

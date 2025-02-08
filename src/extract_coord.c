@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 13:24:18 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/06 14:20:39 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/08 11:14:04 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,17 @@ static char	*rm_spaces_endl(const char *str)
 	return (ret);
 }
 
-void	set_xpm_texture(void *disp, t_tex *tex)
+void	set_xpm_texture(t_game *cub3d, t_tex *tex)
 {
+	void	*disp;
+
+	disp = cub3d->mlx.disp;
 	if (!disp || !tex)
 		return ;
 	tex->data.img = mlx_xpm_file_to_image(disp, tex->file, &tex->w, &tex->h);
 	if (!tex->data.img)
 	{
-		print_error(E_MLXIMG);
+		print_error(E_MLXIMG, cub3d);
 		return ;
 	}
 	tex->data.addr = mlx_get_data_addr(tex->data.img, &tex->data.bits_x_pxl,
@@ -54,7 +57,8 @@ static t_tex	*get_texture(const char *id, t_game *cub3d)
 		return (NULL);
 }
 
-static bool	set_coord(const char *tmp, const char *line, t_game *cub3d)
+static bool	set_coord(char *tmp, const char *line, t_game *cub3d,
+		char *ref_line)
 {
 	t_tex	*tex;
 	char	*value;
@@ -67,21 +71,22 @@ static bool	set_coord(const char *tmp, const char *line, t_game *cub3d)
 		return (false);
 	if (tex->file)
 	{
-		print_error(E_TMCOOR);
 		free (value);
-		return (false);
+		free (ref_line);
+		free (tmp);
+		clean_exit(cub3d, E_TMCOOR, 99);
 	}
-	if (!file_access(value))
+	if (!file_access(value, cub3d))
 	{
 		free (value);
 		return (false);
 	}
 	tex->file = value;
-	set_xpm_texture(cub3d->mlx.disp, tex);
+	set_xpm_texture(cub3d, tex);
 	return (true);
 }
 
-int	extract_coord(const char *line, t_game *cub3d)
+int	extract_coord(const char *line, t_game *cub3d, char *ref_line)
 {
 	char		*tmp;
 	bool		success;
@@ -90,7 +95,7 @@ int	extract_coord(const char *line, t_game *cub3d)
 	tmp = (char *)ft_calloc(3, sizeof(char));
 	if (!tmp)
 	{
-		print_error(E_MALLOC);
+		print_error(E_MALLOC, cub3d);
 		return (-1);
 	}
 	success = false;
@@ -101,11 +106,11 @@ int	extract_coord(const char *line, t_game *cub3d)
 	{
 		tmp[1] = *line++;
 		if (*line && ft_isspace(*line) && ft_strnarrcmp(tmp, coords, 3))
-			success = set_coord(tmp, line, cub3d);
+			success = set_coord(tmp, line, cub3d, ref_line);
 	}
 	free (tmp);
 	if (success)
 		return (0);
-	print_error(E_WINST);
+	print_error(E_WINST, cub3d);
 	return (-1);
 }
