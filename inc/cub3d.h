@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 20:21:49 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/08 11:10:30 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/08 15:14:17 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,7 @@ void	put_pxl_on_img(t_img *data, int x, int y, int color);
 // map_tools.c
 int		is_ready_for_map(t_game *game);
 void	validate_map(t_game *cub3d);
+bool	extract_line_to_map(char *line, t_game *cub3d);
 
 // moves.c
 int		handle_key_press(int key, t_game *cub3d);

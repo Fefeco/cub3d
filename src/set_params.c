@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:56:05 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/08 14:44:45 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/08 15:14:36 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,30 +48,6 @@ static bool	uncomplete_params(t_game *cub3d)
 	return (true);
 }
 
-bool	foo(char *line, t_game *cub3d)
-{
-	char *tmp;
-
-	tmp = line;
-	while (*tmp && (ft_isspace(*tmp) || *tmp == '\n'))
-		++tmp;
-	if (!*tmp)
-	{
-		free(line);
-		return (true);
-	}
-	else if (ft_strchr("01", *tmp))
-		add_line_to_map((const char *)line, cub3d);
-	free(line);
-	return (false);
-}
-
-void	free_and_null(char **str)
-{
-	free (*str);
-	*str = NULL;
-}
-
 static void	read_source_file(char *filename, t_game *cub3d)
 {
 	char	*line;
@@ -89,7 +65,7 @@ static void	read_source_file(char *filename, t_game *cub3d)
 		free_and_null(&line);
 	while (line)
 	{
-		if(foo(line, cub3d))
+		if (extract_line_to_map(line, cub3d))
 			break ;
 		line = get_next_line(fd);
 	}

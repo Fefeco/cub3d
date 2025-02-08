@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:57:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/08 14:29:18 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/08 15:05:05 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,4 @@ void	set_player(t_game *cub3d)
 				break ;
 		}
 	}
-
 }

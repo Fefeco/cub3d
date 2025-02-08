@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:26:14 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/08 13:38:58 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/08 15:07:45 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 
 int	norm_pos(double delta)
 {
-	if (delta < 0) 
-		return (1);
-	else if (delta == 0)
+	if (delta == 0)
 		return (0);
-	return (-1);
+	else
+		return ((2 * delta) * -1);
 }
 
 void	try_move(int key, t_game *cub3d)
@@ -43,11 +42,9 @@ void	try_move(int key, t_game *cub3d)
 	tmp.x = ply->x + (delta.x * STEP_SZ);
 	tmp.y = ply->y + (delta.y * STEP_SZ);
 	if (!check_wall(floor(tmp.x) / TILE, floor(ply->y) / TILE, cub3d->map))
-		//ply->x = tmp.x + norm_pos(delta.x);
-		ply->x = tmp.x;
+		ply->x = tmp.x + norm_pos(delta.x);
 	if (!check_wall(floor(ply->x) / TILE, floor(tmp.y) / TILE, cub3d->map))
-		//ply->y = tmp.y + norm_pos(delta.y);
-		ply->y = tmp.y;
+		ply->y = tmp.y + norm_pos(delta.y);
 }
 
 void	rotate(int key, t_player *ply)

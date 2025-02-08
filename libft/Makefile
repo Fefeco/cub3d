@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+         #
+#    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/09 13:06:50 by davifer2          #+#    #+#              #
-#    Updated: 2025/02/06 14:15:32 by fcarranz         ###   ########.fr        #
+#    Updated: 2025/02/08 15:11:35 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ PRF_DEP_PATH = $(subst $(SRCS_PATH), $(DEPS_PATH), $(PRF_SRC_PATH))
 LFT_FILES = ft_atoi.c \
 			ft_bzero.c \
 			ft_calloc.c \
+			ft_free.c \
 			ft_itoa.c \
 			ft_isalnum.c \
 			ft_isalpha.c \
