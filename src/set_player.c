@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 11:57:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/06 13:20:45 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/08 14:29:18 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,5 @@ void	set_player(t_game *cub3d)
 				break ;
 		}
 	}
-	if (cub3d->map[y])
-		clean_exit(cub3d, E_PTMSET, 4);
-	if (cub3d->ply.ang == -1)
-		clean_exit(cub3d, E_PNOSET, 4);
+
 }

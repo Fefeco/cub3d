@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 17:58:38 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/08 10:38:55 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/08 12:36:14 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	extract_params(char **line_ref, t_game *cub3d)
 			ret = extract_coord(line, cub3d, *line_ref);
 		else if (*line == 'F' || *line == 'C')
 			ret = extract_color(line, cub3d);
-		else if (ft_strchr("01", *line) && is_ready_for_map(cub3d))
-			ret = add_line_to_map(*line_ref, cub3d);
+		else if (ft_strchr("01", *line))
+			return (-1);
 		else
 		{
 			free (*line_ref);

@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 21:27:14 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/08 11:10:47 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/08 13:43:36 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # define E_TMCOOR	"Too many declarations for the same coordinates"
 # define E_MTXPAR	"Missing texture parameters before map"
 # define E_MCPAR	"Missing color parameters before map"
-# define E_PNOSET	"Payer orientation not set"
-# define E_PTMSET	"Payer orientation set more than once"
+# define E_PNOSET	"Player orientation not set"
+# define E_PTMSET	"Player orientation set more than once"
 # define E_NOWALL	"Map is not surrounded by walls"
 # define E_WEXT		"Invalid extension"
 # define E_UPARAM	"Uncomplete game parameters"

@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:56:05 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/08 11:05:21 by fcarranz         ###   ########.fr       */
+/*   Updated: 2025/02/08 14:06:05 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,29 @@ static bool	uncomplete_params(t_game *cub3d)
 	return (true);
 }
 
+bool	foo(char *line, t_game *cub3d)
+{
+	char *tmp;
+
+	tmp = line;
+	while (*tmp && (ft_isspace(*tmp) || *tmp == '\n'))
+		++tmp;
+	if (!*tmp)
+	{
+		free(line);
+		return (true);
+	}
+	else if (ft_strchr("01", *tmp))
+		add_line_to_map((const char *)line, cub3d);
+	return (false);
+}
+
+void	free_and_null(char **str)
+{
+	free (*str);
+	*str = NULL;
+}
+
 static void	read_source_file(char *filename, t_game *cub3d)
 {
 	char	*line;
@@ -61,6 +84,14 @@ static void	read_source_file(char *filename, t_game *cub3d)
 			break ;
 		line = get_next_line(fd);
 	}
+	if (line && !is_ready_for_map(cub3d))
+		free_and_null(&line);
+	while (line)
+	{
+		if(foo(line, cub3d))
+			break ;
+		line = get_next_line(fd);
+	}
 	close(fd);
 	if (uncomplete_params(cub3d))
 		clean_exit(cub3d, NULL, 2);
@@ -69,6 +100,6 @@ static void	read_source_file(char *filename, t_game *cub3d)
 void	set_game_params(char *filename, t_game *cub3d)
 {
 	read_source_file(filename, cub3d);
-	set_player(cub3d);
 	validate_map(cub3d);
+	set_player(cub3d);
 }
