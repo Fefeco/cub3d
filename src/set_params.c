@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:56:05 by fcarranz          #+#    #+#             */
-/*   Updated: 2025/02/06 19:44:15 by fedeito          ###   ########.fr       */
+/*   Updated: 2025/02/08 10:10:17 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,16 @@ static void	check_file_extension(char *filename)
 	}
 }
 
-static int	open_source_file(char *filename)
+static int	open_source_file(char *filename, t_game *cub3d)
 {
 	int	fd;
 
 	if (access(filename, F_OK | R_OK))
-	{
-		print_error(strerror(errno));
-		exit(errno);
-	}
+		clean_exit(cub3d, strerror(errno), 2);
 	check_file_extension(filename);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-	{
-		print_error(strerror(errno));
-		exit(errno);
-	}
+		clean_exit(cub3d, strerror(errno), 3);
 	return (fd);
 }
 
@@ -59,7 +53,7 @@ static void	read_source_file(char *filename, t_game *cub3d)
 	char	*line;
 	int		fd;
 
-	fd = open_source_file(filename);
+	fd = open_source_file(filename, cub3d);
 	line = get_next_line(fd);
 	while (line)
 	{
